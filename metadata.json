@@ -1,0 +1,25 @@
+{
+    "KPlugin": {
+        "Authors": [
+            {
+                "Name": "zayronxio"
+            }
+        ],
+        "Name": "Flex Hub",
+        "Id": "Plasma.Flex.Hub",
+        "Description": "Plasmoid that provides direct access to various configuration aspects as well as multimedia information, inspired by the macOS Control Center.",
+        "Category": "Utilities",
+        "Icon": "configure",
+        "EnabledByDefault": true,
+        "License": "GPL-3.0+",
+        "ServiceTypes": [
+            "Plasma/Applet"
+        ],
+        "Version": "0.1",
+        "Website": ""
+    },
+    "X-Plasma-API-Minimum-Version": "6.0",
+    "X-Plasma-Provides": "org.kde.plasma.multimediacontrols,org.kde.plasma.powermanagement,org.kde.plasma.notifications",
+    "X-Plasma-NotificationArea": "true",
+    "X-Plasma-MainScript": "ui/main.qml"
+}
