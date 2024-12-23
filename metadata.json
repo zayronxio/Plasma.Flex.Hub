@@ -7,7 +7,7 @@
         ],
         "Name": "Flex Hub",
         "Id": "Plasma.Flex.Hub",
-        "Description": "Plasmoid that provides direct access to various configuration aspects as well as multimedia information, inspired by the macOS Control Center.",
+        "Description": "Plasma Flex Hub is a modular and customizable plasmoid for Plasma 6, evolving from Plasma Control Hub to provide a compact and modern integrated control center.",
         "Category": "Utilities",
         "Icon": "configure",
         "EnabledByDefault": true,
@@ -16,7 +16,7 @@
             "Plasma/Applet"
         ],
         "Version": "0.1",
-        "Website": ""
+        "Website": "https://github.com/zayronxio/Plasma.Flex.Hub"
     },
     "X-Plasma-API-Minimum-Version": "6.0",
     "X-Plasma-Provides": "org.kde.plasma.multimediacontrols,org.kde.plasma.powermanagement,org.kde.plasma.notifications",

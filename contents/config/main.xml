@@ -4,6 +4,16 @@
       xsi:schemaLocation="http://www.kde.org/standards/kcfg/1.0
       http://www.kde.org/standards/kcfg/1.0/kcfg.xsd" >
   <kcfgfile name=""/>
-
-
+    <entry name="elements" type="StringList">
+      <default></default>
+    </entry>
+    <entry name="yElements" type="StringList">
+      <default></default>
+    </entry>
+    <entry name="xElements" type="StringList">
+      <default></default>
+    </entry>
+    <entry name="lastFilled" type="int">
+      <default>0</default>
+    </entry>
 </kcfg>

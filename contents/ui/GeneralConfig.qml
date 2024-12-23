@@ -1,5 +1,5 @@
-import QtQuick 2.15
-import QtQuick.Controls 2.15
+import QtQuick
+import QtQuick.Controls
 import QtQuick.Layouts 1.11
 import org.kde.kirigami as Kirigami
 
@@ -8,21 +8,27 @@ Item {
 
     signal configurationChanged
 
+    QtObject {
+        id: keysConfig
+        property var elements: []
+        property var xElements: []
+        property var yElements: []
+    }
+
+    property alias cfg_elements: keysConfig.elements
+    property alias cfg_yElements: keysConfig.yElements
+    property alias cfg_xElements: keysConfig.xElements
+
     property real spacing: 10
-    property int cellWidth: 40
+    property int cellWidth:  Kirigami.Units.gridUnit * 4
     property int cellHeight: cellWidth
     property int cellWidthFilled: 0
+    property int cellHeightFilled: 0
     property int rowsFilled: 0
     property int widthAveilable: 4
 
-    ListModel {
+    Model {
         id: namesModel
-        // Initial model with valid IDs
-        ListElement { elementId: "item1"; name: "Music Card 2x2"; widthFactor: 2; heightFactor: 2 }
-        ListElement { elementId: "item2"; name: "Music Card 1x4"; widthFactor: 4; heightFactor: 1 }
-        ListElement { elementId: "item3"; name: "Connections and Quick Settings 2x2"; widthFactor: 2; heightFactor: 4 }
-        ListElement { elementId: "item4"; name: "Volume Slider 1x2"; widthFactor: 2; heightFactor: 1 }
-        ListElement { elementId: "item5"; name: "Toggle 1x1"; widthFactor: 1; heightFactor: 1 }
     }
 
     ListModel {
@@ -129,6 +135,7 @@ Item {
         return found ? lastRow : rowsFilled + w;
     }
 
+
     GridLayout {
         columns: 2
 
@@ -200,6 +207,9 @@ Item {
                                     x: varx,
                                     y: vary
                                 });
+                                keysConfig.elements.push(model.index)
+                                keysConfig.yElements.push(vary)
+                                keysConfig.xElements.push(varx)
                             }
 
                             if (gridModel.count === 0) {
@@ -230,6 +240,19 @@ Item {
                         }
                     }
                 }
+            }
+        }
+        Label {
+            width: configRoot.width/2
+        }
+        Button {
+            text: "Reset"
+            anchors.left: listview.left
+            onClicked: {
+                keysConfig.elements = []
+                keysConfig.yElements = []
+                keysConfig.xElements = []
+                gridModel.clear()
             }
         }
     }
