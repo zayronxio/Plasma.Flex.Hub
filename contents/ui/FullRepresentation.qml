@@ -2,7 +2,6 @@ import QtQuick
 import QtQuick.Layouts
 import org.kde.kirigami as Kirigami
 import org.kde.plasma.plasmoid
-//import "components" as Components
 
 Item {
     id:root
@@ -38,7 +37,7 @@ Item {
     Layout.maximumHeight: Layout.preferredHeight
     clip: true
 
-    signal updateConfigs
+    //signal updateConfigs
 
     onSideBarEnabledChanged: {
         Layout.preferredWidth = sideBarEnabled ? (widthFactor * 8 + spacing * 11) : (widthFactor * 4 + spacing * 5);
@@ -57,9 +56,6 @@ Item {
     Model {
         id: namesModel
     }
-    Text {
-        text: Kirigami.Units.largeSpacing
-    }
 
     ListModel {
         id: gridModel
@@ -67,18 +63,20 @@ Item {
 
     Component.onCompleted: {
         // change when public released
+        /*/
         Plasmoid.configuration.xElements = list_x
         Plasmoid.configuration.yElements = list_y
         Plasmoid.configuration.elements = listElements
-
-        //listElements = Plasmoid.configuration.elements
-        //list_y = Plasmoid.configuration.yElements
-        //list_x = Plasmoid.configuration.xElements
+        /*/
+        listElements = Plasmoid.configuration.elements
+        list_y = Plasmoid.configuration.yElements
+        list_x = Plasmoid.configuration.xElements
         for (var v = 0; v < listElements.length; v++) {
             gridModel.append({
                 //namesModel es el model que contine la informacion original antes de ser procesadas, para la primera carga no es necesario usar SideBar para crear el modelo que genera los primero elementos, estos se actualizan al inicio en funcion de la informacion guarda en las configuracions de el plasmoid
                 elementId: namesModel.get(listElements[v]).elementId,
                 w: namesModel.get(listElements[v]).w,
+                indexOrigin: listElements[v],
                 h: namesModel.get(listElements[v]).h,
                 source: namesModel.get(listElements[v]).source,
                 x: parseInt(list_x[v]),
@@ -87,6 +85,14 @@ Item {
         }
         calculateHeight()
     }
+
+
+    function updateConfigs() {
+        Plasmoid.configuration.elements = listElements;
+        Plasmoid.configuration.yElements = list_y;
+        Plasmoid.configuration.xElements = list_x;
+    }
+
     function calculateHeight() {
         exedent = sideBarEnabled ? 2 : 0
         heightF = (rows + exedent) * factorY + footer_height
@@ -106,6 +112,21 @@ Item {
             }
         }
         return row
+    }
+
+    function removeItem(item){
+        console.log(item)
+        // This function searches through the elements of the configuration arrays for a match to remove the specified element.
+        for (var k = 0; k < listElements.length; k++) {
+            if (listElements[k] === item) {
+                listElements.splice(k, 1);
+                list_y.splice(k, 1);
+                list_x.splice(k, 1);
+                updateConfigs()
+                //break
+            }
+        }
+
     }
 
 
@@ -144,8 +165,23 @@ Item {
                     y = model.y * heightFactor + model.y*spacing + spacing;
 
                 }
+                Kirigami.Icon {
+                    width: 24
+                    height: 24
+                    source: "dialog-close-symbolic"
+                    visible: sideBarEnabled
+                    z: 5
+                    MouseArea {
+                        anchors.fill: parent
+                        onClicked: {
+                            removeItem(model.indexOrigin) // delate item of config
+                            gridModel.remove(model.index) // delate item of model
+                        }
+                    }
+                }
 
             }
+
         }
 
 
@@ -176,6 +212,7 @@ Item {
                     w: sideBar.desingModel.get(sideBar.desingModel.count-1).w,
                     h: sideBar.desingModel.get(sideBar.desingModel.count-1).h,
                     source: sideBar.desingModel.get(sideBar.desingModel.count-1).source,
+                    indexOrigin: sideBar.desingModel.get(sideBar.desingModel.count-1).indexOrigin,
                     x: parseInt(sideBar.desingModel.get(sideBar.desingModel.count-1).x),
                     y: parseInt(sideBar.desingModel.get(sideBar.desingModel.count-1).y)
                 });
@@ -198,10 +235,4 @@ Item {
             }
         }
     }
-    onUpdateConfigs: {
-        Plasmoid.configuration.elements = listElements
-        Plasmoid.configuration.yElements = list_y
-        Plasmoid.configuration.xElements = list_x
-    }
-
 }
