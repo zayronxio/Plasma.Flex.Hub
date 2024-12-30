@@ -7,7 +7,7 @@ Item {
     property bool activeTitle: true
     property bool bubble: true
     property string sub: ""
-    property color backgroundColor: "red"
+    property color backgroundColor: Kirigami.Theme.highlightColor
     property string title: ""
     property string itemIcon: ""
     property var onIconClicked // Propiedad para definir la función desde el exterior
