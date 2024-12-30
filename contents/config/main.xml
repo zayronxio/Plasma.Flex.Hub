@@ -13,7 +13,10 @@
     <entry name="xElements" type="StringList">
       <default></default>
     </entry>
-    <entry name="lastFilled" type="int">
-      <default>0</default>
+    <entry name="darkTheme" type="string">
+      <default>org.kde.breezedark.desktop</default>
+    </entry>
+    <entry name="lightTheme" type="string">
+      <default>org.kde.breeze.desktop</default>
     </entry>
 </kcfg>

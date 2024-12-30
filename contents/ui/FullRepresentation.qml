@@ -2,101 +2,206 @@ import QtQuick
 import QtQuick.Layouts
 import org.kde.kirigami as Kirigami
 import org.kde.plasma.plasmoid
-import "components" as Components
+//import "components" as Components
 
 Item {
-    id: menu
+    id:root
 
-    property real spacing: 10
-    property int cellWidth:  Kirigami.Units.gridUnit * 4
-    property int cellHeight: cellWidth
-    property int valueSlider: control.valueSlider
-    property int maxSlider: control.maxSlider
-    property int heightF: Kirigami.Units.gridUnit * 9
+    QtObject {
+        id: lastRow
+        property int value: 0
+    }
 
-    Layout.preferredWidth: cellWidth*4 + spacing*5
+    property var listElements: []
+    property var list_y: []
+    property var list_x: []
+
+    property alias cfg_lastRow: lastRow.value
+
+    property bool sideBarEnabled: false
+    property int widthFactor: Kirigami.Units.gridUnit * 4
+    property int heightFactor: Kirigami.Units.gridUnit * 4
+    property int footer_height: 22
+    property int spacing: Kirigami.Units.gridUnit/2
+    property int factorX: spacing + widthFactor
+    property int factorY: spacing + heightFactor
+    property int rows: gridModel.count > 0 ? lastR(gridModel) : 2
+    property int exedent: sideBarEnabled ? 2 : 0
+    property int heightF: (rows + exedent) * factorY + footer_height
+
+
+    Layout.preferredWidth: sideBarEnabled ? (widthFactor*8 + spacing*11) : (widthFactor*4 + spacing*5)
     Layout.preferredHeight: heightF
-    Layout.minimumWidth: cellWidth*4 + spacing*5
-    Layout.maximumWidth: cellWidth*4 + spacing*5
+    Layout.minimumWidth: preferredWidth
+    Layout.maximumWidth: preferredWidth
     Layout.minimumHeight: Layout.preferredHeight
     Layout.maximumHeight: Layout.preferredHeight
     clip: true
 
-    property var elements: Plasmoid.configuration.elements
-    property var yElements: Plasmoid.configuration.yElements
-    property var xElements: Plasmoid.configuration.xElements
+    signal updateConfigs
+
+    onSideBarEnabledChanged: {
+        Layout.preferredWidth = sideBarEnabled ? (widthFactor * 8 + spacing * 11) : (widthFactor * 4 + spacing * 5);
+        Layout.minimumWidth = sideBarEnabled ? (widthFactor * 8 + spacing * 11) : (widthFactor * 4 + spacing * 5);
+        Layout.maximumWidth = sideBarEnabled ? (widthFactor * 8 + spacing * 11) : (widthFactor * 4 + spacing * 5);
+        Layout.preferredHeight = heightF;
+    }
+    onRowsChanged: {
+        calculateHeight()
+    }
+
+    onSideBarEnabled: {
+        updateHeight()
+    }
 
     Model {
-        id: itemsModel
+        id: namesModel
+    }
+    Text {
+        text: Kirigami.Units.largeSpacing
     }
 
     ListModel {
         id: gridModel
     }
 
+    Component.onCompleted: {
+        // change when public released
+        Plasmoid.configuration.xElements = list_x
+        Plasmoid.configuration.yElements = list_y
+        Plasmoid.configuration.elements = listElements
 
+        //listElements = Plasmoid.configuration.elements
+        //list_y = Plasmoid.configuration.yElements
+        //list_x = Plasmoid.configuration.xElements
+        for (var v = 0; v < listElements.length; v++) {
+            gridModel.append({
+                //namesModel es el model que contine la informacion original antes de ser procesadas, para la primera carga no es necesario usar SideBar para crear el modelo que genera los primero elementos, estos se actualizan al inicio en funcion de la informacion guarda en las configuracions de el plasmoid
+                elementId: namesModel.get(listElements[v]).elementId,
+                w: namesModel.get(listElements[v]).w,
+                h: namesModel.get(listElements[v]).h,
+                source: namesModel.get(listElements[v]).source,
+                x: parseInt(list_x[v]),
+                y: parseInt(list_y[v])
+            });
+        }
+        calculateHeight()
+    }
+    function calculateHeight() {
+        exedent = sideBarEnabled ? 2 : 0
+        heightF = (rows + exedent) * factorY + footer_height
+        let value = lastR(gridModel)
+        rows = value !== 0 ? lastR(gridModel) : 2
+        Layout.preferredHeight = heightF;
+        Layout.minimumHeight = heightF;
+        Layout.maximumHeight = heightF;
+    }
+
+    function lastR(model) {
+        let row = 0
+        for (var i = 0; i < model.count; i++) {
+            var lastRow = model.get(i).y + model.get(i).h
+            if (lastRow > row) {
+                row = lastRow
+            }
+        }
+        return row
+    }
+
+
+    Kirigami.Icon {
+        width: Kirigami.Units.iconSizes.small
+        height: width
+        visible: !sideBarEnabled
+        source: "document-edit"
+        anchors.bottom: parent.bottom
+        anchors.right: parent.right
+        MouseArea {
+            anchors.fill: parent
+            onClicked: {
+
+                sideBarEnabled = true
+                rows = rows + 2
+            }
+        }
+    }
 
     Item {
-        id: grid
-        anchors.fill: parent
+        id: leftPanel
+        width: parent.width/2
+        height: rows * factorY
 
         Repeater {
             model: gridModel
             delegate: Loader {
+                id: rect
                 source: model.source
-                onSourceChanged: {
-                    if (status === Loader.Error) {
-                        console.warn("Error loading source:", source);
-                    } else {
-                        console.log("Source updated to:", source);
-                    }
-                }
+
                 onLoaded: {
-                    width = cellWidth * model.widthFactor + spacing * (model.widthFactor - 1);
-                    height = cellHeight * model.heightFactor + spacing * (model.heightFactor - 1);
-                    x = model.x;
-                    y = model.y;
+                    width = widthFactor * model.w + spacing * (model.w - 1);
+                    height = heightFactor * model.h + spacing * (model.h - 1);
+                    x = model.x * widthFactor + model.x*spacing + spacing;
+                    y = model.y * heightFactor + model.y*spacing + spacing;
+
                 }
+
+            }
+        }
+
+
+    }
+
+    Loader {
+        id: sideBarLoader
+        sourceComponent: sideBarEnabled ? sideBarComponent : null // Cargar solo si está habilitado
+        anchors.right: parent.right
+        width: (widthFactor*4 + spacing*5)
+        height: parent.height
+    }
+
+
+    Component {
+        id: sideBarComponent
+        SideBar {
+            id: sideBar
+            max_x: (widthFactor*4 + spacing*5)
+            max_y: parent.height
+            anchors.right: parent.right
+            width: max_x
+            height: parent.height
+            opacity: 0.8
+
+            onReadyModel: {
+                gridModel.append({
+                    w: sideBar.desingModel.get(sideBar.desingModel.count-1).w,
+                    h: sideBar.desingModel.get(sideBar.desingModel.count-1).h,
+                    source: sideBar.desingModel.get(sideBar.desingModel.count-1).source,
+                    x: parseInt(sideBar.desingModel.get(sideBar.desingModel.count-1).x),
+                    y: parseInt(sideBar.desingModel.get(sideBar.desingModel.count-1).y)
+                });
+                // logic to add the new elements to the plasmoid configuration, used for the first load
+                listElements.push(sideBar.desingModel.get(sideBar.desingModel.count-1).indexOrigin)
+                list_y.push(parseInt(sideBar.desingModel.get(sideBar.desingModel.count-1).y))
+                list_x.push(parseInt(sideBar.desingModel.get(sideBar.desingModel.count-1).x))
+                updateConfigs()
+                calculateHeight()
+            }
+
+            onClose: {
+                sideBarEnabled = false
+                root.width = (widthFactor * 4 + spacing * 5);
+                Layout.preferredWidth = (widthFactor * 4 + spacing * 5);
+                Layout.minimumWidth = (widthFactor * 4 + spacing * 5);
+                Layout.maximumWidth = (widthFactor * 4 + spacing * 5);
+                calculateHeight()
+
             }
         }
     }
-
-    function createModel() {
-        gridModel.clear();  // Clear the model before adding new items
-        heightF = cellHeight + spacing*2
-        for (var a = 0; a < elements.length; a++) {
-            var element = itemsModel.get(elements[a]);
-            gridModel.append({
-                elementId: element.elementId,
-                name: element.name,
-                widthFactor: element.widthFactor,
-                heightFactor: element.heightFactor,
-                source: element.source,
-                x: parseFloat(xElements[a]),  // Ensure this is a Number
-                y: parseFloat(yElements[a])   // Ensure this is a Number
-            });
-            heightF = heightF < parseFloat(xElements[a]) + (element.heightFactor*cellHeight )+ (spacing*(element.heightFactor + 1)) ? parseFloat(xElements[a]) + (element.heightFactor*cellHeight )+ (spacing*(element.heightFactor + 1)) : heightF
-        }
-        //heightF = lastRow() + spacing
+    onUpdateConfigs: {
+        Plasmoid.configuration.elements = listElements
+        Plasmoid.configuration.yElements = list_y
+        Plasmoid.configuration.xElements = list_x
     }
 
-    function lastRow() {
-        var item = 0;
-        var maxRow = 0;
-        for (var m = 0; m < gridModel.count; m++) {
-            if ((gridModel.get(m).x + ((heightFactor*40) + (heightFactor*spacing))) > maxRow) {
-                maxRow = (gridModel.get(m).x + ((heightFactor*40) + (heightFactor*spacing)))
-            }
-        }
-        return maxRow
-    }
-    onElementsChanged: {
-         createModel();
-         //heightF = lastRow() + spacing
-    }
-
-    Component.onCompleted: {
-        //valueSlider = control.valueSlider
-        createModel();
-    }
 }
