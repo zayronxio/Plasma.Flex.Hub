@@ -41,6 +41,7 @@ Item {
         function onRowsRemoved() { update(); }
     }
 
+    property int realValueSlider: 0
     property int cnValue: mainScreen.brightness
     property var mainScreen: displayModelConnections.screenBrightnessInfo[0]
     property var valueSlider: mainScreen.brightness
@@ -49,8 +50,9 @@ Item {
     readonly property int brightnessMin: (mainScreen.maxBrightness > 100 ? 1 : 0)
 
 
-    onCnValueChanged: {
-        systemBrightnessControl.setBrightness(mainScreen.displayName, Math.max(brightnessMin, Math.min(mainScreen.maxBrightness, cnValue))) ;
+    onRealValueSliderChanged: {
+        console.log("si se actualiza")
+        systemBrightnessControl.setBrightness(mainScreen.displayName, Math.max(brightnessMin, Math.min(mainScreen.maxBrightness, realValueSlider))) ;
     }
 
     Connections {
