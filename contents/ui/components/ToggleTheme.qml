@@ -50,7 +50,10 @@ Item {
                 MouseArea {
                     anchors.fill: parent
                     hoverEnabled: true
-                    //onClicked: Funcs.toggleDnd();
+                    onClicked: {
+                        isDark = !isDark
+                        executable.exec(command)
+                    }
                 }
             }
 
@@ -68,14 +71,13 @@ Item {
                 horizontalAlignment: Text.AlignHCenter
 
                 //font.weight: Font.DemiBold
-            }
-
-        }
-        MouseArea {
-            anchors.fill: parent
-            onClicked: {
-                isDark = !isDark
-                executable.exec(command)
+                MouseArea {
+                    anchors.fill: parent
+                    onClicked: {
+                        isDark = !isDark
+                        executable.exec(command)
+                    }
+                }
             }
         }
     }
