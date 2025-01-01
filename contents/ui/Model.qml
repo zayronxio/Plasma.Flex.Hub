@@ -12,5 +12,6 @@ ListModel {
     ListElement { elementId: "item8"; name: "Bluetooth1x2"; w: 2; h: 1; source: "components/Bluetooth1x2.qml"}
     ListElement { elementId: "item9"; name: "Status1x2"; w: 2; h: 1; source: "components/StatusPanel.qml"}
     ListElement { elementId: "item10"; name: "ToggleTheme1x1"; w: 1; h: 1; source: "components/ToggleTheme.qml"}
+    ListElement { elementId: "item11"; name: "Screenshot-button1x1"; w: 1; h: 1; source: "Screenshot-button.qml"}
 }
 
