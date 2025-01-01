@@ -2,6 +2,7 @@ import QtQuick
 import QtQuick.Layouts
 import org.kde.kirigami as Kirigami
 import org.kde.plasma.plasmoid
+import "components" as Components
 
 Item {
     id:root
@@ -9,6 +10,10 @@ Item {
     QtObject {
         id: lastRow
         property int value: 0
+    }
+
+    Components.SourceBrightness {
+        id: control
     }
 
     property var listElements: []
@@ -21,6 +26,7 @@ Item {
     property int widthFactor: Kirigami.Units.gridUnit * 4
     property int heightFactor: Kirigami.Units.gridUnit * 4
     property int footer_height: 22
+    property var mainGridsFilled: []
     property int spacing: Kirigami.Units.gridUnit/2
     property int factorX: spacing + widthFactor
     property int factorY: spacing + heightFactor
@@ -47,6 +53,15 @@ Item {
     }
     onRowsChanged: {
         calculateHeight()
+    }
+
+    function addedGridsFilled(x, y, h, w){
+        for (var z = 0; z < h; z++) {
+            for (var i = 0; i < w; i++) {
+                var value = (y+z) + " " + (x+i)
+                mainGridsFilled.push(value)
+            }
+        }
     }
 
     onSideBarEnabled: {
@@ -82,6 +97,8 @@ Item {
                 x: parseInt(list_x[v]),
                 y: parseInt(list_y[v])
             });
+            addedGridsFilled(parseInt(list_x[v]), parseInt(list_y[v]), namesModel.get(listElements[v]).h, namesModel.get(listElements[v]).h)
+            console.log("pruebas",mainGridsFilled)
         }
         calculateHeight()
     }
@@ -204,6 +221,7 @@ Item {
             max_y: parent.height
             anchors.right: parent.right
             width: max_x
+            gridsFilled: mainGridsFilled
             height: parent.height
             opacity: 0.8
 
