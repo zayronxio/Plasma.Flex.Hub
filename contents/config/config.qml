@@ -7,4 +7,9 @@ ConfigModel {
 		icon: "preferences-desktop"
 		source: "GeneralConfig.qml"
 	}
+	ConfigCategory {
+		name: i18n("Layout")
+		icon: "preferences-system-windows-behavior"
+		source: "LayoutConfig.qml"
+	}
 }
