@@ -25,14 +25,19 @@ Item {
             //anchors.horizontalCenter: parent.horizontalCenter
         }
         Column {
+            width: parent.width
             Kirigami.Heading {
                 text: multimedia.trackName
+                width: parent.width
                 font.weight: Font.DemiBold
                 level: 5
+                elide: Text.ElideRight
             }
             Kirigami.Heading {
+                width: parent.width
                 text: multimedia.artistName
                 //font.weight: Font.DemiBold
+                elide: Text.ElideRight
                 level: 5
             }
         }
