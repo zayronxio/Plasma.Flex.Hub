@@ -42,7 +42,7 @@ Item {
                 id: logo
                 width: Kirigami.Units.iconSizes.mediumSmall
                 height: width
-                source: "photo-symbolic"
+                source: "camera-photo-symbolic.svg"
                 anchors.horizontalCenter: parent.horizontalCenter
                 MouseArea {
                     anchors.fill: parent
