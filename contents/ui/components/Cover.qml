@@ -7,6 +7,7 @@ Item {
         id: multimedia
     }
 
+
     Rectangle {
         id: mask
         width: parent.width
@@ -18,6 +19,7 @@ Item {
         width: parent.width
         height: parent.height
         source: multimedia.cover
+        layer.enabled: true
         layer.effect: OpacityMask {
             maskSource: mask
         }
