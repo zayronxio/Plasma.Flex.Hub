@@ -7,10 +7,6 @@ import "components" as Components
 Item {
     id:root
 
-    QtObject {
-        id: lastRow
-        property int value: 0
-    }
 
     Components.SourceBrightness {
         id: control
@@ -20,7 +16,7 @@ Item {
     property var list_y: []
     property var list_x: []
 
-    property alias cfg_lastRow: lastRow.value
+    property int mainLastRow: 0
 
     property bool sideBarEnabled: false
     property int widthFactor: Kirigami.Units.gridUnit * 4
@@ -55,15 +51,6 @@ Item {
         calculateHeight()
     }
 
-    function addedGridsFilled(x, y, h, w){
-        for (var z = 0; z < h; z++) {
-            for (var i = 0; i < w; i++) {
-                var value = (y+z) + " " + (x+i)
-                mainGridsFilled.push(value)
-            }
-        }
-    }
-
     onSideBarEnabled: {
         updateHeight()
     }
@@ -86,6 +73,7 @@ Item {
         listElements = Plasmoid.configuration.elements
         list_y = Plasmoid.configuration.yElements
         list_x = Plasmoid.configuration.xElements
+        //*/
         for (var v = 0; v < listElements.length; v++) {
             gridModel.append({
                 //namesModel es el model que contine la informacion original antes de ser procesadas, para la primera carga no es necesario usar SideBar para crear el modelo que genera los primero elementos, estos se actualizan al inicio en funcion de la informacion guarda en las configuracions de el plasmoid
@@ -97,12 +85,21 @@ Item {
                 x: parseInt(list_x[v]),
                 y: parseInt(list_y[v])
             });
+
             addedGridsFilled(parseInt(list_x[v]), parseInt(list_y[v]), namesModel.get(listElements[v]).h, namesModel.get(listElements[v]).h)
             console.log("pruebas",mainGridsFilled)
         }
         calculateHeight()
     }
 
+    function addedGridsFilled(x, y, h, w){
+        for (var z = 0; z < h; z++) {
+            for (var i = 0; i < w; i++) {
+                var value = (y+z) + " " + (x+i)
+                mainGridsFilled.push(value)
+            }
+        }
+    }
 
     function updateConfigs() {
         Plasmoid.configuration.elements = listElements;
@@ -131,15 +128,26 @@ Item {
         return row
     }
 
-    function removeItem(item){
-        console.log(item)
+    function removeItem(item,h,w){
         // This function searches through the elements of the configuration arrays for a match to remove the specified element.
+
         for (var k = 0; k < listElements.length; k++) {
+
             if (listElements[k] === item) {
+                for (var z = 0; z < h; z++) {
+                    for (var i = 0; i < w; i++) {
+                        var value = (parseInt(list_y[k]) + z) + " " + (parseInt(list_x[k]) + i);
+                        var index = mainGridsFilled.indexOf(value);
+                        if (index !== -1) {
+                            mainGridsFilled.splice(index, 1); // Eliminar el valor
+                        }
+                    }
+                }
                 listElements.splice(k, 1);
                 list_y.splice(k, 1);
                 list_x.splice(k, 1);
                 updateConfigs()
+                console.log(Plasmoid.configuration.elements)
                 //break
             }
         }
@@ -191,7 +199,7 @@ Item {
                     MouseArea {
                         anchors.fill: parent
                         onClicked: {
-                            removeItem(model.indexOrigin) // delate item of config
+                            removeItem(model.indexOrigin,model.h,model.w) // delate item of config
                             gridModel.remove(model.index) // delate item of model
                         }
                     }
@@ -222,6 +230,7 @@ Item {
             anchors.right: parent.right
             width: max_x
             gridsFilled: mainGridsFilled
+            lastRow: rows// mainLastRow
             height: parent.height
             opacity: 0.8
 
@@ -230,7 +239,7 @@ Item {
                     w: sideBar.desingModel.get(sideBar.desingModel.count-1).w,
                     h: sideBar.desingModel.get(sideBar.desingModel.count-1).h,
                     source: sideBar.desingModel.get(sideBar.desingModel.count-1).source,
-                    indexOrigin: sideBar.desingModel.get(sideBar.desingModel.count-1).indexOrigin,
+                    indexOrigin: (sideBar.desingModel.get(sideBar.desingModel.count-1).indexOrigin).toString(),
                     x: parseInt(sideBar.desingModel.get(sideBar.desingModel.count-1).x),
                     y: parseInt(sideBar.desingModel.get(sideBar.desingModel.count-1).y)
                 });
