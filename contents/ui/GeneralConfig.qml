@@ -2,6 +2,7 @@ import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts 1.11
 import org.kde.kirigami as Kirigami
+import org.kde.plasma.plasma5support as P5Support
 
 Item {
     id: configRoot
@@ -14,245 +15,184 @@ Item {
         property var xElements: []
         property var yElements: []
     }
+    QtObject {
+        id: themes
+        property string light: ""
+        property string dark: ""
+    }
+    QtObject {
+        id: valueGrids
+        property string width: ""
+        property string height: ""
+    }
 
     property alias cfg_elements: keysConfig.elements
     property alias cfg_yElements: keysConfig.yElements
     property alias cfg_xElements: keysConfig.xElements
+    property alias cfg_darkTheme: themes.dark
+    property alias cfg_lightTheme: themes.light
 
-    property real spacing: 10
-    property int cellWidth:  Kirigami.Units.gridUnit * 4
-    property int cellHeight: cellWidth
-    property int cellWidthFilled: 0
-    property int cellHeightFilled: 0
-    property int rowsFilled: 0
-    property int widthAveilable: 4
-
-    Model {
-        id: namesModel
-    }
+    property alias cfg_gridWidth: valueGrids.width
+    property alias cfg_gridHeight: valueGrids.height
 
     ListModel {
-        id: gridModel
+        id: listModel
     }
 
-    // Determine attributes for the last row based on specific criteria
-    function lastRowDeterminate(f) {
-        var min = Infinity;
 
-        for (var e = 0; e < gridModel.count; e++) {
-            if (gridModel.get(e).lastRow < min && gridModel.get(e).lastRow > rowsFilled) {
-                min = gridModel.get(e).lastRow;
+
+
+
+    P5Support.DataSource {
+        id: executable
+        engine: "executable"
+        connectedSources: []
+
+        onNewData: {
+            var exitCode = data["exit code"];
+            var exitStatus = data["exit status"];
+            var stdout = data["stdout"];
+            var stderr = data["stderr"];
+            exited(sourceName, exitCode, exitStatus, stdout, stderr);
+            disconnectSource(sourceName);
+        }
+
+        function exec(cmd) {
+            if (cmd) {
+                connectSource(cmd);
             }
         }
 
-        if (f === "wAveilable") {
-            var max_items = [];
-            for (var u = 0; u < gridModel.count; u++) {
-                var valueMin = Infinity;
-                if (gridModel.get(u).lastRow > valueMin) {
-                    max_items.push(u);
-                }
-            }
-            if (max_items.length > 0) {
-                var value = Infinity;
-                for (var x = 0; x < max_items.length; x++) {
-                    if (gridModel.get(max_items[x]).x < value) {
-                        value = gridModel.get(max_items[x]).x;
-                    }
-                }
-                return Math.floor(value / (cellWidth + spacing));
-            } else {
-                return 4;
-            }
-        }
-
-        if (f === "last") {
-            return min;
-        }
+        signal exited(string cmd, int exitCode, int exitStatus, string stdout, string stderr)
     }
 
-    // Compute symmetric difference between filled and total spaces
-    function symmetricDifference(array1) {
-        let set1 = new Set(array1);
-        let array2 = [0, 1, 2, 3];
-        let set2 = new Set(array2);
-
-        return Array.from(new Set([
-            ...Array.from(set1).filter(item => !set2.has(item)),
-                                  ...Array.from(set2).filter(item => !set1.has(item))
-        ]));
+    Connections {
+        target: executable
+        onExited: {
+            // Procesar stdout y agregarlo al modelo
+            let lines = stdout.trim().split("\n");
+            listModel.clear();
+            for (let line of lines) {
+                listModel.append({ value: line });
+            }
+            darkComboBox.currentIndex = determinateIndex(themes.dark)
+            lightComboBox.currentIndex = determinateIndex(themes.light)
+        }
     }
-
-    // Calculate available x position for the next element
-    function setx() {
-        var items = [];
-        var plusrows = fucss(rowsFilled + 1) === 4 ? 2 : 1;
-
-        for (var i = 0; i < gridModel.count; i++) {
-            if (gridModel.get(i).lastRow >= rowsFilled + plusrows) {
-                if (gridModel.get(i).widthFactor > 1) {
-                    for (var p = 0; p < gridModel.get(i).widthFactor; p++) {
-                        items.push(((gridModel.get(i).x) - spacing) / (cellWidth + spacing) + p);
-                    }
-                } else {
-                    items.push(((gridModel.get(i).x) - spacing) / (cellWidth + spacing));
-                }
+    function determinateIndex(nameTheme) {
+        for (var a = 0; a < listModel.count; a++) {
+            if (listModel.get(a).value === nameTheme) {
+                return a;
             }
         }
-        return Math.min(...symmetricDifference(items));
+        return -1;  // Si no se encuentra, retorna -1
     }
 
-    // Count filled cells in the given row
-    function fucss(line) {
-        var value = 0;
-        for (var h = 0; h < gridModel.count; h++) {
-            if (gridModel.get(h).lastRow >= line) {
-                value += gridModel.get(h).widthFactor;
-            }
-        }
-        return value;
+    Component.onCompleted: {
+
+        executable.exec("plasma-apply-lookandfeel --list"); // Cambia "ls" por el comando que desees ejecutar
+        currentIndex = indexOfValue(valueGrids.width)
     }
-
-    // Find the next row with enough free space for the new element
-    function nextRowFree(w) {
-        var maxRow = 0;
-        var lastRow = 0;
-        var found = false;
-
-        for (var m = 0; m < gridModel.count; m++) {
-            if (gridModel.get(m).lastRow > maxRow) {
-                maxRow = gridModel.get(m).lastRow;
-            }
-        }
-
-        for (var f = rowsFilled; f < maxRow; f++) {
-            if (fucss(f + 1) < 4) {
-                lastRow = f;
-                found = true;
-                break;
-            }
-        }
-        return found ? lastRow : rowsFilled + w;
-    }
-
 
     GridLayout {
+        id: fist
+        width: parent.width
         columns: 2
-
-        Rectangle {
-            id: base
-            color: Kirigami.Theme.textColor
-            width: (cellWidth * 4) + spacing * 5
-            radius: 12
-            opacity: 0.4
-            anchors.top: parent.top
+        Kirigami.Heading {
+            text: i18n("Grid width:")
+            Layout.minimumWidth: root.width/2
+            horizontalAlignment: Label.AlignRight
+            level: 4
+        }
+        ComboBox {
+            textRole: "value"
+            valueRole: "value"
             anchors.left: parent.left
-            anchors.leftMargin: configRoot.width * 0.05
-            height: grid.implicitHeight || 100
+            anchors.leftMargin: root.width/2
+            id: gridWidth
+            model:  [
+                {value: 3},
+                {value: 4},
+                {value: 5},
+                {value: 6}
+            ]
+            onActivated: valueGrids.width = currentValue
+            Component.onCompleted: currentIndex = indexOfValue(valueGrids.width)
+        }
+        Kirigami.Heading {
+            text: i18n("Grid Height:")
+            Layout.minimumWidth: root.width/2
+            horizontalAlignment: Label.AlignRight
+            level: 4
+        }
+        ComboBox {
+            textRole: "value"
+            valueRole: "value"
+            //width: 50
+            anchors.left: parent.left
+            anchors.leftMargin: root.width/2
+            id: gridheight
+            model:  [
+                {value: 3},
+                {value: 4},
+                {value: 5},
+                {value: 6}
+            ]
+            onActivated: valueGrids.height = currentValue
+            Component.onCompleted: currentIndex = indexOfValue(valueGrids.height)
+        }
 
-            Item {
-                id: grid
-                anchors.fill: parent
 
-                Repeater {
-                    model: gridModel
-                    delegate: Rectangle {
-                        width: cellWidth * model.widthFactor + spacing * (model.widthFactor - 1)
-                        height: cellHeight * model.heightFactor + spacing * (model.heightFactor - 1)
-                        color: model.color || "lightblue"
-                        radius: 10
-                        border.color: "black"
-                        border.width: 2
-                        x: model.x
-                        y: model.y
+    }
+    Kirigami.AbstractCard {
+        height: Kirigami.Units.gridUnit * 8
+        width: root.width /2
+        anchors.horizontalCenter: parent.horizontalCenter
+        anchors.top: fist.bottom
+        anchors.topMargin: Kirigami.Units.mediumSpacing
+        header: Kirigami.Heading {
+            text: i18n("Seleccted Global Theme's")
+             horizontalAlignment: Text.AlignHCenter
+            level: 4
+        }
+        contentItem: Item {
+            Column {
+                anchors.centerIn: parent
+                height: r.implicitHeight + g.implicitHeight
+                Row {
+                    id:r
+                    height: parent.height/2
+                    Kirigami.Heading {
+                        text: "Dark"
+                        height: parent.height
+                        level: 4
+                        verticalAlignment: Text.AlignVCenter
+                    }
+                    ComboBox {
+                        id: darkComboBox
+                        width: 150
+                        model: listModel
+                        onActivated: themes.dark = currentValue
+                        Component.onCompleted: currentIndex = indexOfValue(themes.dark)
                     }
                 }
-            }
-        }
-
-        ListView {
-            id: listview
-            model: namesModel
-            width: base.width
-            height: namesModel.count * 40
-            anchors.left: parent.left
-            anchors.leftMargin: configRoot.width / 2
-
-            delegate: Item {
-                width: parent.width
-                height: 40
-
-                RowLayout {
-                    anchors.fill: parent
-
-                    Text {
-                        text: model.name
-                        Layout.fillWidth: true
+                Row {
+                    id: g
+                    height: parent.height/2
+                    Kirigami.Heading {
+                        text: "Light"
+                        height: parent.height
+                        level: 4
+                        verticalAlignment: Text.AlignVCenter
                     }
-
-                    MouseArea {
-                        id: dragSource
-                        anchors.fill: parent
-                        drag.target: dragSource
-
-                        onClicked: {
-
-                            function added(varx, vary) {
-                                gridModel.append({
-                                    elementId: model.elementId,
-                                    name: model.name,
-                                    widthFactor: model.widthFactor,
-                                    heightFactor: model.heightFactor,
-                                    lastRow: rowsFilled + model.heightFactor,
-                                    x: varx,
-                                    y: vary
-                                });
-                                keysConfig.elements.push(model.index)
-                                keysConfig.yElements.push(vary)
-                                keysConfig.xElements.push(varx)
-                            }
-
-                            if (gridModel.count === 0) {
-                                var varx = spacing;
-                                var vary = spacing;
-                                added(varx, vary);
-
-                                if (model.widthFactor === 4) {
-                                    rowsFilled = model.heightFactor;
-                                    cellWidthFilled = 0;
-                                } else {
-                                    cellWidthFilled += model.widthFactor;
-                                }
-                                cellHeightFilled += model.heightFactor;
-                                widthAveilable = lastRowDeterminate("wAveilable");
-                            } else {
-                                if (model.widthFactor <= (4 - fucss(lastRowDeterminate("last")))) {
-                                    varx = cellWidthFilled * (spacing + cellWidth) + spacing;
-                                    vary = (rowsFilled * cellHeight) + (rowsFilled + 1) * spacing;
-                                    added(varx, vary);
-                                    rowsFilled = nextRowFree(model.heightFactor);
-                                    cellWidthFilled = rowsFilled === 0 ? fucss(rowsFilled + 1) : setx();
-                                    widthAveilable = lastRowDeterminate("wAveilable");
-                                } else {
-                                    console.log("Element exceeds available space. Element must be smaller or equal to", (widthAveilable - 4), fucss(rowsFilled + 1), rowsFilled);
-                                }
-                            }
-                        }
+                    ComboBox {
+                        id: lightComboBox
+                        width: 150
+                        model: listModel
+                        onActivated: themes.light = currentValue
+                        Component.onCompleted: currentIndex = indexOfValue(themes.light)
                     }
                 }
-            }
-        }
-        Label {
-            width: configRoot.width/2
-        }
-        Button {
-            text: "Reset"
-            anchors.left: listview.left
-            onClicked: {
-                keysConfig.elements = []
-                keysConfig.yElements = []
-                keysConfig.xElements = []
-                gridModel.clear()
             }
         }
     }
