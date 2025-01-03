@@ -11,7 +11,6 @@ Item {
 
 
 
-
         Column {
             width:  parent.width - 20
             height: parent.height - 20
@@ -41,7 +40,9 @@ Item {
                 value: valueSlider
                 snapMode: Slider.SnapAlways
                 onMoved: {
-                    control.cnValue = value
+                    console.log(value)
+                    control.realValueSlider = value
+                    console.log(control.realValueSlider)
                 }
             }
         }
