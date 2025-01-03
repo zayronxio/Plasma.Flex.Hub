@@ -114,65 +114,69 @@ Item {
 
     }
 
-
-    Grid {
-        id: maskSvg2
+    Item {
+        id: mm
         width: root.width - left2.implicitWidth*2
         height: root.height - top2.implicitHeight*2
-        visible: globalBool
-        columns: 3
+        Grid {
+            id: maskSvg2
+            width: root.width - left2.implicitWidth*2
+            height: root.height - top2.implicitHeight*2
+            visible: globalBool
+            columns: 3
 
 
 
-        KSvg.SvgItem {
-            id: topleft2
-            imagePath: "dialogs/background"
-            elementId: "topleft"
-        }
-        KSvg.SvgItem {
-            id: top2
-            imagePath: "dialogs/background"
-            elementId: "top"
-            width: root.width - topleft2.implicitWidth*2
-        }
-        KSvg.SvgItem {
-            id: topright2
-            imagePath: "dialogs/background"
-            elementId: "topright"
-        }
-        KSvg.SvgItem {
-            id: left2
-            imagePath: "dialogs/background"
-            elementId: "left"
-            height: root.height - topright2.implicitHeight*2
-        }
-        KSvg.SvgItem {
-            imagePath: "dialogs/background"
-            elementId: "center"
-            height: root.height - topright2.implicitHeight*2
-            width: root.width - topleft2.implicitWidth*2
-        }
-        KSvg.SvgItem {
-            id: right2
-            imagePath: "dialogs/background"
-            elementId: "right"
-            height: root.height - topright2.implicitHeight*2
-        }
-        KSvg.SvgItem {
-            id: bottomleft2
-            imagePath: "dialogs/background"
-            elementId: "bottomleft"
-        }
-        KSvg.SvgItem {
-            id: bottom2
-            imagePath: "dialogs/background"
-            elementId: "bottom"
-            width: root.width - topleft2.implicitWidth*2
-        }
-        KSvg.SvgItem {
-            id: bottomright2
-            imagePath: "dialogs/background"
-            elementId: "bottomright"
+            KSvg.SvgItem {
+                id: topleft2
+                imagePath: "dialogs/background"
+                elementId: "topleft"
+            }
+            KSvg.SvgItem {
+                id: top2
+                imagePath: "dialogs/background"
+                elementId: "top"
+                width: root.width - topleft2.implicitWidth*2
+            }
+            KSvg.SvgItem {
+                id: topright2
+                imagePath: "dialogs/background"
+                elementId: "topright"
+            }
+            KSvg.SvgItem {
+                id: left2
+                imagePath: "dialogs/background"
+                elementId: "left"
+                height: root.height - topright2.implicitHeight*2
+            }
+            KSvg.SvgItem {
+                imagePath: "dialogs/background"
+                elementId: "center"
+                height: root.height - topright2.implicitHeight*2
+                width: root.width - topleft2.implicitWidth*2
+            }
+            KSvg.SvgItem {
+                id: right2
+                imagePath: "dialogs/background"
+                elementId: "right"
+                height: root.height - topright2.implicitHeight*2
+            }
+            KSvg.SvgItem {
+                id: bottomleft2
+                imagePath: "dialogs/background"
+                elementId: "bottomleft"
+            }
+            KSvg.SvgItem {
+                id: bottom2
+                imagePath: "dialogs/background"
+                elementId: "bottom"
+                width: root.width - topleft2.implicitWidth*2
+            }
+            KSvg.SvgItem {
+                id: bottomright2
+                imagePath: "dialogs/background"
+                elementId: "bottomright"
+            }
         }
     }
 
