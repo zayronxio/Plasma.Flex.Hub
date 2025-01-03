@@ -13,6 +13,7 @@ Item {
     property var onIconClicked // Propiedad para definir la función desde el exterior
     property string anchorsDinamic: "center"
 
+    signal click
 
     Column {
         width: parent.width - 10
@@ -34,8 +35,8 @@ Item {
             //anchors.horizontalCenter: !smallMode ? parent.horizontalCenter : undefined
             Rectangle {
                 id: circle
-                width: icon.width
-                height: icon.height
+                width: 32
+                height: 32
                 radius: height/2
                 color: bubble ? backgroundColor : "transparent"
                 anchors.horizontalCenter: smallMode ? parent.horizontalCenter : undefined
@@ -44,15 +45,17 @@ Item {
 
                 Kirigami.Icon {
                     id: icon
-                    width: Kirigami.Units.iconSizes.mediumSmall
+                    width: 22//Kirigami.Units.iconSizes.mediumSmall
                     height: width
                     source: itemIcon
+                    anchors.centerIn: parent
                 }
                 MouseArea {
                     anchors.fill: parent
                     onClicked: {
+                        click()
                         if (onIconClicked) {
-                            onIconClicked() // Llama la función definida desde el exterior
+                            onIconClicked()
                         }
                     }
                 }
