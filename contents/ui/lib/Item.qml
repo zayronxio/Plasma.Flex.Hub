@@ -8,6 +8,8 @@ Item {
     property bool bubble: true
     property string sub: ""
     property color backgroundColor: Kirigami.Theme.highlightColor
+    property color iconColor: Kirigami.Theme.highlightTextColor
+    property bool isMaskIcon: false
     property string title: ""
     property string itemIcon: ""
     property var onIconClicked // Propiedad para definir la función desde el exterior
@@ -47,6 +49,8 @@ Item {
                     id: icon
                     width: 22//Kirigami.Units.iconSizes.mediumSmall
                     height: width
+                    isMask: isMaskIcon
+                    color: isMaskIcon ? iconColor : undefined
                     source: itemIcon
                     anchors.centerIn: parent
                 }
