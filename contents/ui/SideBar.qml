@@ -7,6 +7,7 @@ Item {
     id: wrapper
     property int max_x: 0
     property int max_y: 0
+    property int lastRow: 2
     property int widthFactor: Kirigami.Units.gridUnit * 4
     property int heightFactor: Kirigami.Units.gridUnit * 4
     property int spacing: Kirigami.Units.gridUnit/2
@@ -18,12 +19,23 @@ Item {
     property alias desingModel: gridModel
 
     property var gridsX: [spacing - ajustWidthX, factorX + spacing - ajustWidthX, (factorX * 2) + spacing - ajustWidthX, (factorX * 3) + spacing - ajustWidthX ]
-    property var gridsY: [spacing, factorY + spacing, (factorY * 2) + spacing , (factorY * 3) + spacing ]
+    property var gridsY: []
 
     signal readyModel
     signal close
 
+    function createGridsY() {
+        gridsY = []
+        //var lastRow = Manager.getHighestSecondValue(gridsFilled)
+        console.log("ggggggg",lastRow)
+        var rowForFuct = lastRow + 2
+        for (var y = 0; y < rowForFuct; y++) {
+            var value = factorY*(y) + spacing
+            gridsY.push(value)
+        }
+        console.log(gridsY)
 
+    }
 
     Model {
         id: namesModel
@@ -38,6 +50,7 @@ Item {
     }
 
     Component.onCompleted: {
+        createGridsY()
         Manager.autoOrganizer(namesModel)
     }
 
@@ -134,7 +147,11 @@ Item {
 
                                 elements = elements + 1
                                 Manager.addedGridsFilled(maxX, maxY, model.h, model.w)
-
+                                console.log("antes de ejecutar", gridsY, gridsFilled)
+                                if ((model.h + model.x) > lastRow ) {
+                                    lastRow = (model.h + model.x)
+                                }
+                                createGridsY()
                                 wrapper.readyModel()
                             }
 
