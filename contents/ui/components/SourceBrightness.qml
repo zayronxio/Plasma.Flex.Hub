@@ -52,7 +52,7 @@ Item {
 
     onRealValueSliderChanged: {
         console.log("veam:", realValueSlider)
-        systemBrightnessControl.setBrightness(mainScreen.displayName, Math.max(brightnessMin, Math.min(mainScreen.maxBrightness, 1))) ;
+        systemBrightnessControl.setBrightness(mainScreen.displayName, Math.max(brightnessMin, Math.min(mainScreen.maxBrightness, (realValueSlider*100)))) ;
     }
 
     Connections {
