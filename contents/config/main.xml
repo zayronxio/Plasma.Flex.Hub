@@ -19,4 +19,10 @@
     <entry name="lightTheme" type="string">
       <default>org.kde.breeze.desktop</default>
     </entry>
+    <entry name="gridWidth" type="int">
+      <default>4</default>
+    </entry>
+    <entry name="gridHeight" type="int">
+      <default>4</default>
+    </entry>
 </kcfg>
