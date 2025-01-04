@@ -37,12 +37,11 @@ Item {
                 anchors.topMargin: ((parent.height - height)/2) + name.implicitHeight/2
                 from: 0
                 to: maxSlider
-                value: valueSlider
+                value: control.valueSlider
                 snapMode: Slider.SnapAlways
                 onMoved: {
-                    console.log(value)
-                    control.realValueSlider = value
-                    console.log(control.realValueSlider)
+                    control.realValueSlider = value*100
+                    value = value
                 }
             }
         }
