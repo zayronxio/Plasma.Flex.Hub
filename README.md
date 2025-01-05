@@ -6,7 +6,6 @@
 
 <p align="center">
   <h1 align="center">Preview</h1>
-  <p align="center">Plasma Flex Hub is a modular and customizable plasmoid for Plasma 6, evolving from Plasma Control Hub to provide a compact and modern integrated control center.</center>
 </p>
 
 <p align="center">
