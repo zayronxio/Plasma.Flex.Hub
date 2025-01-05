@@ -25,4 +25,19 @@
     <entry name="gridHeight" type="int">
       <default>4</default>
     </entry>
+    <entry name="names_themes" type="StringList">
+      <default>Default,macOS</default>
+    </entry>
+    <entry name="index_themes" type="StringList">
+      <default>[12,0,17,15,9,10,13,14,8,5],[16,11,13,6,7,2,8]</default>
+    </entry>
+    <entry name="seriesX_themes" type="StringList">
+      <default>[0,2,0,0,2,2,0,1,2,3],[0,2,2,0,0,0,3]</default>
+    </entry>
+    <entry name="seriesY_themes" type="StringList">
+      <default>[0,0,1,2,2,3,4,4,4,4],[0,0,1,2,3,4,1]</default>
+    </entry>
+    <entry name="selected_theme" type="string">
+      <default>Default</default>
+    </entry>
 </kcfg>
