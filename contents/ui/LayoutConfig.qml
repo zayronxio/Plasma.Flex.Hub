@@ -1,11 +1,7 @@
 import QtQuick
 import QtQuick.Controls
-import QtQuick.Layouts 1.11
-import Qt.labs.folderlistmodel
 import org.kde.plasma.plasmoid
 import org.kde.kirigami as Kirigami
-import org.kde.plasma.plasma5support as Plasma5Support
-import QtQuick.LocalStorage
 
 Item  {
 
@@ -24,11 +20,11 @@ Item  {
     property alias cfg_seriesY_themes: themes.combined_y
     property alias cfg_selected_theme: themes.theme_current
 
-    property int currentIndex: 0
-
     property string nameNewTheme: ""
-    property string folderTheme: Qt.resolvedUrl("../Themes")
 
+    Model {
+        id: rootModel
+    }
 
     ListModel {
         id: layoutsSkins
@@ -72,12 +68,11 @@ Item  {
         }
         return createArray(newList)// Devuelve la lista modificada
     }
+
     function createModel_themes(){
-        console.log("creado model")
-        layoutsSkins.clear()
+        layoutsSkins.clear() // The model is cleaned before creating another, useful especially when adding new layouts
         var current = Infinity // "unk"
 
-        //console.log(themes.combined_index, "numerod e elemt", createArray(themes.combined_index), themes.namesSkins.length)
         for (var j =0; j < themes.namesSkins.length; j++) {
             const combined_index = createArray(themes.combined_index)[j].join()
             const combined_x = createArray(themes.combined_x)[j].join()
@@ -118,31 +113,13 @@ Item  {
         added(themes.combined_y,ys)
         added(themes.combined_x,xs)
         added(themes.combined_index,ids)
-        /*/
-        var indexDelate = 0
-        for (var u = 0; u < layoutsSkins.count; u++){
-            if (layoutsSkins.get(u).name === i18n("Custom")) {
-                layoutsSkins.remove(indexDelate)
-            }
-        }/*/
+
         createModel_themes()
     }
 
     Component.onCompleted: {
-        /*/
-        themes.namesSkins = []
-        themes.combined_index = []
-        themes.combined_x = []
-        themes.combined_y = []
-        console.log(themes.namesSkins, "a borrar")
-        Plasmoid.configuration.names_themes = themes.namesSkins
-        Plasmoid.configuration.index_themes = themes.combined_index
-        Plasmoid.configuration.seriesX_themes = themes.combined_x
-        Plasmoid.configuration.seriesY_themes = themes.combined_y
-        /*/
         createModel_themes()
     }
-
 
     Column {
         width: parent.width
@@ -153,21 +130,95 @@ Item  {
             id: carouselView
             width: parent.width
             height: parent.height*.75
-            model: layoutsSkins // Número de elementos en el carrusel
+            model: layoutsSkins
             interactive: false
             currentIndex: 0
             highlight: null
             orientation : Qt.Horizontal
+
             delegate: Rectangle {
                 width: carouselView.width
                 height: carouselView.height
-                color: "lightblue"// model.index % 2 === 0 ? "lightblue" : "lightcoral"
+                color: "transparent"// model.index % 2 === 0 ? "lightblue" : "lightcoral"
                 radius: 10
-                Text {
+
+
+                Item {
+                    width: card.width
+                    anchors.horizontalCenter: parent.horizontalCenter
+                    Kirigami.AbstractCard {
+                        id: card
+                        height: ((contentItem.rows * (Kirigami.Units.gridUnit * 3)) + (Kirigami.Units.gridUnit/2) * (contentItem.rows-1)) + Kirigami.Units.gridUnit *2
+                        width: (Kirigami.Units.gridUnit * 12) + Kirigami.Units.gridUnit *3.5
+
+
+                        contentItem: Item {
+                            property int rows: 0
+                            property var ind: []// model.series_index.split(",")
+                            property var xs: [] //model.series_x.split(",")
+                            property var ys: [] //model.series_x.split(",")
+
+                            ListModel {
+                                id: rectangleData
+                            }
+
+                            Component.onCompleted: {
+                                ind = model.series_index.split(",")
+                                xs = model.series_x.split(",")
+                                ys = model.series_y.split(",")
+
+                                for (var g = 0; g < ind.length; g++){
+
+                                    rectangleData.append({
+                                        nameRec: rootModel.get(ind[g]).name,
+                                        width: ((rootModel.get(ind[g]).w) * (Kirigami.Units.gridUnit * 3)) + (Kirigami.Units.gridUnit/2) * ((rootModel.get(ind[g]).w)-1),
+                                        height: ((rootModel.get(ind[g]).h) * (Kirigami.Units.gridUnit * 3)) + (Kirigami.Units.gridUnit/2) * ((rootModel.get(ind[g]).h)-1),
+                                        x: parseInt(xs[g]),
+                                        y: parseInt(ys[g]),
+                                    });
+                                    rows = Math.max(rows, parseInt(ys[g]) + (rootModel.get(ind[g]).h));
+                                }
+                            }
+                            Repeater {
+                                model: rectangleData
+                                delegate: Item {
+                                    width: model.width
+                                    height: model.height
+                                    x: model.x * (Kirigami.Units.gridUnit * 3) + (Kirigami.Units.gridUnit/2) + (Kirigami.Units.gridUnit/2) * model.x
+                                    y: model.y * (Kirigami.Units.gridUnit * 3) + (Kirigami.Units.gridUnit/2) + (Kirigami.Units.gridUnit/2) * model.y
+
+                                    Rectangle {
+                                        anchors.fill: parent
+                                        anchors.centerIn: parent
+                                        color: Kirigami.Theme.textColor
+                                        radius: 12
+                                        opacity: 0.7
+                                    }
+                                    Kirigami.Heading {
+                                        text: model.nameRec
+                                        anchors.verticalCenter: parent.verticalCenter
+                                        width: model.width
+                                        level: 5
+                                        color: Kirigami.Theme.background
+                                        wrapMode: Text.Wrap
+                                        horizontalAlignment: Text.AlignHCenter
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+
+                Kirigami.Heading  {
+                    font.weight: Font.DemiBold
+                    style: Text.Outline;
+                    styleColor: "#AAAAAA"
                     anchors.centerIn: parent
-                    text: model.name//layoutsSkins.get(1).x //"Elemento " + (model.index + 1)
+                    text: model.name
                     font.pixelSize: 24
                 }
+
+
             }
         }
         Row {
@@ -180,6 +231,8 @@ Item  {
                     Plasmoid.configuration.elements = layoutsSkins.get(carouselView.currentIndex).series_index.split(",");
                     Plasmoid.configuration.yElements = layoutsSkins.get(carouselView.currentIndex).series_y.split(",");
                     Plasmoid.configuration.xElements = layoutsSkins.get(carouselView.currentIndex).series_x.split(",");
+                    Plasmoid.configuration.selected_theme = layoutsSkins.get(carouselView.currentIndex).name //forza la actulizacion
+                    themes.theme_current = layoutsSkins.get(carouselView.currentIndex).name
                 }
             }
             Button {
@@ -208,10 +261,8 @@ Item  {
             width: 400
             height: 150
             opacity: 1
-            //color: "red"
             title: i18n("Save Your Theme")
             anchors.centerIn: parent
-            //text: "¿Estás seguro de que deseas iniciar metaDateGenerator.detonator()?"
             standardButtons: Dialog.Cancel
             contentItem: Item {
                 Row {
@@ -250,7 +301,6 @@ Item  {
             }
             onAccepted: {
                 saveConfigs(nameNewTheme, Plasmoid.configuration.xElements,  Plasmoid.configuration.yElements, Plasmoid.configuration.elements )
-                //executable.connectedSources = ("bash " + pathScript.replace("file://", '') + " " + subCommand + " " + nameNewTheme)
             }
         }
 
