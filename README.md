@@ -22,7 +22,7 @@ For support, email zayronxio@gmail.com
 
 ## License
 
-[ CC BY 4.0 Deed ](https://creativecommons.org/licenses/by/4.0/deed.es)
+[ GPL-3.0 license  ]([https://www.gnu.org/licenses/gpl-3.0.html#license-text])
 
 
 
