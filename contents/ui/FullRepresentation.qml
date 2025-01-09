@@ -30,6 +30,7 @@ Item {
     property int exedent: sideBarEnabled ? 2 : 0
     property int heightF: (rows + exedent) * factorY + footer_height
 
+    property string nameTh: Plasmoid.configuration.selected_theme
 
     Layout.preferredWidth: sideBarEnabled ? (widthFactor*8 + spacing*11) : (widthFactor*4 + spacing*5)
     Layout.preferredHeight: heightF
@@ -38,8 +39,6 @@ Item {
     Layout.minimumHeight: Layout.preferredHeight
     Layout.maximumHeight: Layout.preferredHeight
     clip: true
-
-    //signal updateConfigs
 
     onSideBarEnabledChanged: {
         Layout.preferredWidth = sideBarEnabled ? (widthFactor * 8 + spacing * 11) : (widthFactor * 4 + spacing * 5);
@@ -54,6 +53,9 @@ Item {
     onSideBarEnabled: {
         updateHeight()
     }
+    onNameThChanged: {
+        updateModel()
+    }
 
     Model {
         id: namesModel
@@ -63,13 +65,10 @@ Item {
         id: gridModel
     }
 
-    Component.onCompleted: {
-        // change when public released
-        /*/
-        Plasmoid.configuration.xElements = list_x
-        Plasmoid.configuration.yElements = list_y
-        Plasmoid.configuration.elements = listElements
-        /*/
+    function updateModel() {
+
+        gridModel.clear()
+
         listElements = Plasmoid.configuration.elements
         list_y = Plasmoid.configuration.yElements
         list_x = Plasmoid.configuration.xElements
@@ -78,18 +77,28 @@ Item {
             gridModel.append({
                 //namesModel es el model que contine la informacion original antes de ser procesadas, para la primera carga no es necesario usar SideBar para crear el modelo que genera los primero elementos, estos se actualizan al inicio en funcion de la informacion guarda en las configuracions de el plasmoid
                 elementId: namesModel.get(listElements[v]).elementId,
-                w: namesModel.get(listElements[v]).w,
-                indexOrigin: listElements[v],
-                h: namesModel.get(listElements[v]).h,
-                source: namesModel.get(listElements[v]).source,
-                x: parseInt(list_x[v]),
-                y: parseInt(list_y[v])
+                             w: namesModel.get(listElements[v]).w,
+                             indexOrigin: listElements[v],
+                             h: namesModel.get(listElements[v]).h,
+                             source: namesModel.get(listElements[v]).source,
+                             x: parseInt(list_x[v]),
+                             y: parseInt(list_y[v])
             });
 
+            mainGridsFilled = []
+
             addedGridsFilled(parseInt(list_x[v]), parseInt(list_y[v]), namesModel.get(listElements[v]).h, namesModel.get(listElements[v]).h)
-            console.log("pruebas",mainGridsFilled)
         }
+        Layout.preferredWidth = (widthFactor * 4 + spacing * 5);
+        Layout.minimumWidth = (widthFactor * 4 + spacing * 5);
+        Layout.maximumWidth = (widthFactor * 4 + spacing * 5);
+        Layout.preferredHeight = heightF;
         calculateHeight()
+    }
+
+    Component.onCompleted: {
+         updateModel()
+         //GlobalSignals.emitGlobalSignal();
     }
 
     function addedGridsFilled(x, y, h, w){
@@ -139,7 +148,7 @@ Item {
                         var value = (parseInt(list_y[k]) + z) + " " + (parseInt(list_x[k]) + i);
                         var index = mainGridsFilled.indexOf(value);
                         if (index !== -1) {
-                            mainGridsFilled.splice(index, 1); // Eliminar el valor
+                            mainGridsFilled.splice(index, 1); // Dalate value
                         }
                     }
                 }
@@ -147,8 +156,6 @@ Item {
                 list_y.splice(k, 1);
                 list_x.splice(k, 1);
                 updateConfigs()
-                console.log(Plasmoid.configuration.elements)
-                //break
             }
         }
 
