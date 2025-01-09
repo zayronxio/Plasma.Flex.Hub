@@ -6,7 +6,16 @@ import org.kde.plasma.plasma5support as Plasma5Support
 
 Item {
 
-    property bool isDark: true
+    function isColorLight(color) {
+        var r = Qt.rgba(color.r, 0, 0, 0).r * 255;
+        var g = Qt.rgba(0, color.g, 0, 0).g * 255;
+        var b = Qt.rgba(0, 0, color.b, 0).b * 255;
+        var luminance = 0.299 * r + 0.587 * g + 0.114 * b;
+        console.log("yyyyyyyyyyy",luminance)
+        return luminance > 127.5; // Devuelve true si es claro, false si es oscuro
+    }
+
+    property bool isDark: !isColorLight(Kirigami.Theme.backgroundColor)
     property string theme: isDark ? Plasmoid.configuration.darkTheme : Plasmoid.configuration.lightTheme
     property string command: "plasma-apply-lookandfeel -a " + theme
 
