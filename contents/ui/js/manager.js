@@ -112,7 +112,7 @@ function autoOrganizer(model) {
                           h: model.get(index).h,
                           source: model.get(index).source,
                           elementId: model.get(index).elementId,
-                          indexOrigin: index,
+                          indexOrigin: parseInt(index),
                           elements: 0,
                           x: determinateX(elementsOrganizer, row, index, model),
                           y: valueY
@@ -157,4 +157,20 @@ function findHighestY(gridsFilled) {
     }
 
     return highestY;
+}
+
+function getHighestSecondValue(array) {
+    let maxValue = -Infinity;
+
+    for (let i = 0; i < array.length; i++) {
+        let parts = array[i].split(" ");
+        if (parts.length === 2) {
+            let secondValue = Number(parts[1]);
+            if (!isNaN(secondValue)) {
+                maxValue = Math.max(maxValue, secondValue);
+            }
+        }
+    }
+
+    return maxValue === -Infinity ? null : maxValue; // Retorna null si no se encontraron números válidos
 }

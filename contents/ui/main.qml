@@ -3,9 +3,6 @@ import QtQuick.Controls
 import QtQuick.Layouts
 import org.kde.plasma.plasmoid
 import org.kde.kirigami as Kirigami
-import "components" as Components
-//import org.kde.plasma.private.sessions as Sessions
-
 
 PlasmoidItem {
     id: root
@@ -33,28 +30,19 @@ PlasmoidItem {
         onPressed: wasExpanded = root.expanded
         onClicked: root.expanded = !wasExpanded
 
-        Row {
-            id: compactRow
-            layoutDirection: iconPositionRight ? Qt.RightToLeft : Qt.LeftToRight
+        Kirigami.Icon {
+            id: logoPlasmoid
+            width: 22
+            height: 22
+            source: Plasmoid.icon
+            //isMask: true
+            color: Kirigami.Themes.textColor
             anchors.centerIn: parent
-            spacing: Kirigami.Units.smallSpacing
-            Rectangle {
-                width: root.height
-                height: root.height
-                color: "transparent"
-                Kirigami.Icon {
-                    width: 22
-                    height: 22
-                    source: "configure"
-                    color: Kirigami.Theme.TextColor
-                    anchors.centerIn: parent
-                }
-            }
         }
     }
-
     fullRepresentation: FullRepresentation {
     }
+
 
 }
 
