@@ -9,7 +9,7 @@ Item {
         height: parent.height
         activeSub: true
         smallMode: false
-        title: i18n("Settigs")
+        title: i18n("Settings")
         sub: i18n("System Settings")
         itemIcon: "configure"
         onClick: onClickAction()
