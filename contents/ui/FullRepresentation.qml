@@ -3,10 +3,9 @@ import QtQuick.Layouts
 import org.kde.kirigami as Kirigami
 import org.kde.plasma.plasmoid
 import "components" as Components
-
+import "pages" as Pages
 Item {
     id:root
-
 
     Components.SourceBrightness {
         id: control
@@ -32,13 +31,15 @@ Item {
 
     property string nameTh: Plasmoid.configuration.selected_theme
 
+    property var page: ""
+
     Layout.preferredWidth: sideBarEnabled ? (widthFactor*8 + spacing*11) : (widthFactor*4 + spacing*5)
     Layout.preferredHeight: heightF
     Layout.minimumWidth: preferredWidth
     Layout.maximumWidth: preferredWidth
     Layout.minimumHeight: Layout.preferredHeight
     Layout.maximumHeight: Layout.preferredHeight
-    clip: true
+    //clip: true
 
     onSideBarEnabledChanged: {
         Layout.preferredWidth = sideBarEnabled ? (widthFactor * 8 + spacing * 11) : (widthFactor * 4 + spacing * 5);
@@ -55,6 +56,14 @@ Item {
     }
     onNameThChanged: {
         updateModel()
+    }
+
+    onPageChanged: {
+        if (page !== "") {
+            leftPanel.visible = false
+        } else {
+            leftPanel.visible = true
+        }
     }
 
     Model {
@@ -178,12 +187,33 @@ Item {
             }
         }
     }
+    Loader {
+        id: pageLoader
+        source: page
+        width: parent.width
+        height: parent.height
+        onStatusChanged: {
+            if (status === Loader.Error) {
+                page = ""
+                leftPanel.visible = true
+            }
+        }
+        onLoaded: {
+            active = (page !== "")
+
+            onActiveChanged: {
+                if (!active) {
+                    page = ""
+                }
+            }
+        }
+    }
 
     Item {
         id: leftPanel
         width: parent.width/2
         height: rows * factorY
-
+        //visible: false
         Repeater {
             model: gridModel
             delegate: Loader {
