@@ -5,6 +5,9 @@
       http://www.kde.org/standards/kcfg/1.0/kcfg.xsd" >
   <kcfgfile name=""/>
   <group name="General">
+    <entry name="shadowOpacity" type="int">
+      <default>8</default>
+    </entry>
     <entry name="darkTheme" type="string">
       <default>org.kde.breezedark.desktop</default>
     </entry>

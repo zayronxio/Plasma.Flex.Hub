@@ -3,6 +3,7 @@ import QtQuick.Controls
 import QtQuick.Layouts 1.11
 import org.kde.kirigami as Kirigami
 import org.kde.plasma.plasma5support as P5Support
+import org.kde.plasma.core 2.0 as PlasmaCore
 
 Item {
     id: configRoot
@@ -31,6 +32,8 @@ Item {
     property alias cfg_xElements: keysConfig.xElements
     property alias cfg_darkTheme: themes.dark
     property alias cfg_lightTheme: themes.light
+
+    property alias cfg_shadowOpacity: sliderShadowOpacity.value
 
     property alias cfg_gridWidth: valueGrids.width
     property alias cfg_gridHeight: valueGrids.height
@@ -140,6 +143,31 @@ Item {
             ]
             onActivated: valueGrids.height = currentValue
             Component.onCompleted: currentIndex = indexOfValue(valueGrids.height)
+        }
+
+        Kirigami.Heading {
+            id: txtShadowOpacity
+            text: i18n("Shadow Opacity:")
+            Layout.minimumWidth: root.width/2
+            horizontalAlignment: Label.AlignRight
+            level: 4
+        }
+
+        Slider {
+            id: sliderShadowOpacity
+            width: parent.width/4
+            height: 24
+            //anchors.verticalCenter: parent.verticalCenter
+            anchors.left: txtShadowOpacity.right
+            //anchors.verticalCenter: iconBrightness.verticalCenter
+            from: 1
+            to: 10
+            value: shadowOpacity
+            snapMode: Slider.SnapAlways
+            onMoved: {
+                //value = value
+                console.log(value/10, cfg_shadowOpacity)
+            }
         }
 
 

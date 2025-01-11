@@ -14,6 +14,8 @@ Item {
     property int marginLeft: shadowHintLeftMargin.implicitWidth*3
     property int marginTop: shadowHintTopMargin.implicitHeight
     property bool globalBool: true
+    property int shadowOpacity: Plasmoid.configuration.shadowOpacity
+
 
     KSvg.SvgItem {
         id: shadowHintLeftMargin
@@ -55,7 +57,7 @@ Item {
         width: root.width
         height: root.height
         visible: globalBool
-        opacity: 0.8
+        opacity: shadowOpacity/10
         columns: 3
         anchors.left: parent.left
         anchors.leftMargin: - shadowHintLeftMargin.implicitWidth - hintInset.implicitWidth
