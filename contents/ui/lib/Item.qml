@@ -8,7 +8,7 @@ Item {
     property bool bubble: true
     property string sub: ""
     property color backgroundColor: Kirigami.Theme.highlightColor
-    property color iconColor: Kirigami.Theme.highlightTextColor
+    property color iconColor: isColorLight(backgroundColor) ? "white" : "black"
     property bool isMaskIcon: false
     property string title: ""
     property string itemIcon: ""
@@ -16,6 +16,14 @@ Item {
     property string anchorsDinamic: "center"
 
     signal click
+
+    onBackgroundColorChanged: {
+        iconColor = isColorLight(backgroundColor) ? "white" : "black"
+    }
+    function isColorLight(color) {
+        const luminance = 0.299 * color.r + 0.587 * color.g + 0.114 * color.b;
+        return luminance < 0.6; // 80.5 / 255
+    }
 
     Column {
         width: parent.width - 10

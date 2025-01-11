@@ -12,6 +12,7 @@ Item {
         height: parent.height
         activeSub: true
         smallMode: false
+        isMaskIcon: true
         title: i18n("Bluetooth")
         sub: Funcs.getBtDevice()
         itemIcon:  Funcs.getBtDevice() === i18n("Disabled") || Funcs.getBtDevice() === i18n("Unavailable")  ? "network-bluetooth-inactive-symbolic" : Funcs.getBtDevice() === i18n("Not Connected") ? "network-bluetooth-symbolic" : Funcs.getBtDevice() === i18n("Offline") ? "network-bluetooth-inactive-symbolic" : "network-bluetooth-activated"

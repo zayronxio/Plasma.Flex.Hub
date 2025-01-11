@@ -10,6 +10,7 @@ Item {
          height: parent.height
          activeSub: true
          smallMode: false
+         isMaskIcon: true
          title: i18n("Network")
          sub: network.textConnetion
          itemIcon: network.icon
