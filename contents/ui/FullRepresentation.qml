@@ -123,6 +123,7 @@ Item {
         Plasmoid.configuration.elements = listElements;
         Plasmoid.configuration.yElements = list_y;
         Plasmoid.configuration.xElements = list_x;
+        Plasmoid.configuration.selected_theme = "Custom"
     }
 
     function calculateHeight() {
@@ -286,6 +287,7 @@ Item {
                 list_x.push(parseInt(sideBar.desingModel.get(sideBar.desingModel.count-1).x))
                 updateConfigs()
                 calculateHeight()
+                Plasmoid.configuration.selected_theme = "Custom"
             }
 
             onClose: {
