@@ -30,96 +30,6 @@ function determinateX(list, row, index, model) {
     }
 }
 
-function autoOrganizer(model) {
-    var elementsExcludes = []
-    var elementsInRow = 0
-    var elementsOrganizer = []
-    var currentRow = 0
-    var widthElements = 0
-    var maxHeights = []
-    var valuesX = []
-    for (var u = 0; u < model.count; u++) {
-        maxHeights.push(0)
-        if (model.get(u).w === 4) {
-            if (elementsInRow === 0) {
-                elementsOrganizer.push(currentRow + " " + u)
-
-                maxHeights[currentRow] = maxHeights[currentRow] < model.get(u).h ? model.get(u).h : maxHeights[currentRow]
-                currentRow = currentRow + 1
-            } else {
-                currentRow = currentRow + 1
-                elementsOrganizer.push(currentRow + " " + u)
-
-                maxHeights[currentRow] = maxHeights[currentRow] < model.get(u).h ? model.get(u).h : maxHeights[currentRow]
-                currentRow = currentRow + 1
-            }
-        } else {
-            if (model.get(u).w === 2) {
-                if (elementsInRow <= 2) {
-
-                    elementsOrganizer.push(currentRow + " " + u)
-
-                    maxHeights[currentRow] = maxHeights[currentRow] < model.get(u).h ? model.get(u).h : maxHeights[currentRow]
-                    elementsInRow = elementsInRow + model.get(u).w
-                    if (elementsInRow === 4) {
-                        currentRow = currentRow + 1
-                        elementsInRow = 0
-                    }
-                } else {
-                    elementsExcludes.push(u)
-                }
-            } else {
-                if (model.get(u).w === 1) {
-                    elementsOrganizer.push(currentRow + " " + u)
-
-                    maxHeights[currentRow] = maxHeights[currentRow] < model.get(u).h ? model.get(u).h : maxHeights[currentRow]
-                    elementsInRow = elementsInRow + model.get(u).w
-                    if (elementsInRow === 4) {
-                        currentRow = currentRow + 1
-                        elementsInRow = 0
-                    }
-                }
-            }
-
-        }
-
-    }
-    for (var o = 0; o < elementsExcludes.length; o++) {
-        if ((elementsInRow + elementsExcludes[o]) <= 4) {
-            elementsOrganizer.push(currentRow + " " + elementsExcludes[o])
-
-            maxHeights[currentRow] = maxHeights[currentRow] < model.get(u).h ? model.get(u).h : maxHeights[currentRow]
-            elementsInRow = elementsInRow + model.get(elementsExcludes[o]).w
-            if (elementsInRow === 4) {
-                currentRow = currentRow + 1
-                elementsInRow = 0
-            }
-        }
-
-    }
-    for (var i = 1; i < maxHeights.length; i++){
-
-        maxHeights[i] = maxHeights[i] + maxHeights[(i - 1)]
-    }
-
-    for (var v = 0; v < elementsOrganizer.length; v++){
-        var index = parseInt(elementsOrganizer[v].split(" ")[1])
-        var row = parseInt(elementsOrganizer[v].split(" ")[0])
-        var valueY = row === 0 ? 0 : maxHeights[row - 1]
-        var valueX = determinateX(elementsOrganizer, row, index, model)
-        readyModel.append({
-            w: model.get(index).w,
-                          h: model.get(index).h,
-                          source: model.get(index).source,
-                          elementId: model.get(index).elementId,
-                          indexOrigin: parseInt(index),
-                          elements: 0,
-                          x: determinateX(elementsOrganizer, row, index, model),
-                          y: valueY
-        });
-
-    }
-}
 
 function isSpaceAvailable(x, y, w, h) {
     if ((x + w) <= 4) {
@@ -173,4 +83,80 @@ function getHighestSecondValue(array) {
     }
 
     return maxValue === -Infinity ? null : maxValue; // Retorna null si no se encontraron números válidos
+}
+
+
+function autoOrganizer(model) {
+    var gridWidth = 4; // Número máximo de columnas (X: 0, 1, 2, 3)
+    var occupiedSpaces = []; // Array bidimensional para registrar casillas ocupadas
+    var elementsOrganizer = []; // Almacena las coordenadas y referencias de elementos
+
+    function isSpaceAvailable(x, y, w, h) {
+        // Verifica si las casillas necesarias están libres
+        for (var i = 0; i < w; i++) {
+            for (var j = 0; j < h; j++) {
+                if (occupiedSpaces[y + j]?.[x + i]) {
+                    return false; // Espacio ocupado
+                }
+            }
+        }
+        return true;
+    }
+
+    function markSpaceOccupied(x, y, w, h) {
+        // Marca las casillas ocupadas por un elemento
+        for (var i = 0; i < w; i++) {
+            for (var j = 0; j < h; j++) {
+                if (!occupiedSpaces[y + j]) {
+                    occupiedSpaces[y + j] = [];
+                }
+                occupiedSpaces[y + j][x + i] = true;
+            }
+        }
+    }
+
+    function findNextAvailableSpace(w, h) {
+        // Busca el primer espacio disponible que pueda acomodar el elemento
+        for (var y = 0; y < occupiedSpaces.length + 1; y++) {
+            for (var x = 0; x <= gridWidth - w; x++) {
+                if (isSpaceAvailable(x, y, w, h)) {
+                    return { x, y };
+                }
+            }
+        }
+        return null; // No se encontró espacio (no debería ocurrir si la lógica es correcta)
+    }
+
+    for (var u = 0; u < model.count; u++) {
+        var element = model.get(u);
+        var w = element.w;
+        var h = element.h;
+
+        var space = findNextAvailableSpace(w, h);
+        if (space) {
+            // Posicionar el elemento
+            markSpaceOccupied(space.x, space.y, w, h);
+            elementsOrganizer.push({
+                index: u,
+                x: space.x,
+                y: space.y,
+                w: w,
+                h: h
+            });
+        }
+    }
+
+    // Generar modelo con las coordenadas calculadas
+    for (var v = 0; v < elementsOrganizer.length; v++) {
+        var org = elementsOrganizer[v];
+        readyModel.append({
+            w: model.get(org.index).w,
+                          h: model.get(org.index).h,
+                          source: model.get(org.index).source,
+                          elementId: model.get(org.index).elementId,
+                          indexOrigin: org.index,
+                          x: org.x,
+                          y: org.y
+        });
+    }
 }
