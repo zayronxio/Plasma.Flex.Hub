@@ -220,6 +220,9 @@ Item {
                 source: model.source
 
                 onLoaded: {
+                    if (item && item.hasOwnProperty("mouseAreaActive")) {
+                        item.mouseAreaActive = true;
+                    }
                     width = widthFactor * model.w + spacing * (model.w - 1);
                     height = heightFactor * model.h + spacing * (model.h - 1);
                     x = model.x * widthFactor + model.x*spacing + spacing;
