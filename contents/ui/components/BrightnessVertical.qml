@@ -1,6 +1,7 @@
 import QtQuick
 import QtQuick.Controls
 import org.kde.kirigami as Kirigami
+import org.kde.plasma.plasmoid
 //import org.kde.kcmutils // KCMLauncher
 //import org.kde.plasma.components 3.0 as PlasmaComponents
 import "../lib" as Lib
@@ -8,7 +9,7 @@ import org.kde.ksvg 1.0 as KSvg
 import Qt5Compat.GraphicalEffects
 
 Item {
-
+    property bool mouseAreaActive:  false
     Lib.Card {
         width: parent.width
         height: parent.height
@@ -106,7 +107,8 @@ Item {
 
             MouseArea {
                 id: mouseArea
-                width: parent.width/2
+                enabled: mouseAreaActive
+                width: parent.width
                 height: parent.height
                 anchors.centerIn: parent
 

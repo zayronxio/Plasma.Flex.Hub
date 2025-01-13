@@ -6,7 +6,7 @@ import org.kde.kirigami as Kirigami
 import "../lib" as Lib
 
 Item {
-
+    property bool mouseAreaActive:  false
     Lib.Card {
         width: parent.width
         height: parent.height
@@ -42,6 +42,7 @@ Item {
                 value: vol.sliderValue
                 to: 100
                 snapMode: Slider.SnapAlways
+                enabled: mouseAreaActive
                 //stepSize: 5
                 onMoved: {
                     vol.sink.volume = value * vol.normalVolume / 100

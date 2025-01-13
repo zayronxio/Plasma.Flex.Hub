@@ -9,6 +9,8 @@ import Qt5Compat.GraphicalEffects
 
 Item {
 
+    property bool mouseAreaActive:  false
+
     Lib.Card {
         width: parent.width
         height: parent.height
@@ -105,8 +107,9 @@ Item {
 
             MouseArea {
                 id: mouseArea
-                width: parent.width/2
+                width: parent.width
                 height: parent.height
+                enabled: mouseAreaActive
                 anchors.centerIn: parent
 
                 function updateValue(w,y) {

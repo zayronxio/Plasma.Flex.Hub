@@ -5,6 +5,8 @@ import "../lib" as Lib
 
 Item {
 
+    property bool mouseAreaActive:  false
+
     Lib.Card {
         width: parent.width
         height: parent.height
@@ -39,6 +41,7 @@ Item {
                 to: maxSlider
                 value: control.valueSlider
                 snapMode: Slider.SnapAlways
+                enabled: mouseAreaActive
                 onMoved: {
                     control.realValueSlider = value*100
                     value = value

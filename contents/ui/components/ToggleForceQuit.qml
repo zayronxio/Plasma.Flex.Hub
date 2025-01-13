@@ -4,7 +4,7 @@ import org.kde.kirigami as Kirigami
 //import "../pages/ForceQuit.qml" as fq
 
 Item {
-
+    property bool mouseAreaActive:  false
     Lib.Card {
         width: parent.width
         height: parent.height
@@ -22,6 +22,7 @@ Item {
                 anchors.horizontalCenter: parent.horizontalCenter
 
                 MouseArea {
+                    enabled: mouseAreaActive
                     anchors.fill: parent
                     hoverEnabled: true
                     onClicked: {
