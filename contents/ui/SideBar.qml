@@ -69,8 +69,8 @@ Item {
             delegate: Loader {
                 id: rect
                 source: model.source
-                property int originalX: 0//model.x * widthFactor
-                property int originalY:0// model.y * heightFactor;
+                property int originalX: model.x * widthFactor + model.x*spacing + spacing;
+                property int originalY: model.y * heightFactor + model.y*spacing + spacing;
                 property int elements: 0
                 onLoaded: {
                     width = widthFactor * model.w + spacing * (model.w - 1);
@@ -108,8 +108,8 @@ Item {
                     drag.target: parent
                     onEntered: {
                         //console.log("pruebas:",mouseY, rect.y)
-                        originalX = rect.x
-                        originalY = rect.y
+                        //originalX = rect.x
+                        //originalY = rect.y
 
                         const globalPos = rect.mapToItem(null, rect.x, rect.y);
 
