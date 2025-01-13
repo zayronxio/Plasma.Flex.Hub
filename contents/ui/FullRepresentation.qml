@@ -77,6 +77,7 @@ Item {
     function updateModel() {
 
         gridModel.clear()
+        mainGridsFilled = []
 
         listElements = Plasmoid.configuration.elements
         list_y = Plasmoid.configuration.yElements
@@ -93,10 +94,7 @@ Item {
                              x: parseInt(list_x[v]),
                              y: parseInt(list_y[v])
             });
-
-            mainGridsFilled = []
-
-            addedGridsFilled(parseInt(list_x[v]), parseInt(list_y[v]), namesModel.get(listElements[v]).h, namesModel.get(listElements[v]).h)
+            addedGridsFilled(parseInt(list_x[v]), parseInt(list_y[v]), namesModel.get(listElements[v]).h, namesModel.get(listElements[v]).w)
         }
         Layout.preferredWidth = (widthFactor * 4 + spacing * 5);
         Layout.minimumWidth = (widthFactor * 4 + spacing * 5);
