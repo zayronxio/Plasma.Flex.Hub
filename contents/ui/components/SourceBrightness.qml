@@ -1,5 +1,6 @@
 import org.kde.plasma.private.brightnesscontrolplugin
 import QtQuick
+import org.kde.plasma.plasmoid
 import QtQuick.Controls
 import org.kde.kirigami as Kirigami
 import org.kde.kitemmodels as KItemModels
@@ -10,7 +11,22 @@ Item {
         id: systemBrightnessControl
         isSilent: false
     }
+    NightLightControl {
+        id: nightM
 
+        readonly property bool transitioning: control.currentTemperature != control.targetTemperature
+        readonly property bool hasSwitchingTimes: control.mode != 3
+        readonly property bool togglable: activeNightMode || !control.inhibited || control.inhibitedFromApplet
+
+    }
+
+    signal nightMode
+
+    onNightMode: {
+        nightM.toggleInhibition()
+    }
+
+    property bool runningNightToggle: nightM.running
     property bool active: systemBrightnessControl.isBrightnessAvailable
 
 
@@ -51,16 +67,10 @@ Item {
 
 
     onRealValueSliderChanged: {
-        console.log("veam:", realValueSlider)
         systemBrightnessControl.setBrightness(mainScreen.displayName, Math.max(brightnessMin, Math.min(mainScreen.maxBrightness, (realValueSlider*100)))) ;
     }
 
     Connections {
         target: systemBrightnessControl
     }
-    Component.onCompleted: {
-        console.log("veam:", realValueSlider, cnValue)
-    }
-
-
 }
