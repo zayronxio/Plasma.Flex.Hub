@@ -18,6 +18,7 @@ Item {
             height: parent.height
             activeSub: false
             smallMode: false
+            isMaskIcon: true
             title: i18n("Do not disturb")
             itemIcon: Funcs.checkInhibition() ? "notifications-disabled" : "notifications"
             onIconClicked: Funcs.toggleDnd

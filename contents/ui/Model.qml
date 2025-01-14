@@ -24,7 +24,8 @@ ListModel {
     ListElement { elementId: "item20"; name: "BrightnessVertical"; w: 1; h: 2; source: "components/BrightnessVertical.qml"}
     ListElement { elementId: "item21"; name: "Battery"; w: 1; h: 1; source: "components/Battery1x1.qml"}
     ListElement { elementId: "item22"; name: "Battery"; w: 2; h: 2; source: "components/Battery2x2.qml"}
-    ListElement { elementId: "item21"; name: "ForceQuit"; w: 1; h: 1; source: "components/ToggleForceQuit.qml"}
+    ListElement { elementId: "item23"; name: "ForceQuit"; w: 1; h: 1; source: "components/ToggleForceQuit.qml"}
+    ListElement { elementId: "item24"; name: "Multimedia1x3"; w: 3; h: 1; source: "components/Multimedia1x3.qml"}
 
 }
 

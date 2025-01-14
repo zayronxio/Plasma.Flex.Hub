@@ -18,6 +18,10 @@ Column {
     width: parent.width
     height: parent.height
 
+    function action() {
+        page = ""
+    }
+
     KSvg.SvgItem {
         id: marginPlasma
         imagePath: "dialogs/background"
@@ -41,7 +45,7 @@ Column {
                 anchors.verticalCenter: parent.verticalCenter
                 MouseArea {
                     anchors.fill: parent
-                    onClicked: actionArrow()
+                    onClicked: actionArrow !== "" ? actionArrow() : action()
                 }
             }
             Item {

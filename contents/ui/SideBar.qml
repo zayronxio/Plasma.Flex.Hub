@@ -133,7 +133,6 @@ Item {
                         if (realx > (- max_x - 10) && realx < 10 && rect.y > 0 && rect.y < max_y ) /*/esta condicion evita que los elemenos que se arrastren fuera de el elemento, sean considerados/*/ {
                             var maxX = Manager.findClosest(gridsX, realx) // ESTABLECE EL EXPACIO MAS PROXIMO
                             var maxY = Manager.findClosest(gridsY, realy)
-                            console.log("realx, width")
                             if ( Manager.isSpaceAvailable(maxX, maxY, model.w, model.h) ) {
                                 gridModel.append({
                                     w: model.w,
@@ -147,7 +146,6 @@ Item {
 
                                 elements = elements + 1
                                 Manager.addedGridsFilled(maxX, maxY, model.h, model.w)
-                                console.log("antes de ejecutar", gridsY, gridsFilled)
                                 if ((model.h + model.x) > lastRow ) {
                                     lastRow = (model.h + model.x)
                                 }

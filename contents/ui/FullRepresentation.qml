@@ -191,19 +191,22 @@ Item {
         source: page
         width: parent.width
         height: parent.height
+
+        // Contenedor para la animación de opacidad
+        opacity: 0 // Comienza invisible
+        Behavior on opacity { NumberAnimation { duration: 600 } } // Animación de opacidad (500 ms)
+
+        onLoaded: {
+            if (page !== "") {
+                opacity = 1 // Aparece gradualmente cuando se carga
+            }
+        }
+
         onStatusChanged: {
             if (status === Loader.Error) {
                 page = ""
+                opacity = 0 // Oculta el contenido si hay un error
                 leftPanel.visible = true
-            }
-        }
-        onLoaded: {
-            active = (page !== "")
-
-            onActiveChanged: {
-                if (!active) {
-                    page = ""
-                }
             }
         }
     }

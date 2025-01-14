@@ -9,6 +9,7 @@ Item {
         height: parent.height
         activeSub: true
         smallMode: false
+        isMaskIcon: true
         title: i18n("Settings")
         sub: i18n("System Settings")
         itemIcon: "configure"
