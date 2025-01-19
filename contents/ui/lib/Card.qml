@@ -2,183 +2,66 @@
  *    SPDX-FileCopyrightText: zayronxio
  *    SPDX-License-Identifier: GPL-3.0-or-later
  */
-import QtQuick 2.15
+import QtQuick
+import Qt5Compat.GraphicalEffects
 import org.kde.plasma.plasmoid 2.0
-import org.kde.ksvg as KSvg
 
 Item {
     id: root
-    width: 100
-    height: 100
-
-    property int marginLeft: shadowHintLeftMargin.implicitWidth*3
-    property int marginTop: shadowHintTopMargin.implicitHeight
+    property color customColor: Plasmoid.configuration.colorCards
+    property color elementBackgroundColor: "red"
+    property color backgrounfColor: !enabledColor ? customColor : elementBackgroundColor
     property bool globalBool: true
+    property bool enabledColor: false
+    property bool enabledCustomColor: Plasmoid.configuration.enabledCustomColor
+    property bool colorizer: Plasmoid.configuration.enabledCustomColor
     property int shadowOpacity: Plasmoid.configuration.shadowOpacity
 
-
-    KSvg.SvgItem {
-        id: shadowHintLeftMargin
-        imagePath: "dialogs/background"
-        elementId: "shadow-hint-left-margin"
-        visible: false
+    Rectangle {
+        color: backgrounfColor
+        width: parent.width
+        height: parent.height
+        visible: globalBool && enabledCustomColor || enabledColor
+        opacity: enabledCustomColor || enabledColor ? 0.7 :  1
+        layer.enabled: true
+        layer.effect: OpacityMask {
+            maskSource: mask
+        }
     }
 
-    KSvg.SvgItem {
-        id: hintInset
-        imagePath: "dialogs/background"
-        elementId: "hint-left-inset"
-        visible: false
-    }
-    KSvg.SvgItem {
-        id: shadowHintTopMargin
-        imagePath: "dialogs/background"
-        elementId: "shadow-hint-top-margin"
-        visible: false
+    HelperCard {
+        id: background
+        isShadow: false
+        width: parent.width
+        height:  parent.height
+        opacity: enabledCustomColor || enabledColor ? 0.8 : 1.0
+        visible: globalBool
     }
 
-    KSvg.SvgItem {
-        id: shadowHintLeftInset
-        imagePath: "dialogs/background"
-        elementId: "shadow-hint-right-inset"
-        visible: false
-    }
-
-    KSvg.SvgItem {
-        id: shadowHintTopInset
-        imagePath: "dialogs/background"
-        elementId: "shadow-hint-top-inset"
-        visible: false
-    }
-
-
-    Grid {
-        id: maskSvg
-        width: root.width
-        height: root.height
+    HelperCard {
+        id: shadow
+        isShadow: true
+        width: parent.width
+        height:  parent.height
         visible: globalBool
         opacity: shadowOpacity/10
-        columns: 3
-        anchors.left: parent.left
-        anchors.leftMargin: - shadowHintLeftMargin.implicitWidth - hintInset.implicitWidth
-        anchors.top:  parent.top
-        anchors.topMargin: - shadowHintTopMargin.implicitHeight - hintInset.implicitWidth
-
-        KSvg.SvgItem {
-            id: topleft
-            imagePath: "dialogs/background"
-            elementId: "shadow-topleft"
-        }
-        KSvg.SvgItem {
-            id: top
-            imagePath: "dialogs/background"
-            elementId: "shadow-top"
-            width: parent.width - topleft.implicitWidth*2 + shadowHintLeftMargin.implicitWidth*2 //shadowHintLeftInset.implicitWidth*2 //- hintInset.implicitWidth*4
-        }
-        KSvg.SvgItem {
-            id: topright
-            imagePath: "dialogs/background"
-            elementId: "shadow-topright"
-        }
-        KSvg.SvgItem {
-            id: left
-            imagePath: "dialogs/background"
-            elementId: "shadow-left"
-            height: parent.height - topright.implicitHeight* 2 + shadowHintTopMargin.implicitHeight*2 //- hintInset.implicitWidth*4
-        }
-        Rectangle {
-            width: top.width
-            height: left.height
-            color: "transparent"
-        }
-        KSvg.SvgItem {
-            id: right
-            imagePath: "dialogs/background"
-            elementId: "shadow-right"
-            height: left.height
-        }
-        KSvg.SvgItem {
-            id: bottomleft
-            imagePath: "dialogs/background"
-            elementId: "shadow-bottomleft"
-        }
-        KSvg.SvgItem {
-            id: bottom
-            imagePath: "dialogs/background"
-            elementId: "shadow-bottom"
-            width: top.width
-        }
-        KSvg.SvgItem {
-            id: bottomright
-            imagePath: "dialogs/background"
-            elementId: "shadow-bottomright"
-        }
-
     }
-
-    Item {
-        id: mm
-        width: root.width - left2.implicitWidth*2
-        height: root.height - top2.implicitHeight*2
-        Grid {
-            id: maskSvg2
-            width: root.width - left2.implicitWidth*2
-            height: root.height - top2.implicitHeight*2
-            visible: globalBool
-            columns: 3
-
-
-
-            KSvg.SvgItem {
-                id: topleft2
-                imagePath: "dialogs/background"
-                elementId: "topleft"
-            }
-            KSvg.SvgItem {
-                id: top2
-                imagePath: "dialogs/background"
-                elementId: "top"
-                width: root.width - topleft2.implicitWidth*2
-            }
-            KSvg.SvgItem {
-                id: topright2
-                imagePath: "dialogs/background"
-                elementId: "topright"
-            }
-            KSvg.SvgItem {
-                id: left2
-                imagePath: "dialogs/background"
-                elementId: "left"
-                height: root.height - topright2.implicitHeight*2
-            }
-            KSvg.SvgItem {
-                imagePath: "dialogs/background"
-                elementId: "center"
-                height: root.height - topright2.implicitHeight*2
-                width: root.width - topleft2.implicitWidth*2
-            }
-            KSvg.SvgItem {
-                id: right2
-                imagePath: "dialogs/background"
-                elementId: "right"
-                height: root.height - topright2.implicitHeight*2
-            }
-            KSvg.SvgItem {
-                id: bottomleft2
-                imagePath: "dialogs/background"
-                elementId: "bottomleft"
-            }
-            KSvg.SvgItem {
-                id: bottom2
-                imagePath: "dialogs/background"
-                elementId: "bottom"
-                width: root.width - topleft2.implicitWidth*2
-            }
-            KSvg.SvgItem {
-                id: bottomright2
-                imagePath: "dialogs/background"
-                elementId: "bottomright"
-            }
+    HelperCard {
+        id: mask
+        isMask: true
+        height:  parent.height
+        width: parent.width
+        visible: false
+    }
+    Rectangle {
+        color: backgrounfColor
+        width: parent.width
+        height: parent.height
+        visible: globalBool && enabledCustomColor || enabledColor
+        opacity: enabledCustomColor || enabledColor ? 0.2 : 1.0
+        layer.enabled: true
+        layer.effect: OpacityMask {
+            maskSource: mask
         }
     }
 

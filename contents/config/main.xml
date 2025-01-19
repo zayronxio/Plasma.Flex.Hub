@@ -44,5 +44,14 @@
     <entry name="selected_theme" type="string">
       <default>Default</default>
     </entry>
+    <entry name="nightMode" type="bool">
+      <default>false</default>
+    </entry>
+    <entry name="enabledCustomColor" type="bool">
+      <default>false</default>
+    </entry>
+    <entry name="colorCards" type="color">
+      <default>#ffff7f</default>
+    </entry>
   </group>
 </kcfg>
