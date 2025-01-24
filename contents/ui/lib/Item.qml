@@ -2,6 +2,7 @@ import QtQuick
 import org.kde.kirigami as Kirigami
 
 Item {
+
     property bool smallMode: false
     property bool activeSub: true
     property bool activeTitle: true

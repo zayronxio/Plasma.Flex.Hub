@@ -2,36 +2,17 @@ import QtQuick
 import "../lib" as Lib
 import org.kde.plasma.plasmoid 2.0
 import org.kde.kirigami as Kirigami
-import org.kde.plasma.plasma5support as Plasma5Support
 
 Item {
-    property string command: "spectacle -b"
 
     Lib.Card {
         width: parent.width
         height: parent.height
-
-        Plasma5Support.DataSource {
-            id: executable
-            engine: "executable"
-            connectedSources: []
-            onNewData: {
-                var exitCode = data["exit code"]
-                var exitStatus = data["exit status"]
-                var stdout = data["stdout"]
-                var stderr = data["stderr"]
-                exited(sourceName, exitCode, exitStatus, stdout, stderr)
-                disconnectSource(sourceName)
-            }
-
-            function exec(cmd) {
-                if (cmd) {
-                    connectSource(cmd)
-                }
-            }
-
-            signal exited(string cmd, int exitCode, int exitStatus, string stdout, string stderr)
+        Lib.Executor {
+            id: source
+            command: "spectacle -b"
         }
+
 
         Column {
             width: parent.width - 10
@@ -48,7 +29,7 @@ Item {
                     anchors.fill: parent
                     hoverEnabled: true
                     onClicked: {
-                        executable.exec(command)
+                        source.execute()
                     }
                 }
             }
@@ -70,7 +51,7 @@ Item {
                 MouseArea {
                     anchors.fill: parent
                     onClicked: {
-                        executable.exec(command)
+                        source.execute()
                     }
                 }
             }
