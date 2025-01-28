@@ -4,6 +4,7 @@ import org.kde.kirigami as Kirigami
 import org.kde.plasma.plasmoid
 import "components" as Components
 import "pages" as Pages
+import "lib" as Lib
 Item {
     id:root
 
@@ -14,10 +15,14 @@ Item {
     property var listElements: []
     property var list_y: []
     property var list_x: []
+    property var listCustomControls: []
+    property var listControlsX: []
+    property var listControlsY: []
 
     property int mainLastRow: 0
 
     property bool sideBarEnabled: false
+    property int defaultWidth: widthFactor*4 + spacing*5
     property int widthFactor: Kirigami.Units.gridUnit * 4
     property int heightFactor: Kirigami.Units.gridUnit * 4
     property int footer_height: 22
@@ -25,15 +30,17 @@ Item {
     property int spacing: Kirigami.Units.gridUnit/2
     property int factorX: spacing + widthFactor
     property int factorY: spacing + heightFactor
-    property int rows: gridModel.count > 0 ? lastR(gridModel) : 2
+    property int rows: gridModel.count > 0 ? lastR() : 2
     property int exedent: sideBarEnabled ? 2 : 0
     property int heightF: (rows + exedent) * factorY + footer_height
+
+    property var namesCustomControls: Plasmoid.configuration.customControlNames
 
     property string nameTh: Plasmoid.configuration.selected_theme
 
     property var page: ""
 
-    Layout.preferredWidth: sideBarEnabled ? (widthFactor*8 + spacing*11) : (widthFactor*4 + spacing*5)
+    Layout.preferredWidth: sideBarEnabled ? (widthFactor*8 + spacing*11) : defaultWidth
     Layout.preferredHeight: heightF
     Layout.minimumWidth: preferredWidth
     Layout.maximumWidth: preferredWidth
@@ -42,6 +49,7 @@ Item {
     //clip: true
 
     onSideBarEnabledChanged: {
+        console.log("change Enable sidebar")
         Layout.preferredWidth = sideBarEnabled ? (widthFactor * 8 + spacing * 11) : (widthFactor * 4 + spacing * 5);
         Layout.minimumWidth = sideBarEnabled ? (widthFactor * 8 + spacing * 11) : (widthFactor * 4 + spacing * 5);
         Layout.maximumWidth = sideBarEnabled ? (widthFactor * 8 + spacing * 11) : (widthFactor * 4 + spacing * 5);
@@ -82,7 +90,12 @@ Item {
         listElements = Plasmoid.configuration.elements
         list_y = Plasmoid.configuration.yElements
         list_x = Plasmoid.configuration.xElements
-        //*/
+
+        listCustomControls = Plasmoid.configuration.listCustomControls
+        listControlsX = Plasmoid.configuration.listControlsX
+        listControlsY = Plasmoid.configuration.listControlsY
+
+
         for (var v = 0; v < listElements.length; v++) {
             gridModel.append({
                 //namesModel es el model que contine la informacion original antes de ser procesadas, para la primera carga no es necesario usar SideBar para crear el modelo que genera los primero elementos, estos se actualizan al inicio en funcion de la informacion guarda en las configuracions de el plasmoid
@@ -91,11 +104,32 @@ Item {
                              indexOrigin: listElements[v],
                              h: namesModel.get(listElements[v]).h,
                              source: namesModel.get(listElements[v]).source,
+                             isCustomControl: false,
                              x: parseInt(list_x[v]),
                              y: parseInt(list_y[v])
             });
             addedGridsFilled(parseInt(list_x[v]), parseInt(list_y[v]), namesModel.get(listElements[v]).h, namesModel.get(listElements[v]).w)
         }
+        for (var y = 0; y < listCustomControls.length; y++) {
+            var dinamicArray = Plasmoid.configuration.customControlNames
+            var ind = dinamicArray.indexOf(listCustomControls[y])
+            gridModel.append({
+
+                elementId: listCustomControls[y],
+                w: Plasmoid.configuration.customControlWidths[ind] === "1" ? 1 : 2,
+                indexOrigin: listCustomControls[y],
+                h: 1,
+                source: "",
+                isCustomControl: true,
+                x: parseInt(listControlsX[y]),
+                             y: parseInt(listControlsY[y])
+
+            });
+            addedGridsFilled(parseInt(listControlsX[y]), parseInt(listControlsY[y]), Plasmoid.configuration.customControlHeights[ind],  Plasmoid.configuration.customControlWidths[ind])
+
+        }
+
+
         Layout.preferredWidth = (widthFactor * 4 + spacing * 5);
         Layout.minimumWidth = (widthFactor * 4 + spacing * 5);
         Layout.maximumWidth = (widthFactor * 4 + spacing * 5);
@@ -106,6 +140,7 @@ Item {
     Component.onCompleted: {
          updateModel()
          //GlobalSignals.emitGlobalSignal();
+         rows = gridModel.count > 0 ? lastR() : 2
     }
 
     function addedGridsFilled(x, y, h, w){
@@ -122,6 +157,10 @@ Item {
         Plasmoid.configuration.yElements = list_y;
         Plasmoid.configuration.xElements = list_x;
         Plasmoid.configuration.selected_theme = "Custom"
+        // custom customControl
+        Plasmoid.configuration.listCustomControls = listCustomControls
+        Plasmoid.configuration.listControlsX = listControlsX
+        Plasmoid.configuration.listControlsY = listControlsY
     }
 
     function calculateHeight() {
@@ -134,15 +173,16 @@ Item {
         Layout.maximumHeight = heightF;
     }
 
-    function lastR(model) {
+    function lastR() {
+
         let row = 0
-        for (var i = 0; i < model.count; i++) {
-            var lastRow = model.get(i).y + model.get(i).h
-            if (lastRow > row) {
-                row = lastRow
+        for (var u = 0; u < mainGridsFilled.length; u++){
+            let numbers = mainGridsFilled[u].split(" ")
+            if (numbers[0] > row) {
+                row = numbers[0]
             }
         }
-        return row
+        return ( parseFloat(row) + 1)
     }
 
     function removeItem(item,h,w){
@@ -166,6 +206,24 @@ Item {
                 updateConfigs()
             }
         }
+        for (var t = 0; t < listCustomControls.length; t++){
+            if (listCustomControls[t] === item) {
+                for (var z = 0; z < h; z++) {
+                    for (var i = 0; i < w; i++) {
+                        var value = (parseInt(listControlsY[t]) + z) + " " + (parseInt(listControlsX[t]) + i);
+                        var index = mainGridsFilled.indexOf(value);
+                        if (index !== -1) {
+                            mainGridsFilled.splice(index, 1); // Dalate value
+                        }
+                    }
+                }
+                listCustomControls.splice(t, 1);
+                listControlsY.splice(t, 1);
+                listControlsX.splice(t, 1);
+                updateConfigs()
+            }
+        }
+
 
     }
 
@@ -210,6 +268,12 @@ Item {
             }
         }
     }
+    Component {
+        id: customControl
+        Lib.CustomControl {
+        }
+    }
+
 
     Item {
         id: leftPanel
@@ -220,11 +284,25 @@ Item {
             model: gridModel
             delegate: Loader {
                 id: rect
-                source: model.source
+                source:  model.isCustomControl ? undefined : model.source
+                sourceComponent: model.isCustomControl ? customControl : undefined
 
                 onLoaded: {
                     if (item && item.hasOwnProperty("mouseAreaActive")) {
                         item.mouseAreaActive = true;
+                    }
+                    if (model.isCustomControl) {
+                        var dinamicArray = Plasmoid.configuration.customControlNames
+                        var ind = dinamicArray.indexOf(model.elementId)
+                        item.isButton = Plasmoid.configuration.customControlEnabledButton[ind] === "true"
+                        item.icon = Plasmoid.configuration.customControlIcons[ind]
+                        item.controlTitle = model.elementId
+                        item.enabledIcon = Plasmoid.configuration.customControlEnabledIcons[ind] === "true"
+                        item.exeCommand = Plasmoid.configuration.customControlCommand[ind]
+                        item.isPercentage = Plasmoid.configuration.customControlIsPercentage[ind] === "true"
+                        item.isLarge = !item.isButton
+                        item.subTitle = Plasmoid.configuration.customControlSubTitle[ind]
+                        item.idSensor = Plasmoid.configuration.customControlIdSensor[ind]
                     }
                     width = widthFactor * model.w + spacing * (model.w - 1);
                     height = heightFactor * model.h + spacing * (model.h - 1);
@@ -277,7 +355,11 @@ Item {
             opacity: 0.8
 
             onReadyModel: {
+                /// se cambiara de enfoque, se elimanara el proceso para
+                var varCustomControl = sideBar.desingModel.get(sideBar.desingModel.count-1).isCustomControl
                 gridModel.append({
+                    isCustomControl: varCustomControl,
+                    elementId: sideBar.desingModel.get(sideBar.desingModel.count-1).elementId,
                     w: sideBar.desingModel.get(sideBar.desingModel.count-1).w,
                     h: sideBar.desingModel.get(sideBar.desingModel.count-1).h,
                     source: sideBar.desingModel.get(sideBar.desingModel.count-1).source,
@@ -285,10 +367,18 @@ Item {
                     x: parseInt(sideBar.desingModel.get(sideBar.desingModel.count-1).x),
                     y: parseInt(sideBar.desingModel.get(sideBar.desingModel.count-1).y)
                 });
+                console.log("otros de las pruebas", sideBar.desingModel.get(sideBar.desingModel.count-1).isCustomControl)
                 // logic to add the new elements to the plasmoid configuration, used for the first load
-                listElements.push(sideBar.desingModel.get(sideBar.desingModel.count-1).indexOrigin)
-                list_y.push(parseInt(sideBar.desingModel.get(sideBar.desingModel.count-1).y))
-                list_x.push(parseInt(sideBar.desingModel.get(sideBar.desingModel.count-1).x))
+                if (varCustomControl) {
+                    listCustomControls.push(sideBar.desingModel.get(sideBar.desingModel.count-1).elementId)
+                    listControlsX.push(parseInt(sideBar.desingModel.get(sideBar.desingModel.count-1).x))
+                    listControlsY.push(parseInt(sideBar.desingModel.get(sideBar.desingModel.count-1).y))
+                } else {
+                    listElements.push(sideBar.desingModel.get(sideBar.desingModel.count-1).indexOrigin)
+                    list_y.push(parseInt(sideBar.desingModel.get(sideBar.desingModel.count-1).y))
+                    list_x.push(parseInt(sideBar.desingModel.get(sideBar.desingModel.count-1).x))
+                }
+
                 updateConfigs()
                 calculateHeight()
                 Plasmoid.configuration.selected_theme = "Custom"
