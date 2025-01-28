@@ -28,7 +28,6 @@ Item {
             maskSource: mask
         }
     }
-
     HelperCard {
         id: background
         isShadow: false
@@ -37,7 +36,6 @@ Item {
         opacity: enabledCustomColor || enabledColor ? 0.8 : 1.0
         visible: globalBool
     }
-
     HelperCard {
         id: shadow
         isShadow: true
@@ -64,6 +62,4 @@ Item {
             maskSource: mask
         }
     }
-
-
 }
