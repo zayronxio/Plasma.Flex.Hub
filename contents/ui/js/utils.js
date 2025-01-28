@@ -42,3 +42,44 @@ function calcSpeedData(prevTransferData, nextTransferData, duration) {
 
     return speedData;
 }
+
+function createArray(list) {
+    let array = [], n_arrays = 0;
+
+    function added(element) {
+        array[n_arrays] = array[n_arrays] || [];
+        var elementt = element.includes("[") ? element.replace("[", '') : element
+        array[n_arrays].push(parseInt(elementt.replace(/^\s+|\s+$/g, '')));
+    }
+
+    list.forEach(item => {
+        if (item[0] + item[1] === "[ ") {
+            added(item.replace("[ [", ''));
+        } else if (item[item.length - 1] === "]") {
+            added(item.replace("]", ''));
+            n_arrays++;
+        } else if (item[0] === "[" || item[1] === "[") {
+            added(item.replace("[", ''));
+        } else if (item !== "]") {
+            added(item);
+        }
+    });
+
+    return array;
+}
+
+function added(list, element) {
+    var newList = []
+    newList = list
+    newList.push("["+element[0])
+    for (var i = 1; i < element.length; i++) {
+        if (i === element.length -1) {
+            newList.push(element[i] + "]")
+        } else {
+            newList.push(element[i])
+        }
+    }
+    return createArray(newList)// Devuelve la lista modificada
+}
+
+

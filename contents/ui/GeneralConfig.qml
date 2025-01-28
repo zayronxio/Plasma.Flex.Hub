@@ -27,6 +27,11 @@ Item {
         property string height: ""
     }
 
+    QtObject {
+        id:  customColor
+        property color customColorValue: "#000000"
+    }
+
     property alias cfg_elements: keysConfig.elements
     property alias cfg_yElements: keysConfig.yElements
     property alias cfg_xElements: keysConfig.xElements
@@ -37,14 +42,13 @@ Item {
 
     property alias cfg_gridWidth: valueGrids.width
     property alias cfg_gridHeight: valueGrids.height
+    property alias cfg_enabledCustomColor: enabledCustomColor.checked
+    property alias cfg_colorCards: customColor.customColorValue
+
 
     ListModel {
         id: listModel
     }
-
-
-
-
 
     P5Support.DataSource {
         id: executable
@@ -105,7 +109,7 @@ Item {
             text: i18n("Grid width:")
             Layout.minimumWidth: root.width/2
             horizontalAlignment: Label.AlignRight
-            level: 4
+            level: 5
         }
         ComboBox {
             textRole: "value"
@@ -126,7 +130,7 @@ Item {
             text: i18n("Grid Height:")
             Layout.minimumWidth: root.width/2
             horizontalAlignment: Label.AlignRight
-            level: 4
+            level: 5
         }
         ComboBox {
             textRole: "value"
@@ -150,7 +154,7 @@ Item {
             text: i18n("Shadow Opacity:")
             Layout.minimumWidth: root.width/2
             horizontalAlignment: Label.AlignRight
-            level: 4
+            level: 5
         }
 
         Slider {
@@ -169,6 +173,82 @@ Item {
                 console.log(value/10, cfg_shadowOpacity)
             }
         }
+        Label {
+            id: left
+            width: root.width/2
+        }
+        CheckBox {
+            id: enabledCustomColor
+            width: root.width/2
+            anchors.left: left.right
+            text: i18n('Colorizer The Controls')
+            Layout.columnSpan: 2
+        }
+        Kirigami.Heading {
+            id: txtCardColor
+            visible: enabledCustomColor.checked
+            text: i18n("controls Color:")
+            Layout.minimumWidth: root.width/2
+            horizontalAlignment: Label.AlignRight
+            level: 5
+        }
+
+        ComboBox {
+            id: listColors
+            textRole: "name"
+            valueRole: "value"
+            //width: 50
+            visible: enabledCustomColor.checked
+            anchors.left: parent.left
+            anchors.leftMargin: root.width/2
+            model:  [
+                {name: "Negative", value: Kirigami.Theme.negativeTextColor},
+                {name: "Neutral", value: Kirigami.Theme.neutralTextColor},
+                {name: "Positive", value: Kirigami.Theme.positiveTextColor},
+                {name: "Visited", value: Kirigami.Theme.visitedTextColor},
+                {name: "Custom", value: colorAssigned.Text}
+            ]
+            onActivated: {
+                console.log("clocjk", currentValue)
+                customColor.customColorValue = currentValue
+                console.log("clocjk", currentValue, Plasmoid.condfiguration.colorCards)
+
+            }
+            Component.onCompleted: currentIndex = indexOfValue(customColor.customColorValue)
+        }
+        Kirigami.Heading {
+            text: i18n("It is not recommended to use Custom Color, in favor of the overall design.")
+            visible: enabledCustomColor.checked
+            Layout.minimumWidth: root.width - 1
+            horizontalAlignment: Text.AlignHCenter
+            opacity: 0.5
+            level: 5
+        }
+        Label {
+        }
+        Label {
+        }
+        Label {
+        }
+        Kirigami.Heading {
+            id: txt
+            text: i18n("Custom Color:")
+            Layout.minimumWidth: root.width/2
+            horizontalAlignment: Text.AlignRight
+            visible: enabledCustomColor.checked
+            level: 5
+        }
+        TextField {
+            id: colorAssigned
+            anchors.left: txt.right
+            visible: enabledCustomColor.checked
+            placeholderText: qsTr("e.g. #ffff7e")
+        }
+
+        Label {
+        }
+        Label {
+        }
 
 
     }
@@ -181,7 +261,7 @@ Item {
         header: Kirigami.Heading {
             text: i18n("Seleccted Global Theme's")
              horizontalAlignment: Text.AlignHCenter
-            level: 4
+            level: 5
         }
         contentItem: Item {
             Column {
@@ -193,7 +273,7 @@ Item {
                     Kirigami.Heading {
                         text: "Dark"
                         height: parent.height
-                        level: 4
+                        level: 5
                         verticalAlignment: Text.AlignVCenter
                     }
                     ComboBox {
@@ -210,7 +290,7 @@ Item {
                     Kirigami.Heading {
                         text: "Light"
                         height: parent.height
-                        level: 4
+                        level: 5
                         verticalAlignment: Text.AlignVCenter
                     }
                     ComboBox {

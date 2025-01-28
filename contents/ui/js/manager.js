@@ -156,7 +156,8 @@ function autoOrganizer(model) {
                           elementId: model.get(org.index).elementId,
                           indexOrigin: org.index,
                           x: org.x,
-                          y: org.y
+                          y: org.y,
+                          isCustomControl: model.get(org.index).isCustomControl
         });
     }
 }
