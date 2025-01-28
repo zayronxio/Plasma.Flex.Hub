@@ -8,6 +8,8 @@ Item {
     Lib.Card {
         width: parent.width
         height: parent.height
+        //enabledColor: true
+        //elementBackgroundColor: Kirigami.Theme.negativeTextColor
 
         Column {
             width: parent.width - 10
