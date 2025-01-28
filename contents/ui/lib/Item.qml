@@ -2,12 +2,13 @@ import QtQuick
 import org.kde.kirigami as Kirigami
 
 Item {
-
     property bool smallMode: false
     property bool activeSub: true
     property bool activeTitle: true
     property bool bubble: true
     property string sub: ""
+    property int textValue
+    property bool valueInBubble: false
     property color backgroundColor: Kirigami.Theme.highlightColor
     property color iconColor: isColorLight(backgroundColor) ? "white" : "black"
     property bool isMaskIcon: false
@@ -59,9 +60,19 @@ Item {
                     width: 22//Kirigami.Units.iconSizes.mediumSmall
                     height: width
                     isMask: isMaskIcon
+                    visible: !valueInBubble
                     color: isMaskIcon ? iconColor : undefined
                     source: itemIcon
                     anchors.centerIn: parent
+                }
+                Kirigami.Heading {
+                    text: textValue
+                    visible: valueInBubble
+                    width: parent.width
+                    height: parent.height /2
+                    verticalAlignment: Text.AlignVCenter
+                    elide: Text.ElideRight
+                    level: 3
                 }
                 MouseArea {
                     anchors.fill: parent
