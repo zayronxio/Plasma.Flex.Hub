@@ -53,5 +53,53 @@
     <entry name="colorCards" type="color">
       <default>#ffff7f</default>
     </entry>
+    <entry name="listCustomControls" type="StringList">
+      <default></default>
+    </entry>
+    <entry name="listControlsX" type="StringList">
+      <default></default>
+    </entry>
+    <entry name="listControlsY" type="StringList">
+      <default></default>
+    </entry>
+    <entry name="customControlNames" type="StringList">
+      <default></default>
+    </entry>
+
+    <entry name="customControlWidths" type="StringList">
+      <default></default>
+    </entry>
+
+    <entry name="customControlHeights" type="StringList">
+      <default></default>
+    </entry>
+
+    <entry name="customControlIcons" type="StringList">
+      <default></default>
+    </entry>
+
+    <entry name="customControlEnabledIcons" type="StringList">
+      <default></default>
+    </entry>
+
+    <entry name="customControlIdSensor" type="StringList">
+      <default></default>
+    </entry>
+
+    <entry name="customControlSubTitle" type="StringList">
+      <default></default>
+    </entry>
+
+    <entry name="customControlEnabledButton" type="StringList">
+      <default></default>
+    </entry>
+
+    <entry name="customControlIsPercentage" type="StringList">
+      <default></default>
+    </entry>
+
+    <entry name="customControlCommand" type="StringList">
+      <default></default>
+    </entry>
   </group>
 </kcfg>

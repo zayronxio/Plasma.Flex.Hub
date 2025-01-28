@@ -12,4 +12,10 @@ ConfigModel {
 		icon: "preferences-system-windows-behavior"
 		source: "LayoutConfig.qml"
 	}
+	ConfigCategory {
+		name: i18n("Control Builder")
+		icon: "builder"
+		source: "BuilderConfig.qml"
+		//visible: false
+	}
 }

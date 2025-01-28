@@ -1,5 +1,7 @@
 import QtQuick
+import "lib" as Lib
 import QtQuick.Controls
+import org.kde.plasma.plasmoid
 import org.kde.kirigami as Kirigami
 import "js/manager.js" as Manager
 
@@ -15,6 +17,9 @@ Item {
     property int factorX: spacing + widthFactor
     property int factorY: spacing + heightFactor
     property var gridsFilled: []
+
+    property var namesByCustom: []
+    property var arrayDinamic: []
     //property int currentIndex: 0
     property alias desingModel: gridModel
 
@@ -27,7 +32,6 @@ Item {
     function createGridsY() {
         gridsY = []
         //var lastRow = Manager.getHighestSecondValue(gridsFilled)
-        console.log("ggggggg",lastRow)
         var rowForFuct = lastRow + 2
         for (var y = 0; y < rowForFuct; y++) {
             var value = factorY*(y) + spacing
@@ -40,7 +44,9 @@ Item {
     Model {
         id: namesModel
     }
-
+    ListModel {
+        id: customControlModel
+    }
 
     ListModel {
         id: readyModel
@@ -48,10 +54,31 @@ Item {
     ListModel {
         id: gridModel
     }
+    function secondModel() {
+        // Limpiar el modelo antes de agregar nuevos elementos
+        //customControlModel.clear();
 
+        // Iterar sobre los elementos en Plasmoid.configuration.customControlNames
+        for (var u = 0; u < Plasmoid.configuration.customControlNames.length; u++) {
+            namesModel.append({
+                name: Plasmoid.configuration.customControlNames[u],
+                elementId: Plasmoid.configuration.customControlNames[u],
+                w: parseInt(Plasmoid.configuration.customControlWidths[u]),
+                h: parseInt(Plasmoid.configuration.customControlHeights[u]),
+                isCustomControl: true
+            });
+        }
+    }
     Component.onCompleted: {
+        secondModel()
         createGridsY()
         Manager.autoOrganizer(namesModel)
+    }
+
+    Component {
+        id: customControl
+        Lib.CustomControl {
+        }
     }
 
     Flickable {
@@ -68,11 +95,29 @@ Item {
 
             delegate: Loader {
                 id: rect
-                source: model.source
+                source:  model.isCustomControl ? undefined : model.source
+                sourceComponent: model.isCustomControl ? customControl : undefined
                 property int originalX: model.x * widthFactor + model.x*spacing + spacing;
                 property int originalY: model.y * heightFactor + model.y*spacing + spacing;
                 property int elements: 0
+
+
                 onLoaded: {
+                    if (model.isCustomControl) {
+                        var dinamicArray = Plasmoid.configuration.customControlNames
+                        var ind = dinamicArray.indexOf(model.elementId)
+                         item.isButton = Plasmoid.configuration.customControlEnabledButton[ind] === "true"
+                         item.icon = Plasmoid.configuration.customControlIcons[ind]
+                         item.controlTitle = model.elementId
+                         item.enabledIcon = Plasmoid.configuration.customControlEnabledIcons[ind] === "true"
+                         item.exeCommand = Plasmoid.configuration.customControlCommand[ind]
+                         item.isPercentage = Plasmoid.configuration.customControlIsPercentage[ind] === "true"
+                         item.isLarge = !item.isButton
+                         item.subTitle = Plasmoid.configuration.customControlSubTitle[ind]
+                         item.idSensor = Plasmoid.configuration.customControlIdSensor[ind]
+
+                    }
+
                     width = widthFactor * model.w + spacing * (model.w - 1);
                     height = heightFactor * model.h + spacing * (model.h - 1);
                     x = model.x * widthFactor + model.x*spacing + spacing;
@@ -137,13 +182,13 @@ Item {
                                 gridModel.append({
                                     w: model.w,
                                     h: model.h,
+                                    isCustomControl:  model.isCustomControl ? model.isCustomControl  : false,
                                     indexOrigin: model.indexOrigin,
                                     elementId: model.elementId,
                                     source: model.source,
                                     x: maxX,
                                     y: maxY
                                 });
-
                                 elements = elements + 1
                                 Manager.addedGridsFilled(maxX, maxY, model.h, model.w)
                                 if ((model.h + model.x) > lastRow ) {
@@ -179,4 +224,6 @@ Item {
             }
         }
     }
+
+
 }
