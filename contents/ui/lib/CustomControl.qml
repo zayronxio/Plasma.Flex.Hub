@@ -42,10 +42,10 @@ Item {
             MiniButton {
                 width: parent.width
                 height: parent.height
-                title: controlTitle
+                title: enabledIcon ? controlTitle : root.valueSensor + (isPercentage ? "%" : "°C")
                 itemIcon: icon
-                headerText: !enabledIcon
-                bigText: !enabledIcon ? root.valueSensor + (isPercentage ? "%" : "°C") : subTitle
+                isSensor: !enabledIcon
+                //bigText: !enabledIcon ? root.valueSensor + (isPercentage ? "%" : "°C") : subTitle
                 cmd: exeCommand
                 bashExe: bashExecutable
                 onIconClicked: action
