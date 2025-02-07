@@ -29,7 +29,8 @@ Item {
 
     QtObject {
         id:  customColor
-        property color customColorValue: "#000000"
+        property color customColorValue
+        property string currentNameColor
     }
 
     property alias cfg_elements: keysConfig.elements
@@ -42,6 +43,7 @@ Item {
 
     property alias cfg_gridWidth: valueGrids.width
     property alias cfg_gridHeight: valueGrids.height
+    property alias cfg_currentNameColor: customColor.currentNameColor
     property alias cfg_enabledCustomColor: enabledCustomColor.checked
     property alias cfg_colorCards: customColor.customColorValue
 
@@ -200,21 +202,31 @@ Item {
             //width: 50
             visible: enabledCustomColor.checked
             anchors.left: parent.left
-            anchors.leftMargin: root.width/2
-            model:  [
-                {name: "Negative", value: Kirigami.Theme.negativeTextColor},
-                {name: "Neutral", value: Kirigami.Theme.neutralTextColor},
-                {name: "Positive", value: Kirigami.Theme.positiveTextColor},
-                {name: "Visited", value: Kirigami.Theme.visitedTextColor},
-                {name: "Custom", value: colorAssigned.Text}
+            anchors.leftMargin: root.width / 2
+            model: [
+                { name: "Negative", value: Kirigami.Theme.negativeTextColor },
+                { name: "Neutral", value: Kirigami.Theme.neutralTextColor },
+                { name: "Positive", value: Kirigami.Theme.positiveTextColor },
+                { name: "Visited", value: Kirigami.Theme.visitedTextColor },
+                { name: "Custom", value: colorAssigned.Text || "#000" }
             ]
             onActivated: {
-                console.log("clocjk", currentValue)
                 customColor.customColorValue = currentValue
-                console.log("clocjk", currentValue, Plasmoid.condfiguration.colorCards)
-
+                customColor.currentNameColor = currentText
+                listColors.displayText = currentText
             }
-            Component.onCompleted: currentIndex = indexOfValue(customColor.customColorValue)
+            Component.onCompleted: {
+
+                listColors.displayText = customColor.currentNameColor
+
+                for (var y = 0; y < model.length; y++) {
+                    if (model[y].name === customColor.currentNameColor) {
+                        listColors.currentIndex = y
+                        console.log(listColors.currentIndex, y)
+                        break
+                    }
+                }
+            }
         }
         Kirigami.Heading {
             text: i18n("It is not recommended to use Custom Color, in favor of the overall design.")
@@ -235,14 +247,18 @@ Item {
             text: i18n("Custom Color:")
             Layout.minimumWidth: root.width/2
             horizontalAlignment: Text.AlignRight
-            visible: enabledCustomColor.checked
+            visible: enabledCustomColor.checked && listColors.currentText === "Custom" || customColor.currentNameColor === "Custom"
             level: 5
         }
         TextField {
             id: colorAssigned
             anchors.left: txt.right
-            visible: enabledCustomColor.checked
+            visible: txt.visible
+            text: customColor.currentNameColor === "Custom" ? customColor.customColorValue : undefined
             placeholderText: qsTr("e.g. #ffff7e")
+            onTextChanged: {
+                customColor.customColorValue = colorAssigned.text
+            }
         }
 
         Label {
