@@ -10,7 +10,7 @@ Column {
     property bool bashExe: false
     property string cmd
     property bool isMask: true
-    property bool headerText: false
+    property bool isSensor: false
 
 
     width: parent.width - Kirigami.Units.smallSpacing
@@ -30,7 +30,7 @@ Column {
         source: itemIcon
         color: Kirigami.Theme.textColor
         isMask: parent.isMask
-        visible: !headerText
+        //visible: !headerText
         anchors.top: parent.top
         anchors.topMargin: Kirigami.Units.largeSpacing
         anchors.horizontalCenter: parent.horizontalCenter
@@ -47,25 +47,6 @@ Column {
                 }
             }
         }
-    }
-    Kirigami.Heading {
-        id: bigTxt
-        text: bigText
-        width: parent.width
-        anchors.top: parent.top
-        anchors.topMargin: Kirigami.Units.largeSpacing
-        anchors.horizontalCenter: parent.horizontalCenter
-        height: 24
-        level: 1
-        visible: !logo.visible
-        //font.pixelSize: weatherToggle.height < weatherToggle.width ? weatherToggle.height*.15 : weatherToggle.width*.15
-        wrapMode: Text.WordWrap
-        elide: Text.ElideRight
-        maximumLineCount: 1
-        verticalAlignment: Text.AlignVCenter
-        horizontalAlignment: Text.AlignHCenter
-
-        font.weight: Font.DemiBold
     }
 
     Kirigami.Heading {
