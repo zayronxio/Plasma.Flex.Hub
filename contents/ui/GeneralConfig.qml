@@ -1,5 +1,6 @@
 import QtQuick
 import QtQuick.Controls
+import Qt.labs.platform
 import QtQuick.Layouts 1.11
 import org.kde.kirigami as Kirigami
 import org.kde.plasma.plasma5support as P5Support
@@ -102,6 +103,15 @@ Item {
         executable.exec("plasma-apply-lookandfeel --list"); // Cambia "ls" por el comando que desees ejecutar
         currentIndex = indexOfValue(valueGrids.width)
     }
+
+    ColorDialog {
+        id: colorDialog
+        color: customColor.customColorValue
+        onAccepted: {
+            customColor.customColorValue = color
+        }
+    }
+
 
     GridLayout {
         id: fist
@@ -208,7 +218,7 @@ Item {
                 { name: "Neutral", value: Kirigami.Theme.neutralTextColor },
                 { name: "Positive", value: Kirigami.Theme.positiveTextColor },
                 { name: "Visited", value: Kirigami.Theme.visitedTextColor },
-                { name: "Custom", value: colorAssigned.Text || "#000" }
+                { name: "Custom", value: colorDialog.color || "#000" }
             ]
             onActivated: {
                 customColor.customColorValue = currentValue
@@ -250,16 +260,25 @@ Item {
             visible: enabledCustomColor.checked && listColors.currentText === "Custom" || customColor.currentNameColor === "Custom"
             level: 5
         }
-        TextField {
-            id: colorAssigned
+
+        Rectangle {
+            id: colorhex
+            color: colorDialog.color
+            border.color: "#B3FFFFFF"
+            border.width: 1
             anchors.left: txt.right
-            visible: txt.visible
-            text: customColor.currentNameColor === "Custom" ? customColor.customColorValue : undefined
-            placeholderText: qsTr("e.g. #ffff7e")
-            onTextChanged: {
-                customColor.customColorValue = colorAssigned.text
+            visible: enabledCustomColor.checked && listColors.currentText === "Custom" || customColor.currentNameColor === "Custom"
+            width: 64
+            radius: 4
+            height: 24
+            MouseArea {
+                anchors.fill: parent
+                onClicked: {
+                    colorDialog.open()
+                }
             }
         }
+
 
         Label {
         }
