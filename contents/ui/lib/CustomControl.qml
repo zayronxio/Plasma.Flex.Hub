@@ -45,7 +45,7 @@ Item {
                 title: enabledIcon ? controlTitle : root.valueSensor + (isPercentage ? "%" : "°C")
                 itemIcon: icon
                 isSensor: !enabledIcon
-                //bigText: !enabledIcon ? root.valueSensor + (isPercentage ? "%" : "°C") : subTitle
+               // bigText: !enabledIcon ? root.valueSensor + (isPercentage ? "%" : "°C") : subTitle
                 cmd: exeCommand
                 bashExe: bashExecutable
                 onIconClicked: action

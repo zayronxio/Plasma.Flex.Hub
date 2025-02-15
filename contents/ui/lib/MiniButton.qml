@@ -49,6 +49,7 @@ Column {
         }
     }
 
+
     Kirigami.Heading {
         id: txt
         text: title
