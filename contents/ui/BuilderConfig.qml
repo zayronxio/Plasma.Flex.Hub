@@ -327,7 +327,7 @@ Item {
 
         Button {
             id: mainIconName
-            enabled: true//size.currentValue === "1x2" || !type.checked
+            //enabled: size.currentValue === "1x2" || !type.checked
             Kirigami.FormData.label: i18n("Icon:")
             icon.width: Kirigami.Units.iconSizes.large
             icon.height: icon.width
