@@ -1,5 +1,8 @@
 <div align="center">
   <h1>Plasma Flex Hub</h1>
+  <a href="https://kde.org">
+  <img src="https://img.shields.io/badge/KDE_Plasma-6.1+-blue?style=flat&logo=kde" alt="License: GPLv3">
+</a>
  <a href="https://www.gnu.org/licenses/gpl-3.0.html">
   <img src="https://img.shields.io/badge/License-GPLv3-blue.svg" alt="License: GPLv3">
 </a>
@@ -11,6 +14,7 @@
   <img src="https://img.shields.io/badge/KDE%20Plasma-1D99F3?logo=kdeplasma&logoColor=fff" alt="License: GPLv3">
 </a>
 
+
 </div>
 
 ## Introduction
@@ -19,32 +23,31 @@ Plasma Flex Hub is a modern and modular plasmoid, created from scratch in QML6. 
 
 Furthermore, as its main differentiator from other alternatives, this plasmoid allows you to choose and organize the controls you need, and if necessary, you can easily create new ones from the settings
 
-<p align="center">
-  <img src="https://raw.githubusercontent.com/zayronxio/Plasma.Flex.Hub/refs/heads/main/preview/preview1.png" width=380/>
-</p>
-<p align="center">
-  <img src="https://raw.githubusercontent.com/zayronxio/Plasma.Flex.Hub/refs/heads/main/preview/preview2.png" width=380/>
-</p>  
+## ✨ Features
 
-## Features
-* Multimedia control (various designs)
-* Battery indicator
-* Volume slider (various designs)
-* Brightness slider (various designs)
-* Toggle: Do Not Disturb
-* Toggle: Dark/Light Theme
-* Toggle: Night Light
-* System indicators
-* Network and Bluetooth (various designs)
-* Force Close button
-* Power Actions button
-* Caffeine Control
-* Custom controls:
-  * Button that executes a command</p>
-  * Control that displays system information</p>
-
-  ## Easy Installation
-  ### KDE Store (Preferred)
+- Multimedia control (various designs)
+- Battery indicator (various designs)
+- Volume slider (various designs)
+- Brightness slider (various designs)
+- Full Plasma Color Scheme integration
+- **Toggles:**
+  - Do Not Disturb
+  - Dark/Light Theme
+  - Night Light
+  - Caffeine
+- Force Close button
+- System indicators
+- Network and Bluetooth (various designs)
+- Power Actions button
+- **Custom controls:**
+  - Button that executes a command
+  - Control that displays system information
+## 🖼️ Preview
+| macos layout with the menu of available controls | custom layout |
+|-------------------|-------------|
+| ![Transparent](https://raw.githubusercontent.com/zayronxio/Plasma.Flex.Hub/refs/heads/main/preview/one.webp) | ![Solid](https://raw.githubusercontent.com/zayronxio/Plasma.Flex.Hub/refs/heads/main/preview/two.webp) |
+## 🛠️ Installation
+  ### KDE Store
   
 * Right click on the desktop
 * Click on "Add Widgets"
