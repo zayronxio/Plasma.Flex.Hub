@@ -4,7 +4,7 @@ import Qt.labs.platform
 import QtQuick.Layouts 1.11
 import org.kde.kirigami as Kirigami
 import org.kde.plasma.plasma5support as P5Support
-import org.kde.plasma.core 2.0 as PlasmaCore
+//import org.kde.plasma.core 2.0 as PlasmaCore
 
 Item {
     id: configRoot
@@ -47,6 +47,7 @@ Item {
     property alias cfg_currentNameColor: customColor.currentNameColor
     property alias cfg_enabledCustomColor: enabledCustomColor.checked
     property alias cfg_colorCards: customColor.customColorValue
+    property alias cfg_coverByNetwork: downloadMissingCovers.checked
 
 
     ListModel {
@@ -160,7 +161,14 @@ Item {
             onActivated: valueGrids.height = currentValue
             Component.onCompleted: currentIndex = indexOfValue(valueGrids.height)
         }
-
+        Label {
+        }
+        CheckBox {
+            id: downloadMissingCovers
+            anchors.left: left.right
+            width: root.width/2
+            text: i18n("Download missing album covers")
+        }
         Kirigami.Heading {
             id: txtShadowOpacity
             text: i18n("Shadow Opacity:")
@@ -257,7 +265,7 @@ Item {
             text: i18n("Custom Color:")
             Layout.minimumWidth: root.width/2
             horizontalAlignment: Text.AlignRight
-            visible: enabledCustomColor.checked && listColors.currentText === "Custom" || customColor.currentNameColor === "Custom"
+            visible: enabledCustomColor.checked && listColors.currentText === "Custom"
             level: 5
         }
 
@@ -267,7 +275,7 @@ Item {
             border.color: "#B3FFFFFF"
             border.width: 1
             anchors.left: txt.right
-            visible: enabledCustomColor.checked && listColors.currentText === "Custom" || customColor.currentNameColor === "Custom"
+            visible: txt.visible
             width: 64
             radius: 4
             height: 24
@@ -278,7 +286,6 @@ Item {
                 }
             }
         }
-
 
         Label {
         }
