@@ -5,6 +5,9 @@
       http://www.kde.org/standards/kcfg/1.0/kcfg.xsd" >
   <kcfgfile name=""/>
   <group name="General">
+    <entry name="coverByNetwork" type="bool">
+      <default>false</default>
+    </entry>
     <entry name="shadowOpacity" type="int">
       <default>8</default>
     </entry>
@@ -51,7 +54,7 @@
       <default>false</default>
     </entry>
     <entry name="colorCards" type="color">
-      <default>#ffff7f</default>
+      <default>#000000</default>
     </entry>
     <entry name="listCustomControls" type="StringList">
       <default></default>
@@ -99,6 +102,9 @@
     </entry>
 
     <entry name="customControlCommand" type="StringList">
+      <default></default>
+    </entry>
+    <entry name="currentNameColor" type="string">
       <default></default>
     </entry>
   </group>
