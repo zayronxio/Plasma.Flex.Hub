@@ -9,7 +9,7 @@ Item {
     readonly property string albumName: mpris2Model.currentPlayer?.album
     readonly property string artistName: mpris2Model.currentPlayer?.artist
     readonly property int playbackStatus: mpris2Model.currentPlayer?.playbackStatus ?? 0
-    readonly property bool isPlaying: root.playbackStatus === Mpris.PlaybackStatus.Playing
+    readonly property bool isPlaying: playbackStatus === Mpris.PlaybackStatus.Playing
 
     property bool coverByNetwork: Plasmoid.configuration.coverByNetwork
     property bool coverMprisIsImage: false
@@ -17,6 +17,10 @@ Item {
     property url cover: coverMprisIsImage ? coverMpris : coverByNetwork ? onlineCover : coverMpris
 
     property url onlineCover
+
+    // Contador de reintentos y máximo permitido
+    property int retryCount: 0
+    property int maxRetries: 3
 
     Image {
         id: cov
@@ -50,11 +54,15 @@ Item {
     onTrackNameChanged: {
         onlineCover = ""
         coverMprisIsImage = coverByNetwork ? false : true
+        // Reiniciamos el contador de reintentos al cambiar de canción
+        retryCount = 0
         getCover.start()
     }
 
     Component.onCompleted: {
-        if (coverByNetwork) { getCoverArt(artistName, albumName, trackName) }
+        if (coverByNetwork && isPlaying) {
+            getCoverArt(artistName, albumName, trackName)
+        }
     }
 
     Timer {
@@ -62,7 +70,11 @@ Item {
         interval: 100
         running: false
         repeat: false
-        onTriggered: if (coverByNetwork) { getCoverArt(artistName, albumName, trackName) }
+        onTriggered: {
+            if (coverByNetwork) {
+                getCoverArt(artistName, albumName, trackName)
+            }
+        }
     }
 
     // Función que consulta la API de iTunes Search para obtener la portada del álbum.
@@ -85,6 +97,7 @@ Item {
                             coverUrl = coverUrl.replace(/100x100bb.jpg$/, "600x600bb.jpg");
                             console.log("Cover URL encontrado:", coverUrl);
                             onlineCover = coverUrl;
+                            retryCount = 0; // Reseteamos el contador al encontrar un resultado válido
                         } else {
                             console.log("El resultado no coincide con el nombre del álbum. Reintentando...");
                             retrySearch(artist, album, track);
@@ -119,6 +132,7 @@ Item {
                         coverUrl = coverUrl.replace(/100x100bb.jpg$/, "600x600bb.jpg");
                         console.log("Cover URL encontrado:", coverUrl);
                         onlineCover = coverUrl;
+                        retryCount = 0; // Reseteamos el contador al obtener un resultado
                     } else {
                         console.log("No se encontró resultado incluso sin nombre de canción. Reintentando...");
                         retrySearch(artist, album, "");
@@ -134,6 +148,12 @@ Item {
 
     // Función para reintentar la búsqueda eliminando texto entre corchetes o caracteres innecesarios.
     function retrySearch(artist, album, track) {
+        if (retryCount >= maxRetries) {
+            console.log("Máximo de reintentos alcanzado. Se cancela la búsqueda.");
+            return;
+        }
+        retryCount++;
+
         var newArtist = artist.replace(/\[[^\]]*\]/g, "").trim();
         var newAlbum = album.replace(/\[[^\]]*\]/g, "").trim();
         var newTrack = track.replace(/\[[^\]]*\]/g, "").trim();
@@ -142,8 +162,9 @@ Item {
             console.log("Reintentando con valores modificados:", newArtist, newAlbum, newTrack);
             getCoverArt(newArtist, newAlbum, newTrack);
         } else {
-            console.log("No se encontró resultado incluso tras eliminar texto entre []");
+            console.log("No se encontró resultado incluso tras eliminar texto entre []. Se intenta sin el nombre de la canción.");
             getCoverArtWithoutTrack(artist, album);
         }
     }
 }
+
