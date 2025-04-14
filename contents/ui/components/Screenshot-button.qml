@@ -5,6 +5,8 @@ import org.kde.kirigami as Kirigami
 
 Item {
 
+    property bool mouseAreaActive:  false
+
     Lib.Card {
         width: parent.width
         height: parent.height
@@ -27,6 +29,7 @@ Item {
                 anchors.horizontalCenter: parent.horizontalCenter
                 MouseArea {
                     anchors.fill: parent
+                    enabled: mouseAreaActive
                     hoverEnabled: true
                     onClicked: {
                         source.execute()
@@ -49,6 +52,7 @@ Item {
 
                 //font.weight: Font.DemiBold
                 MouseArea {
+                    enabled: mouseAreaActive
                     anchors.fill: parent
                     onClicked: {
                         source.execute()

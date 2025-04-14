@@ -7,6 +7,8 @@ import org.kde.plasma.plasma5support as Plasma5Support
 
 Item {
 
+    property bool mouseAreaActive:  false
+
     function isColorLight(color) {
         const luminance = 0.299 * color.r + 0.587 * color.g + 0.114 * color.b;
         return luminance < 0.3157; // 80.5 / 255
@@ -63,6 +65,7 @@ Item {
                 anchors.horizontalCenter: parent.horizontalCenter
                 MouseArea {
                     anchors.fill: parent
+                    enabled: mouseAreaActive
                     hoverEnabled: true
                     onClicked: {
                         isDark = !isDark
@@ -87,6 +90,7 @@ Item {
                 //font.weight: Font.DemiBold
                 MouseArea {
                     anchors.fill: parent
+                    enabled: mouseAreaActive
                     onClicked: {
                         isDark = isColorLight(Kirigami.Theme.backgroundColor)
                         executable.exec(command)
