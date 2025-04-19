@@ -10,7 +10,7 @@ Item {
     property var transferDataTs: 0
     property var transferData: {}
     property var speedData: {}
-    property string interfaceName: "wlp3s0" // Asegúrate de asignar un nombre de interfaz válido
+    property string interfaceName//: "wlp3s0" // Asegúrate de asignar un nombre de interfaz válido
 
     Plasma5Support.DataSource {
         id: dataSource
@@ -20,12 +20,27 @@ Item {
 
         onNewData: (sourceName, data) => {
 
-            if (data['exit code'] > 0) {
+            if (data['exit code'] > 0 || !data.stdout) {
                 return;
             }
 
-            if (!data.stdout) {
-                return;
+            const lines = data.stdout.trim().split("\n");
+
+            for (let i = 0; i < lines.length; i++) {
+                const parts = lines[i].split(",");
+                if (parts.length < 3) continue;
+
+                const name = parts[0].trim();
+                const rx = parseInt(parts[1]);
+                const tx = parseInt(parts[2]);
+
+                if ((rx > 0 || tx > 0) && name !== "lo" && !name.startsWith("virbr")) {
+                    if (interfaceName !== name) {
+                        console.log("Interfaz activa detectada:", name);
+                    }
+                    interfaceName = name;
+                    break; // Solo tomamos la primera interfaz con tráfico real
+                }
             }
 
             const now = Date.now();

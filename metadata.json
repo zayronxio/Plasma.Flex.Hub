@@ -7,7 +7,7 @@
         ],
         "Name": "Flex Hub",
         "Id": "Plasma.Flex.Hub",
-        "Description": "Plasma Flex Hub is a modular and customizable plasmoid for Plasma 6, evolving from Plasma Control Hub to provide a compact and modern integrated control center.",
+        "Description": "Plasma Flex Hub is a modular and customizable center control for Plasma 6.",
         "Category": "Utilities",
         "Icon": "configure",
         "EnabledByDefault": true,
@@ -15,7 +15,7 @@
         "ServiceTypes": [
             "Plasma/Applet"
         ],
-        "Version": "0.5.2",
+        "Version": "0.6.5",
         "Website": "https://github.com/zayronxio/Plasma.Flex.Hub"
     },
     "X-Plasma-API-Minimum-Version": "6.0",
