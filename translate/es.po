@@ -1,0 +1,159 @@
+# Translation of plasma flex hub in Spanish
+# Copyright (C) 2025
+# This file is distributed under the same license as the plasma flex hub package.
+# Adolfo <adolfo@librepixels.com>, 2025.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: plasma flex hub\n"
+"Report-Msgid-Bugs-To: https://github.com/zayronxio/Plasma.Flex.Hub/\n"
+"POT-Creation-Date: 2025-06-01 16:59-0300\n"
+"PO-Revision-Date: 2025-05-31 00:00+0000\n"
+"Last-Translator: Adolfo <adolfo@librepixels.com>\n"
+"Language-Team: Spanish <es@li.org>\n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../contents/ui/TextConstants.qml
+msgid "Activate"
+msgstr "Activar"
+
+#: ../contents/ui/TextConstants.qml
+msgid "Save Theme"
+msgstr "Guardar tema"
+
+#: ../contents/ui/TextConstants.qml
+msgid "Network Usage"
+msgstr "Uso de la red"
+
+#: ../contents/ui/TextConstants.qml
+msgid "Network"
+msgstr "Red"
+
+#: ../contents/ui/TextConstants.qml
+msgid "Name: "
+msgstr "Nombre: "
+
+#: ../contents/ui/TextConstants.qml
+msgid "Force Quit"
+msgstr "Forzar salida"
+
+#: ../contents/ui/TextConstants.qml
+msgid "Quit"
+msgstr "Salir"
+
+#: ../contents/ui/TextConstants.qml
+msgid "Cancel"
+msgstr "Cancelar"
+
+#: ../contents/ui/TextConstants.qml
+msgid "Network Connections"
+msgstr "Conexiones de red"
+
+#: ../contents/ui/TextConstants.qml
+msgid "Pair Device…"
+msgstr "Emparejar dispositivo…"
+
+#: ../contents/ui/TextConstants.qml
+msgid "Bluetooth"
+msgstr "Bluetooth"
+
+#: ../contents/ui/TextConstants.qml
+msgid "Browse Files"
+msgstr "Explorar archivos"
+
+#: ../contents/ui/TextConstants.qml
+msgid "Send File"
+msgstr "Enviar archivo"
+
+#: ../contents/ui/TextConstants.qml
+msgid "Copy"
+msgstr "Copiar"
+
+#: ../contents/ui/TextConstants.qml
+msgid "Grid width"
+msgstr "Ancho de la cuadrícula"
+
+#: ../contents/ui/TextConstants.qml
+msgid "Grid Height"
+msgstr "Altura de la cuadrícula"
+
+#: ../contents/ui/TextConstants.qml
+msgid "Download missing album covers"
+msgstr "Descargar portadas de álbumes faltantes"
+
+#: ../contents/ui/TextConstants.qml
+msgid "Shadow Opacity"
+msgstr "Opacidad de sombra"
+
+#: ../contents/ui/TextConstants.qml
+msgid "controls Color"
+msgstr "Color de los controles"
+
+#: ../contents/ui/TextConstants.qml
+msgid "It is not recommended to use Custom Color, in favor of the overall design."
+msgstr "No se recomienda usar un color personalizado, para mantener el diseño general."
+
+#: ../contents/ui/TextConstants.qml
+msgid "Custom Color"
+msgstr "Color personalizado"
+
+#: ../contents/ui/TextConstants.qml
+msgid "Seleccted Global Theme's"
+msgstr "Tema global seleccionado"
+
+#: ../contents/ui/TextConstants.qml
+msgid "Dark"
+msgstr "Oscuro"
+
+#: ../contents/ui/TextConstants.qml
+msgid "Light"
+msgstr "Claro"
+
+#: ../contents/ui/TextConstants.qml
+msgid "My sensor isn't listed"
+msgstr "Mi sensor no está en la lista"
+
+#: ../contents/ui/TextConstants.qml
+msgid "System indicator"
+msgstr "Indicador del sistema"
+
+#: ../contents/ui/TextConstants.qml
+msgid "Temperature"
+msgstr "Temperatura"
+
+#: ../contents/ui/TextConstants.qml
+msgid "Usage percentage"
+msgstr "Porcentaje de uso"
+
+#: ../contents/ui/TextConstants.qml
+msgid "Save"
+msgstr "Guardar"
+
+#: ../contents/ui/TextConstants.qml
+msgid "Cancel"
+msgstr "Cancelar"
+
+#: ../contents/ui/TextConstants.qml
+msgid "Volume"
+msgstr "Volumen"
+
+#: ../contents/ui/TextConstants.qml
+msgid "Brightness"
+msgstr "Brillo"
+
+#: ../contents/ui/TextConstants.qml
+msgid "DND"
+msgstr "No molestar"
+
+#: ../contents/ui/TextConstants.qml
+msgid "Battery"
+msgstr "Batería"
+
+#: ../contents/ui/TextConstants.qml
+msgid "Screenshot"
+msgstr "Captura de pantalla"
+
+

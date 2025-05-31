@@ -1,0 +1,162 @@
+# Translation of plasma flex hub in LANGUAGE
+# Copyright (C) 2025
+# This file is distributed under the same license as the plasma flex hub package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: plasma flex hub\n"
+"Report-Msgid-Bugs-To: https://github.com/zayronxio/Plasma.Flex.Hub/\n"
+"POT-Creation-Date: 2025-06-01 16:59-0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../contents/ui/TextConstants.qml
+msgid "Activate"
+msgstr ""
+
+#: ../contents/ui/TextConstants.qml
+msgid "Save Theme"
+msgstr ""
+
+#: ../contents/ui/TextConstants.qml
+msgid "Network Usage"
+msgstr ""
+
+#: ../contents/ui/TextConstants.qml
+msgid "Network"
+msgstr ""
+
+#: ../contents/ui/TextConstants.qml
+msgid "Name: "
+msgstr ""
+
+#: ../contents/ui/TextConstants.qml
+msgid "Force Quit"
+msgstr ""
+
+#: ../contents/ui/TextConstants.qml
+msgid "Quit"
+msgstr ""
+
+#: ../contents/ui/TextConstants.qml
+msgid "Cancel"
+msgstr ""
+
+#: ../contents/ui/TextConstants.qml
+msgid "Network Connections"
+msgstr ""
+
+#: ../contents/ui/TextConstants.qml
+msgid "Pair Device…"
+msgstr ""
+
+#: ../contents/ui/TextConstants.qml
+msgid "Bluetooth"
+msgstr ""
+
+#: ../contents/ui/TextConstants.qml
+msgid "Browse Files"
+msgstr ""
+
+#: ../contents/ui/TextConstants.qml
+msgid "Send File"
+msgstr ""
+
+#: ../contents/ui/TextConstants.qml
+msgid "Copy"
+msgstr ""
+
+#: ../contents/ui/TextConstants.qml
+msgid "Grid width"
+msgstr ""
+
+#: ../contents/ui/TextConstants.qml
+msgid "Grid Height"
+msgstr ""
+
+#: ../contents/ui/TextConstants.qml
+msgid "Download missing album covers"
+msgstr ""
+
+#: ../contents/ui/TextConstants.qml
+msgid "Shadow Opacity"
+msgstr ""
+
+#: ../contents/ui/TextConstants.qml
+msgid "controls Color"
+msgstr ""
+
+#: ../contents/ui/TextConstants.qml
+msgid "It is not recommended to use Custom Color, in favor of the overall design."
+msgstr ""
+
+#: ../contents/ui/TextConstants.qml
+msgid "Custom Color"
+msgstr ""
+
+#: ../contents/ui/TextConstants.qml
+msgid "Seleccted Global Theme's"
+msgstr ""
+
+#: ../contents/ui/TextConstants.qml
+msgid "Dark"
+msgstr ""
+
+#: ../contents/ui/TextConstants.qml
+msgid "Light"
+msgstr ""
+
+#: ../contents/ui/TextConstants.qml
+msgid "My sensor isn't listed"
+msgstr ""
+
+#: ../contents/ui/TextConstants.qml
+msgid "System indicator"
+msgstr ""
+
+#: ../contents/ui/TextConstants.qml
+msgid "Temperature"
+msgstr ""
+
+#: ../contents/ui/TextConstants.qml
+msgid "Usage percentage"
+msgstr ""
+
+#: ../contents/ui/TextConstants.qml
+msgid "Save"
+msgstr ""
+
+#: ../contents/ui/TextConstants.qml
+msgid "Cancel"
+msgstr ""
+
+#: ../contents/ui/TextConstants.qml
+msgid "Volume"
+msgstr ""
+
+#: ../contents/ui/TextConstants.qml
+msgid "Brightness"
+msgstr ""
+
+#: ../contents/ui/TextConstants.qml
+msgid "DND"
+msgstr ""
+
+#: ../contents/ui/TextConstants.qml
+msgid "Force Quit"
+msgstr ""
+
+#: ../contents/ui/TextConstants.qml
+msgid "Battery"
+msgstr ""
+
+#: ../contents/ui/TextConstants.qml
+msgid "Screenshot"
+msgstr ""

@@ -1,3 +1,7 @@
+/*
+SPDX-FileCopyrightText: zayronxio
+SPDX-License-Identifier: GPL-3.0-or-later
+*/
 import QtQuick
 import QtQuick.Layouts
 import org.kde.kirigami as Kirigami
@@ -12,6 +16,9 @@ Item {
         id: control
     }
 
+    TextConstants {
+        id: textConstants
+    }
     property var listElements: []
     property var list_y: []
     property var list_x: []
@@ -139,7 +146,6 @@ Item {
 
     Component.onCompleted: {
          updateModel()
-         //GlobalSignals.emitGlobalSignal();
          rows = gridModel.count > 0 ? lastR() : 2
     }
 
