@@ -12,6 +12,7 @@ Item {
     property var speedData: {}
     property string interfaceName//: "wlp3s0" // Asegúrate de asignar un nombre de interfaz válido
 
+
     Plasma5Support.DataSource {
         id: dataSource
         engine: 'executable'
@@ -67,7 +68,7 @@ Item {
         height: parent.height
         activeSub: true
         smallMode: false
-        title: i18n("Network Usage")
+        title: textConstants.usageNetwork
         isMaskIcon: true
         sub: {
             // Obtener los valores de velocidad de la interfaz seleccionada

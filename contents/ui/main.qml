@@ -14,7 +14,6 @@ PlasmoidItem {
     compactRepresentation: MouseArea {
         id: compactRoot
 
-        // Taken from DigitalClock to ensure uniform sizing when next to each other
         readonly property bool tooSmall: Plasmoid.formFactor === PlasmaCore.Types.Horizontal && Math.round(2 * (compactRoot.height / 5)) <= PlasmaCore.Theme.smallestFont.pixelSize
 
         Layout.minimumWidth: isVertical ? 0 : compactRow.implicitWidth

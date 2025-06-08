@@ -22,7 +22,7 @@ Item {
 
             Kirigami.Heading {
                 id: name
-                text: i18n("Volume")
+                text: textConstants.volume
                 font.weight: Font.DemiBold
                 level: 5
                 anchors.left: slider.left

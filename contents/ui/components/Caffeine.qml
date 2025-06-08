@@ -9,6 +9,16 @@ Item {
 
     property string code
 
+    property var inhibitionControl: Qt.createQmlObject(code, root, "inhibitionControl");
+
+    property bool mouseAreaActive:  false
+
+    property var inhibitions: inhibitionControl.inhibitions
+    property bool isManuallyInhibited: inhibitionControl.isManuallyInhibited
+    property bool active: inhibitions.length > 0 || isManuallyInhibited
+
+    signal inhibitionChangeRequested(bool inhibit)
+
     property string powerManagementControlQml: `
     import org.kde.plasma.private.batterymonitor
     PowerManagementControl {
@@ -41,16 +51,6 @@ Item {
         }
     }
 
-
-    property var inhibitionControl: Qt.createQmlObject(code, root, "inhibitionControl");
-
-    property bool mouseAreaActive:  false
-
-    property var inhibitions: inhibitionControl.inhibitions
-    property bool isManuallyInhibited: inhibitionControl.isManuallyInhibited
-    property bool active: inhibitions.length > 0 || isManuallyInhibited
-
-    signal inhibitionChangeRequested(bool inhibit)
 
     onInhibitionChangeRequested: inhibit => {
 

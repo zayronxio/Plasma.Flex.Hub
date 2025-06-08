@@ -19,7 +19,7 @@ Column {
     height: parent.height
 
     function action() {
-        page = ""
+        root.page = ""
     }
 
     KSvg.SvgItem {

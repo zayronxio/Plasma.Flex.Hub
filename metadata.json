@@ -16,7 +16,7 @@
         "ServiceTypes": [
             "Plasma/Applet"
         ],
-        "Version": "0.6.6",
+        "Version": "0.6.9",
         "Website": "https://github.com/zayronxio/Plasma.Flex.Hub/"
     },
     "X-Plasma-API-Minimum-Version": "6.0",

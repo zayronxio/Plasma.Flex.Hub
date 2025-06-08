@@ -155,7 +155,7 @@ Item {
                 level: 1
             }
             Kirigami.Heading {
-                text: i18n("Battery")
+                text: textConstants.battery
                 font.weight: Font.DemiBold
                 level: 5
             }

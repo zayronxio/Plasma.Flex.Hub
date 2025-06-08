@@ -29,6 +29,10 @@ msgid "Network Usage"
 msgstr "Uso de la red"
 
 #: ../contents/ui/TextConstants.qml
+msgid "Ram Usage"
+msgstr "Uso de RAM"
+
+#: ../contents/ui/TextConstants.qml
 msgid "Network"
 msgstr "Red"
 
@@ -131,10 +135,6 @@ msgstr "Porcentaje de uso"
 #: ../contents/ui/TextConstants.qml
 msgid "Save"
 msgstr "Guardar"
-
-#: ../contents/ui/TextConstants.qml
-msgid "Cancel"
-msgstr "Cancelar"
 
 #: ../contents/ui/TextConstants.qml
 msgid "Volume"

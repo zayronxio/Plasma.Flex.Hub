@@ -9,6 +9,4 @@ QtObject {
     readonly property int volume: sink.volume
     property int sliderValue: value
     property int value: (sink.volume / PulseAudio.NormalVolume * 100)
-
-
 }

@@ -5,6 +5,14 @@ import org.kde.kirigami as Kirigami
 
 Item  {
 
+    property alias cfg_names_themes: themes.namesSkins
+    property alias cfg_index_themes: themes.combined_index
+    property alias cfg_seriesX_themes: themes.combined_x
+    property alias cfg_seriesY_themes: themes.combined_y
+    property alias cfg_selected_theme: themes.theme_current
+
+    property string nameNewTheme: ""
+
     QtObject {
         id: themes
         property var namesSkins: []
@@ -13,14 +21,6 @@ Item  {
         property var combined_y: []
         property string theme_current: ""
     }
-
-    property alias cfg_names_themes: themes.namesSkins
-    property alias cfg_index_themes: themes.combined_index
-    property alias cfg_seriesX_themes: themes.combined_x
-    property alias cfg_seriesY_themes: themes.combined_y
-    property alias cfg_selected_theme: themes.theme_current
-
-    property string nameNewTheme: ""
 
     Model {
         id: rootModel

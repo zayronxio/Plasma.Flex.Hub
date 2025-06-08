@@ -30,6 +30,10 @@ msgid "Network Usage"
 msgstr ""
 
 #: ../contents/ui/TextConstants.qml
+msgid "Ram Usage"
+msgstr ""
+
+#: ../contents/ui/TextConstants.qml
 msgid "Network"
 msgstr ""
 
@@ -134,10 +138,6 @@ msgid "Save"
 msgstr ""
 
 #: ../contents/ui/TextConstants.qml
-msgid "Cancel"
-msgstr ""
-
-#: ../contents/ui/TextConstants.qml
 msgid "Volume"
 msgstr ""
 
@@ -150,13 +150,10 @@ msgid "DND"
 msgstr ""
 
 #: ../contents/ui/TextConstants.qml
-msgid "Force Quit"
-msgstr ""
-
-#: ../contents/ui/TextConstants.qml
 msgid "Battery"
 msgstr ""
 
 #: ../contents/ui/TextConstants.qml
 msgid "Screenshot"
 msgstr ""
+

@@ -11,7 +11,7 @@ Item {
          activeSub: true
          smallMode: false
          isMaskIcon: true
-         title: i18n("Network")
+         title: textConstants.network
          sub: network.textConnetion
          itemIcon: network.icon
      }
