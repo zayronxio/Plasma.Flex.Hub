@@ -1,0 +1,159 @@
+# Translation of plasma flex hub in LANGUAGE
+# Copyright (C) 2025
+# This file is distributed under the same license as the plasma flex hub package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: plasma flex hub\n"
+"Report-Msgid-Bugs-To: https://github.com/zayronxio/Plasma.Flex.Hub/\n"
+"POT-Creation-Date: 2025-06-01 16:59-0300\n"
+"PO-Revision-Date: 2025-06-09 11:01+0200\n"
+"Last-Translator: Heimen Stoffels <vistausss@fastmail.com>\n"
+"Language-Team: \n"
+"Language: nl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.6\n"
+
+#: ../contents/ui/TextConstants.qml
+msgid "Activate"
+msgstr "Inschakelen"
+
+#: ../contents/ui/TextConstants.qml
+msgid "Save Theme"
+msgstr "Thema opslaan"
+
+#: ../contents/ui/TextConstants.qml
+msgid "Network Usage"
+msgstr "Netwerkgebruik"
+
+#: ../contents/ui/TextConstants.qml
+msgid "Ram Usage"
+msgstr "Ram-gebruik"
+
+#: ../contents/ui/TextConstants.qml
+msgid "Network"
+msgstr "Netwerk"
+
+#: ../contents/ui/TextConstants.qml
+msgid "Name: "
+msgstr "Naam: "
+
+#: ../contents/ui/TextConstants.qml
+msgid "Force Quit"
+msgstr "Gedwongen afsluiten"
+
+#: ../contents/ui/TextConstants.qml
+msgid "Quit"
+msgstr "Afsluiten"
+
+#: ../contents/ui/TextConstants.qml
+msgid "Cancel"
+msgstr "Annuleren"
+
+#: ../contents/ui/TextConstants.qml
+msgid "Network Connections"
+msgstr "Netwerkverbindingen"
+
+#: ../contents/ui/TextConstants.qml
+msgid "Pair Device…"
+msgstr "Apparaat koppelen…"
+
+#: ../contents/ui/TextConstants.qml
+msgid "Bluetooth"
+msgstr "Bluetooth"
+
+#: ../contents/ui/TextConstants.qml
+msgid "Browse Files"
+msgstr "Bestanden verkennen"
+
+#: ../contents/ui/TextConstants.qml
+msgid "Send File"
+msgstr "Bestand versturen"
+
+#: ../contents/ui/TextConstants.qml
+msgid "Copy"
+msgstr "Kopiëren"
+
+#: ../contents/ui/TextConstants.qml
+msgid "Grid width"
+msgstr "Roosterbreedte"
+
+#: ../contents/ui/TextConstants.qml
+msgid "Grid Height"
+msgstr "Roosterhoogte"
+
+#: ../contents/ui/TextConstants.qml
+msgid "Download missing album covers"
+msgstr "Ontbrekende albumhoezen ophalen"
+
+#: ../contents/ui/TextConstants.qml
+msgid "Shadow Opacity"
+msgstr "Doorzichtigheid van schaduwen"
+
+#: ../contents/ui/TextConstants.qml
+msgid "controls Color"
+msgstr "Kleur van bedieningsknoppen"
+
+#: ../contents/ui/TextConstants.qml
+msgid "It is not recommended to use Custom Color, in favor of the overall design."
+msgstr "Let op: het kiezen van een eigen kleur wordt niet aanbevolen."
+
+#: ../contents/ui/TextConstants.qml
+msgid "Custom Color"
+msgstr "Zelfgekozen kleur"
+
+#: ../contents/ui/TextConstants.qml
+msgid "Seleccted Global Theme's"
+msgstr "Gekozen globale thema's"
+
+#: ../contents/ui/TextConstants.qml
+msgid "Dark"
+msgstr "Donker thema"
+
+#: ../contents/ui/TextConstants.qml
+msgid "Light"
+msgstr "Licht thema"
+
+#: ../contents/ui/TextConstants.qml
+msgid "My sensor isn't listed"
+msgstr "Mijn sensor wordt niet vermeld"
+
+#: ../contents/ui/TextConstants.qml
+msgid "System indicator"
+msgstr "Systeemindicator"
+
+#: ../contents/ui/TextConstants.qml
+msgid "Temperature"
+msgstr "Temperatuur"
+
+#: ../contents/ui/TextConstants.qml
+msgid "Usage percentage"
+msgstr "Verbruikspercentage"
+
+#: ../contents/ui/TextConstants.qml
+msgid "Save"
+msgstr "Opslaan"
+
+#: ../contents/ui/TextConstants.qml
+msgid "Volume"
+msgstr "Volumeniveau"
+
+#: ../contents/ui/TextConstants.qml
+msgid "Brightness"
+msgstr "Helderheid"
+
+#: ../contents/ui/TextConstants.qml
+msgid "DND"
+msgstr "Niet storen"
+
+#: ../contents/ui/TextConstants.qml
+msgid "Battery"
+msgstr "Accu"
+
+#: ../contents/ui/TextConstants.qml
+msgid "Screenshot"
+msgstr "Schermfoto"
