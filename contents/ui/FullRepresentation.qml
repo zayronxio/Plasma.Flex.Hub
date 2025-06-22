@@ -8,12 +8,48 @@ import org.kde.kirigami as Kirigami
 import org.kde.plasma.plasmoid
 import "components" as Components
 import "pages" as Pages
+import org.kde.ksysguard.sensors as Sensors
 import "lib" as Lib
+
 Item {
     id:root
 
+    property string code: ""
+    property var control
+
+    property string sourceBrightnessPlasma64orPlusQml: `
+    import QtQuick
+    import "components" as Components
+    Components.SourceBrightnessPlasma64orPlus {
+        id: dynamic
+    }
+    `
+    property string sourceBrightnessQML: `
+    import QtQuick
+    import "components" as Components
     Components.SourceBrightness {
-        id: control
+        id: dynamic
+    }
+    `
+
+    Sensors.SensorDataModel {
+        id: plasmaVersionModel
+        sensors: ["os/plasma/plasmaVersion"]
+        enabled: true
+
+        onDataChanged: {
+            const value = data(index(0, 0), Sensors.SensorDataModel.Value);
+            if (value !== undefined && value !== null) {
+                if (value.indexOf("6.4") >= 0) {
+                    code = sourceBrightnessPlasma64orPlusQml;
+                } else {
+                    code = sourceBrightnessQML;
+                }
+
+                // Crea el nuevo componente
+                control = Qt.createQmlObject(code, root, "control");
+            }
+        }
     }
 
     TextConstants {

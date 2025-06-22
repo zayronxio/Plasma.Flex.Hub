@@ -37,13 +37,13 @@ Item {
                 anchors.horizontalCenter: parent.horizontalCenter
                 anchors.top: parent.top
                 anchors.topMargin: ((parent.height - height)/2) + name.implicitHeight/2
-                from: 0
-                to: maxSlider
+                from: control.brightnessMin
                 value: control.valueSlider
+                to: control.maxSlider
                 snapMode: Slider.SnapAlways
                 enabled: mouseAreaActive
                 onMoved: {
-                    control.realValueSlider = value*100
+                    control.realValueSlider = value
                     value = value
                 }
             }

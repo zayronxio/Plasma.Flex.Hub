@@ -4,8 +4,10 @@ import org.kde.kirigami as Kirigami
 import "../lib" as Lib
 
 Item {
-    property bool mouseAreaActive:  false
-    Lib.Card {
+
+   property bool mouseAreaActive:  false
+
+   Lib.Card {
         width: parent.width
         height: parent.height
         globalBool: false
@@ -37,16 +39,18 @@ Item {
                     //anchors.verticalCenter: parent.verticalCenter
                     //anchors.horizontalCenter: parent.horizontalCenter
                     anchors.verticalCenter: iconBrightness.verticalCenter
-                    from: 0
-                    to: maxSlider
+                    from: control.brightnessMin
                     value: control.valueSlider
+                    to: control.maxSlider
                     snapMode: Slider.SnapAlways
                     enabled: mouseAreaActive
                     onMoved: {
-                        control.realValueSlider = value*100
-                        value = value
+                        console.log(control.realValueSlider)
+                        control.realValueSlider = value
                     }
                 }
+
+
             }
             Row {
                 width: parent.width
