@@ -32,7 +32,7 @@ Item {
     property int defaultWidth: widthFactor*4 + spacing*5
     property int widthFactor: Kirigami.Units.gridUnit * 4
     property int heightFactor: Kirigami.Units.gridUnit * 4
-    property int footer_height: 22
+    property int footer_height: 32
     property var mainGridsFilled: []
     property int spacing: Kirigami.Units.gridUnit/2
     property int factorX: spacing + widthFactor
@@ -234,13 +234,38 @@ Item {
     }
 
 
-    Kirigami.Icon {
-        width: Kirigami.Units.iconSizes.small
-        height: width
+    //inferior del plasmoid
+    Rectangle {
+        height: Kirigami.Units.iconSizes.small + 8
+        width: txtEdith.implicitWidth + Kirigami.Units.iconSizes.small
+        radius: height/2
+        color: Kirigami.Theme.highlightColor
         visible: !sideBarEnabled
-        source: "document-edit"
         anchors.bottom: parent.bottom
-        anchors.right: parent.right
+        anchors.horizontalCenter: root.horizontalCenter
+
+        Rectangle {
+            height: Kirigami.Units.iconSizes.small + 8
+            width: txtEdith.implicitWidth + Kirigami.Units.iconSizes.small
+            radius: height/2
+            color: "transparent"
+            anchors.centerIn: parent
+            border.color: Kirigami.Theme.highlightedTextColor
+            //border.width: 2
+            opacity: 0.3
+        }
+        Kirigami.Heading {
+            id: txtEdith
+            text: textConstants.edit
+            width: parent.width
+            height: parent.height
+            color: Kirigami.Theme.highlightedTextColor
+            horizontalAlignment: Text.AlignHCenter
+            verticalAlignment: Text.AlignVCenter
+            elide: Text.ElideRight
+            level: 5
+        }
+
         MouseArea {
             anchors.fill: parent
             onClicked: {
@@ -250,6 +275,7 @@ Item {
             }
         }
     }
+
     Loader {
         id: pageLoader
         source: page
