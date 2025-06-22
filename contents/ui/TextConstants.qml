@@ -35,6 +35,7 @@ QtObject {
     readonly property string dnd: i18n("DND")
     readonly property string battery: i18n("Battery")
     readonly property string screenshot: i18n("Screenshot")
+    readonly property string edit: i18n("Edit Controls")
 }
 
 
