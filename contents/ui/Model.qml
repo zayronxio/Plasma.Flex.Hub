@@ -27,5 +27,7 @@ ListModel {
     ListElement { elementId: "item24"; name: "ForceQuit"; w: 1; h: 1; source: "components/ToggleForceQuit.qml"; isCustomControl: false }
     ListElement { elementId: "item25"; name: "Multimedia1x3"; w: 3; h: 1; source: "components/Multimedia1x3.qml"; isCustomControl: false }
     ListElement { elementId: "item26"; name: "Caffeine1x1"; w: 1; h: 1; source: "components/Caffeine.qml"; isCustomControl: false }
+    ListElement { elementId: "item27"; name: "Bluetooth1x1"; w: 1; h: 1; source: "components/Bluetooth1x1.qml"; isCustomControl: false }
+    ListElement { elementId: "item28"; name: "ForzeQuick-alt"; w: 1; h: 1; source: "components/ForzeQuick-alt.qml"; isCustomControl: false }
 }
 

@@ -16,6 +16,7 @@ Item {
     property bool enabledCustomColor: Plasmoid.configuration.enabledCustomColor
     property bool colorizer: Plasmoid.configuration.enabledCustomColor
     property int shadowOpacity: Plasmoid.configuration.shadowOpacity
+    property real backgroundColorOpacity: 0.7
 
     Rectangle {
         color: backgrounfColor
@@ -56,7 +57,7 @@ Item {
         width: parent.width
         height: parent.height
         visible: globalBool && enabledCustomColor || enabledColor
-        opacity: enabledCustomColor || enabledColor ? 0.2 : 1.0
+        opacity: enabledCustomColor || enabledColor ? backgroundColorOpacity : 1.0
         layer.enabled: true
         layer.effect: OpacityMask {
             maskSource: mask
