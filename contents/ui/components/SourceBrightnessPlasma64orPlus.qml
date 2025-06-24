@@ -26,6 +26,7 @@ Item {
     property bool readyData: false
     readonly property int brightnessMin: (maxSlider.maxBrightness / 200)
 
+    property bool activeNightLight: nightLightControl.inhibited
 
     property bool runningNightToggle: nightLightControl.running
 
@@ -96,6 +97,6 @@ Item {
     }
 
     onNightMode: {
-        nightLightControl.toggleInhibition()
+        NightLightInhibitor.toggleInhibition()
     }
 }
