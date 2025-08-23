@@ -33,6 +33,7 @@ QtObject {
     readonly property string volume: i18n("Volume")
     readonly property string brightness: i18n("Brightness")
     readonly property string dnd: i18n("DND")
+    readonly property string fullDnd: i18n("Do not disturb")
     readonly property string battery: i18n("Battery")
     readonly property string screenshot: i18n("Screenshot")
     readonly property string edit: i18n("Edit Controls")
