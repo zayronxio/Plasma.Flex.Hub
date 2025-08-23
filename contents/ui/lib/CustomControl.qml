@@ -48,7 +48,7 @@ Item {
                // bigText: !enabledIcon ? root.valueSensor + (isPercentage ? "%" : "°C") : subTitle
                 cmd: exeCommand
                 bashExe: bashExecutable
-                onIconClicked: action
+                //onIconClicked: action
                // onIconClicked: bashExecutable ? exeCmd : undefined
 
             }

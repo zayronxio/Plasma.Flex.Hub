@@ -3,6 +3,7 @@ import QtQuick.Controls
 import org.kde.kirigami as Kirigami
 //import org.kde.kcmutils // KCMLauncher
 //import org.kde.plasma.components 3.0 as PlasmaComponents
+import org.kde.plasma.plasmoid 2.0
 import "../lib" as Lib
 import org.kde.ksvg 1.0 as KSvg
 import Qt5Compat.GraphicalEffects
@@ -18,7 +19,13 @@ Item {
         SourceVolume {
             id: vol
         }
-
+        Lib.HelperCard {
+            id: mask
+            isMask: true
+            anchors.fill: parent
+            visible: false
+            customRadius: Plasmoid.configuration.radiusCardCustom
+        }
         //property int value: vol.value/100 // Valor inicial (50%)
 
         Item {
@@ -92,7 +99,7 @@ Item {
             color: "transparent"
             layer.enabled: true
             layer.effect: OpacityMask {
-                maskSource: maskSvg2
+                maskSource: mask
             }
 
 
@@ -101,7 +108,7 @@ Item {
                 id: progress
                 width: parent.width
                 height: parent.height * (vol.value/100)
-                color: Kirigami.Theme.textColor
+                color: Kirigami.Theme.highlightColor
                 anchors.bottom: parent.bottom
             }
 

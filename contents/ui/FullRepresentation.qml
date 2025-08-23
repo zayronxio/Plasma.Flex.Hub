@@ -275,7 +275,7 @@ Item {
         height: Kirigami.Units.iconSizes.small + 8
         width: txtEdith.implicitWidth + Kirigami.Units.iconSizes.small
         radius: height/2
-        color: Kirigami.Theme.highlightColor
+        color: "transparent" //Kirigami.Theme.highlightColor
         visible: !sideBarEnabled
         anchors.bottom: parent.bottom
         anchors.horizontalCenter: root.horizontalCenter
@@ -286,7 +286,7 @@ Item {
             radius: height/2
             color: "transparent"
             anchors.centerIn: parent
-            border.color: Kirigami.Theme.highlightedTextColor
+            border.color: "transparent"//Kirigami.Theme.highlightedTextColor
             //border.width: 2
             opacity: 0.3
         }
@@ -295,7 +295,7 @@ Item {
             text: textConstants.edit
             width: parent.width
             height: parent.height
-            color: Kirigami.Theme.highlightedTextColor
+            color: Kirigami.Theme.textColor
             horizontalAlignment: Text.AlignHCenter
             verticalAlignment: Text.AlignVCenter
             elide: Text.ElideRight

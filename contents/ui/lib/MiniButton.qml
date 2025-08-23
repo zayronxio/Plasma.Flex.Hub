@@ -1,4 +1,5 @@
 import QtQuick
+import org.kde.plasma.plasmoid 2.0
 import org.kde.kirigami as Kirigami
 
 Column {
@@ -9,12 +10,18 @@ Column {
     property var onIconClicked
     property bool bashExe: false
     property string cmd
+    property bool exeDual: false
     property bool isMask: true
     property bool isSensor: false
+    property int sizeIcon: Plasmoid.configuration.sizeGeneralIcons
 
+    property bool enableTitle: Plasmoid.configuration.labelsToggles
+
+    signal iconClicked()
 
     width: parent.width - Kirigami.Units.smallSpacing
     height: parent.height - Kirigami.Units.smallSpacing
+    clip: true
 
     anchors.centerIn: parent
 
@@ -25,46 +32,51 @@ Column {
 
     Kirigami.Icon {
         id: logo
-        width: Kirigami.Units.iconSizes.medium
+        width: sizeIcon// Kirigami.Units.iconSizes.medium
         height: width
         source: itemIcon
         color: Kirigami.Theme.textColor
         isMask: parent.isMask
         //visible: !headerText
-        anchors.top: parent.top
-        anchors.topMargin: Kirigami.Units.largeSpacing
+        anchors.top:  parent.top
+        anchors.topMargin: !enableTitle ? (parent.height - sizeIcon)/2 : (parent.height/2 - sizeIcon) /2
         anchors.horizontalCenter: parent.horizontalCenter
 
+
         MouseArea {
-            enabled: parent.mouseAreaActive
             anchors.fill: parent
             hoverEnabled: true
             onClicked: {
-                if (bashExe) {
+                if (exeDual) {
+                    root.iconClicked()
                     exe.execute()
                 } else {
-                    onIconClicked()
+                    if (bashExe) {
+                        exe.execute()
+                    } else {
+                        root.iconClicked()
+                    }
                 }
             }
         }
     }
 
-
     Kirigami.Heading {
         id: txt
         text: title
-        width: parent.width
-        anchors.top: logo.visible ? logo.bottom : bigTxt.bottom
-        height: parent.height - logo.height
+        width: parent.width - 4
+        anchors.bottom: parent.bottom
+        anchors.bottomMargin: 4
+        anchors.horizontalCenter: parent.horizontalCenter
+        height: (parent.height/2) - 4
         level: 5
+        visible: enableTitle
         //font.pixelSize: weatherToggle.height < weatherToggle.width ? weatherToggle.height*.15 : weatherToggle.width*.15
         wrapMode: Text.WordWrap
         elide: Text.ElideRight
         maximumLineCount: 2
         verticalAlignment: Text.AlignVCenter
         horizontalAlignment: Text.AlignHCenter
-
-        //font.weight: Font.DemiBold
     }
 
 }

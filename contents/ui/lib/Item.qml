@@ -1,4 +1,5 @@
 import QtQuick
+import org.kde.plasma.plasmoid 2.0
 import org.kde.kirigami as Kirigami
 
 Item {
@@ -16,6 +17,8 @@ Item {
     property string itemIcon: ""
     property var onIconClicked // Propiedad para definir la función desde el exterior
     property string anchorsDinamic: "center"
+    property int sizeIcon: Plasmoid.configuration.sizeGeneralIcons
+    property int marginIcons: Plasmoid.configuration.sizeMarginlIcons
 
     signal click
 
@@ -28,7 +31,7 @@ Item {
     }
 
     Column {
-        width: parent.width - 10
+        width: parent.width - (parent.height - (sizeIcon + marginIcons))
         height: parent.height
         spacing: 8
         anchors.centerIn: parent
@@ -47,8 +50,8 @@ Item {
             //anchors.horizontalCenter: !smallMode ? parent.horizontalCenter : undefined
             Rectangle {
                 id: circle
-                width: 32
-                height: 32
+                width: sizeIcon + marginIcons
+                height: sizeIcon + marginIcons
                 radius: height/2
                 color: bubble ? backgroundColor : "transparent"
                 anchors.horizontalCenter: smallMode ? parent.horizontalCenter : undefined
@@ -57,7 +60,7 @@ Item {
 
                 Kirigami.Icon {
                     id: icon
-                    width: 22//Kirigami.Units.iconSizes.mediumSmall
+                    width: sizeIcon //22//Kirigami.Units.iconSizes.mediumSmall
                     height: width
                     isMask: isMaskIcon
                     visible: !valueInBubble

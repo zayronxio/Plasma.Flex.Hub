@@ -1,4 +1,5 @@
 import QtQuick
+import org.kde.plasma.plasmoid 2.0
 import org.kde.kirigami as Kirigami
 
 Item {
@@ -18,6 +19,7 @@ Item {
     property string anchorsDinamic: "center"
     property bool bashExe: false
     property string cmd
+    property int sizeIcon: Plasmoid.configuration.sizeGeneralIcons
 
     signal click
 
@@ -64,7 +66,7 @@ Item {
 
                 Kirigami.Icon {
                     id: icon
-                    width: 22//Kirigami.Units.iconSizes.mediumSmall
+                    width: sizeIcon//Kirigami.Units.iconSizes.mediumSmall
                     height: width
                     isMask: isMaskIcon
                     visible: !valueInBubble

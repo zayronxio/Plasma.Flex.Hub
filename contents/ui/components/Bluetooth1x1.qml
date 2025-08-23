@@ -19,7 +19,7 @@ Item {
         width: parent.width
         height: parent.height
         enabledColor: true
-        elementBackgroundColor: activeColor ?  Kirigami.Theme.highlightColor : "transparent"
+        elementBackgroundColor: activeColor ?  Kirigami.Theme.highlightColor : Kirigami.Theme.textColor
         backgroundColorOpacity: 1
 
 
@@ -27,7 +27,8 @@ Item {
             id: iconVolume
             width: Kirigami.Units.iconSizes.mediumSmall
             height: width
-            color: activeColor ? Kirigami.Theme.highlightedTextColor : Kirigami.Theme.textColor
+            isMask: true
+            color:  Kirigami.Theme.highlightColor //activeColor ? Kirigami.Theme.highlightedTextColor : Kirigami.Theme.frameContrast //Kirigami.Theme.textColor
             anchors.centerIn: parent
             source: activeColor ? "network-bluetooth-activated-symbolic" : "network-bluetooth-inactive-symbolic"
         }

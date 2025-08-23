@@ -122,5 +122,14 @@
     <entry name="radiusCardCustom" type="int">
       <default>0</default>
     </entry>
+    <entry name="sizeGeneralIcons" type="int">
+      <default>24</default>
+    </entry>
+    <entry name="sizeMarginlIcons" type="int">
+      <default>16</default>
+    </entry>
+    <entry name="labelsToggles" type="bool">
+      <default>true</default>
+    </entry>
   </group>
 </kcfg>}

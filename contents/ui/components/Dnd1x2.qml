@@ -19,7 +19,7 @@ Item {
             activeSub: false
             smallMode: false
             isMaskIcon: true
-            title: i18n("Do not disturb")
+            title: textConstants.fullDnd
             itemIcon: Funcs.checkInhibition() ? "notifications-disabled" : "notifications"
             onIconClicked: Funcs.toggleDnd
         }

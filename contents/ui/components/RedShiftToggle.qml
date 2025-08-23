@@ -12,54 +12,13 @@ Item {
         width: parent.width
         height:parent.height
 
-        Column {
+        Lib.MiniButton {
             width: parent.width
             height: parent.height
-            Item {
-                width: parent.width
-                height: parent.height*.6
-                Kirigami.Icon {
-                    id: iconOfRedshift
-                    implicitHeight: parent.height*.9
-
-                    anchors.verticalCenter: parent.verticalCenter
-                    anchors.horizontalCenter: parent.horizontalCenter
-                    source: nightLight ? "redshift-status-on" : "redshift-status-off"
-                    MouseArea {
-                        enabled: mouseAreaActive
-                        anchors.fill: parent
-                        onClicked: {
-                            Plasmoid.configuration.nightMode = !nightLight
-                            control.nightMode()
-                            //nightLight = Plasmoid.configuration.nightMode
-                        }
-                    }
-                }
-            }
-            Item {
-                id: labelredfish
-                width: parent.width
-                height: parent.height*.4
-                Kirigami.Heading {
-                    id: textOfNightLight
-                    width: parent.width
-                    text: !nightLight ? "On" : "Off"
-                    //font.pixelSize: labelredfish.height*.35
-                    level: 5
-                    horizontalAlignment: Text.AlignHCenter
-                }
-            }
-
-
-
-        }
-    }
-    Timer {
-        interval: 500
-        running:  true
-        repeat:  false
-        onTriggered: {
-            if (nightLight) {
+            title: !nightLight ? "On" : "Off"
+            itemIcon: nightLight ? "redshift-status-on" : "redshift-status-off"
+            onIconClicked: {
+                Plasmoid.configuration.nightMode = !nightLight
                 control.nightMode()
             }
         }

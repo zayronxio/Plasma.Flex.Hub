@@ -2,7 +2,7 @@ import QtQuick
 import QtQuick.Controls
 import QtQuick.Layouts
 import Qt5Compat.GraphicalEffects
-
+import org.kde.plasma.plasmoid 2.0
 import org.kde.plasma.core as PlasmaCore
 import org.kde.plasma.components 3.0 as PlasmaComponents3
 import org.kde.ksvg as KSvg
@@ -20,6 +20,7 @@ KSvg.FrameSvgItem {
     signal clicked;
 
     property alias title: title.text
+    property int sizeIcon: Plasmoid.configuration.sizeGeneralIcons
     property alias subtitle: subtitle.text
     property alias source: icon.source
     property alias sourceColor: icon.color
@@ -37,6 +38,7 @@ KSvg.FrameSvgItem {
         Kirigami.Icon {
             id: icon
             Layout.rowSpan: 2
+            width: sizeIcon
             Layout.preferredHeight: parent.height - root.smallSpacing //
             Layout.preferredWidth: Layout.preferredHeight
         }

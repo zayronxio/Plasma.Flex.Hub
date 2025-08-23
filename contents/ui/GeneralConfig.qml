@@ -35,6 +35,12 @@ Item {
         property string currentNameColor
     }
 
+    QtObject {
+        id:  sizeIcons
+        property var value
+        property var margin
+    }
+
     property alias cfg_elements: keysConfig.elements
     property alias cfg_yElements: keysConfig.yElements
     property alias cfg_xElements: keysConfig.xElements
@@ -54,7 +60,9 @@ Item {
     property alias cfg_customCardColor: customCardColor.color
     property alias cfg_opacityCardCustom: sliderOpacityCardCustom.value
     property alias cfg_radiusCardCustom: sliderRadiusCardCustom.value
-
+    property alias cfg_sizeGeneralIcons: sizeIcons.value
+    property alias cfg_sizeMarginlIcons: sizeIcons.margin
+    property alias cfg_labelsToggles: txtMiniButtons.checked
     ListModel {
         id: listModel
     }
@@ -224,6 +232,59 @@ Item {
             snapMode: Slider.SnapAlways
             onMoved: {
             }
+        }
+        Label {
+        }
+        CheckBox {
+            id: txtMiniButtons
+            anchors.left: left.right
+            width: root.width/2
+            text: i18n("Mini button/toggle labels")
+        }
+        Kirigami.Heading {
+            text: i18n("Icons Size:")
+            Layout.minimumWidth: root.width/2
+            horizontalAlignment: Label.AlignRight
+            level: 5
+        }
+        ComboBox {
+            textRole: "text"
+            valueRole: "value"
+            Kirigami.FormData.label: i18n('Icons Size:')
+            id: valueSizeIcons
+            model: [
+                {text: i18n("22"), value: 22},
+                {text: i18n("24"), value: 24},
+                {text: i18n("32"), value: 32},
+                {text: i18n("42"), value: 42},
+                {text: i18n("48"), value: 48},
+                {text: i18n("64"), value: 64},
+
+            ]
+            onActivated: sizeIcons.value = currentValue
+            Component.onCompleted: currentIndex = indexOfValue(sizeIcons.value)
+        }
+        Kirigami.Heading {
+            text: i18n("Icon background margin:")
+            Layout.minimumWidth: root.width/2
+            horizontalAlignment: Label.AlignRight
+            level: 5
+        }
+        ComboBox {
+            textRole: "text"
+            valueRole: "value"
+            Kirigami.FormData.label: i18n('Icon background margi:')
+            id: marginsIcons
+            model: [
+                {text: i18n("4"), value: 4},
+                {text: i18n("8"), value: 8},
+                {text: i18n("16"), value: 16},
+                {text: i18n("20"), value: 20},
+                {text: i18n("24"), value: 24},
+
+            ]
+            onActivated: sizeIcons.margin = currentValue
+            Component.onCompleted: currentIndex = indexOfValue(sizeIcons.margin)
         }
         Kirigami.Heading {
             visible: usePlasmaDesing.checked

@@ -6,10 +6,48 @@ import org.kde.plasma.plasmoid
 //import org.kde.plasma.components 3.0 as PlasmaComponents
 import "../lib" as Lib
 import org.kde.ksvg 1.0 as KSvg
+import org.kde.ksysguard.sensors as Sensors
 import Qt5Compat.GraphicalEffects
 
 Item {
     property bool mouseAreaActive:  false
+
+    property string code: ""
+    property var control
+
+    property string sourceBrightnessPlasma64orPlusQml: `
+    import QtQuick
+    SourceBrightnessPlasma64orPlus {
+        id: dynamic
+    }
+    `
+    property string sourceBrightnessQML: `
+    import QtQuick
+    SourceBrightness {
+        id: dynamic
+    }
+    `
+
+    Sensors.SensorDataModel {
+        id: plasmaVersionModel
+        sensors: ["os/plasma/plasmaVersion"]
+        enabled: true
+
+        onDataChanged: {
+            const value = data(index(0, 0), Sensors.SensorDataModel.Value);
+            if (value !== undefined && value !== null) {
+                if (value.indexOf("6.4") >= 0) {
+                    code = sourceBrightnessPlasma64orPlusQml;
+                } else {
+                    code = sourceBrightnessQML;
+                }
+
+                // Crea el nuevo componente
+                control = Qt.createQmlObject(code, root, "control");
+            }
+        }
+    }
+
     Lib.Card {
         width: parent.width
         height: parent.height
