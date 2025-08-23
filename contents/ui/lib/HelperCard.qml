@@ -79,11 +79,12 @@ Item {
         id: customRect
         Item {
             anchors.fill: parent
+            opacity: isShadow ? 0 : 1
             Item {
                 anchors.fill: parent
                 anchors.margins: - 6
                 layer.enabled: true
-                opacity:  0.1
+                opacity: isMask ? 0 : 0.1
                 // Rectángulo invisible: solo define la forma de la sombra
                 Rectangle {
                     id: shadowWidget
@@ -111,7 +112,7 @@ Item {
                 id: bgColor
                 anchors.fill: parent
                 color:  customColorbg
-                opacity: customOpacity/100
+                opacity: isMask ? 1 : customOpacity/100
                 radius: customRadius
             }
             Rectangle {
@@ -120,7 +121,7 @@ Item {
                 color: "transparent"
                 border.color: "black"
                 border.width: 1
-                opacity: 0.1
+                opacity: isMask ? 0 : 0.1
                 radius: customRadius
             }
             Rectangle {
@@ -131,7 +132,7 @@ Item {
                 color: "transparent"
                 border.color: "white"
                 border.width: 1
-                opacity: 0.1
+                opacity: isMask ? 0 : 0.1
                 radius: customRadius
             }
         }
