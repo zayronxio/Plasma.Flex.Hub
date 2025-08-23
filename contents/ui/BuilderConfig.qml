@@ -312,7 +312,7 @@ Item {
         Lib.AddSensorDialog {
             id: addSensorDialog
             sensorType: percentage.checked ? 1 : 0
-            width: Math.min(implicitWidth, parent.width * .7 - Kirigami.Units.gridUnit * 2)
+            width: parent.width * 0.8
             height: Math.min(implicitHeight, parent.height * .6 - Kirigami.Units.gridUnit * 2)
             onAddedSensor: (name, sensorId) => {
                 nameSensor = name
