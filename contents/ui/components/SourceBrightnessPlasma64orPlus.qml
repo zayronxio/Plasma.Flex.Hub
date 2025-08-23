@@ -3,7 +3,7 @@ import QtQuick.Layouts
 
 import org.kde.coreaddons as KCoreAddons
 import org.kde.kcmutils // KCMLauncher
-import org.kde.config // KAuthorized
+import org.kde.config as KConfig  // KAuthorized.authorizeControlModule
 import org.kde.notification
 import org.kde.plasma.core as PlasmaCore
 import org.kde.plasma.plasmoid
@@ -16,7 +16,7 @@ import org.kde.plasma.workspace.dbus as DBus
 Item {
     id: root
 
-    required property DBus.Properties nightLightControl
+    //required property DBus.Properties nightLightControl
 
     property int realValueSlider: 0
     property int cnValue: displayModelConnections.brightness
