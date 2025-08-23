@@ -107,5 +107,20 @@
     <entry name="currentNameColor" type="string">
       <default></default>
     </entry>
+    <entry name="usePlasmaDesing" type="bool">
+      <default>true</default>
+    </entry>
+    <entry name="customCardColor" type="color">
+      <default>#ffffff</default>
+    </entry>
+    <entry name="firstEnabledColor" type="bool">
+      <default>true</default>
+    </entry>
+    <entry name="opacityCardCustom" type="int">
+      <default>20</default>
+    </entry>
+    <entry name="radiusCardCustom" type="int">
+      <default>0</default>
+    </entry>
   </group>
-</kcfg>
+</kcfg>}

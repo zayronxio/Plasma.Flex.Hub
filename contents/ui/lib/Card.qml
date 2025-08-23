@@ -18,6 +18,12 @@ Item {
     property int shadowOpacity: Plasmoid.configuration.shadowOpacity
     property real backgroundColorOpacity: 0.7
 
+    property bool customCard: !Plasmoid.configuration.usePlasmaDesing
+    property color customColorCard: Plasmoid.configuration.customCardColor
+    property int customRadiusCard: Plasmoid.configuration.radiusCardCustom
+    property int customOpacityCard: Plasmoid.configuration.opacityCardCustom
+
+
     Rectangle {
         color: backgrounfColor
         width: parent.width
@@ -32,14 +38,22 @@ Item {
     HelperCard {
         id: background
         isShadow: false
+        isCustom: customCard
         width: parent.width
         height:  parent.height
+        customColorbg: customColorCard
+        customRadius: customRadiusCard
+        customOpacity: customOpacityCard
         opacity: enabledCustomColor || enabledColor ? 0.8 : 1.0
         visible: globalBool
     }
     HelperCard {
         id: shadow
         isShadow: true
+        isCustom: customCard
+        customRadius: customRadiusCard
+        customColorbg: customColorCard
+        customOpacity: customOpacityCard
         width: parent.width
         height:  parent.height
         visible: globalBool
@@ -47,6 +61,10 @@ Item {
     }
     HelperCard {
         id: mask
+        customColorbg: customColorCard
+        customRadius: customRadiusCard
+        customOpacity: customOpacityCard
+        isCustom: customCard
         isMask: true
         height:  parent.height
         width: parent.width

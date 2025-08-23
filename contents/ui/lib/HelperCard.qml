@@ -1,10 +1,16 @@
 import QtQuick 2.15
+import Qt5Compat.GraphicalEffects
 import org.kde.ksvg 1.0 as KSvg
+import QtQuick.Effects
 
 Item {
+
+    id: card
+
     property bool isShadow: false
     property bool isMask: false
     property bool colorizer: false
+    property bool isCustom: true
 
     property int shadowHintLeftWidth: shadowHintLeftMargin.width
     property int shadowHintTopHeight: shadowHintTopMargin.height
@@ -22,6 +28,10 @@ Item {
     property var namesItemsSvg: ["topleft", "top", "topright",
     "left", "center", "right",
     "bottomleft", "bottom", "bottomright"]
+
+    property color customColorbg: "white"
+    property int customOpacity: 30
+    property int customRadius: 30
 
     KSvg.SvgItem {
         id: shadowHintLeftMargin
@@ -60,6 +70,74 @@ Item {
         visible: false
     }
 
+    Loader {
+        anchors.fill: parent
+        sourceComponent: isCustom ? customRect : undefined
+    }
+
+    Component {
+        id: customRect
+        Item {
+            anchors.fill: parent
+            Item {
+                anchors.fill: parent
+                anchors.margins: - 6
+                layer.enabled: true
+                opacity:  0.1
+                // Rectángulo invisible: solo define la forma de la sombra
+                Rectangle {
+                    id: shadowWidget
+                    anchors.fill: parent
+                    anchors.margins: 6
+                    color: customColorbg
+                    visible: false    // 👈 nunca se dibuja
+                    radius: customRadius
+                }
+
+                // La sombra se dibuja en base al shadowWidget invisible
+                DropShadow {
+                    anchors.fill: shadowWidget
+                    source: shadowWidget
+                    transparentBorder: true
+                    horizontalOffset: 0
+                    verticalOffset: 1
+                    radius: 12
+                    samples: 25
+                    color: "black"
+                }
+
+            }
+            Rectangle {
+                id: bgColor
+                anchors.fill: parent
+                color:  customColorbg
+                opacity: customOpacity/100
+                radius: customRadius
+            }
+            Rectangle {
+                id: balckBorder
+                anchors.fill: parent
+                color: "transparent"
+                border.color: "black"
+                border.width: 1
+                opacity: 0.1
+                radius: customRadius
+            }
+            Rectangle {
+                id: lightBorder
+                width: parent.width -2
+                height: parent.height -2
+                anchors.centerIn: parent
+                color: "transparent"
+                border.color: "white"
+                border.width: 1
+                opacity: 0.1
+                radius: customRadius
+            }
+        }
+    }
+
+
     Flow {
         width: parent.width + excessWidth
         height: parent.height + excessHeight
@@ -67,7 +145,7 @@ Item {
         anchors.leftMargin: isShadow ? -marginX : 0
         anchors.top: parent.top
         anchors.topMargin: isShadow ? -marginY : 0
-        visible: true
+        visible: !isCustom
 
         Repeater {
             model: namesItemsSvg
