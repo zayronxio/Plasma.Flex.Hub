@@ -4,6 +4,7 @@ import Qt.labs.platform
 import QtQuick.Layouts 1.11
 import org.kde.kirigami as Kirigami
 import org.kde.plasma.plasma5support as P5Support
+import org.kde.kquickcontrols as KQControls
 //import org.kde.plasma.core 2.0 as PlasmaCore
 
 Item {
@@ -49,6 +50,10 @@ Item {
     property alias cfg_colorCards: customColor.customColorValue
     property alias cfg_coverByNetwork: downloadMissingCovers.checked
 
+    property alias cfg_usePlasmaDesing: usePlasmaDesing.checked
+    property alias cfg_customCardColor: customCardColor.color
+    property alias cfg_opacityCardCustom: sliderOpacityCardCustom.value
+    property alias cfg_radiusCardCustom: sliderRadiusCardCustom.value
 
     ListModel {
         id: listModel
@@ -113,7 +118,6 @@ Item {
         }
     }
 
-
     GridLayout {
         id: fist
         width: parent.width
@@ -163,13 +167,66 @@ Item {
         }
         Label {
         }
+        Label {
+        }Label {
+        }
         CheckBox {
-            id: downloadMissingCovers
+            id: usePlasmaDesing
             anchors.left: left.right
             width: root.width/2
-            text: i18n("Download missing album covers")
+            text: i18n("Use Plasma Theme")
         }
         Kirigami.Heading {
+            visible: !usePlasmaDesing.checked
+            text: i18n("Color of Cards and buttons:")
+            Layout.minimumWidth: root.width/2
+            horizontalAlignment: Label.AlignRight
+            level: 5
+        }
+        KQControls.ColorButton {
+            id: customCardColor
+            visible: !usePlasmaDesing.checked
+            Kirigami.FormData.label: i18n('Color:')
+            showAlphaChannel: true
+        }
+        Kirigami.Heading {
+            visible: !usePlasmaDesing.checked
+            text: i18n("Opacity of Cards and buttons:")
+            Layout.minimumWidth: root.width/2
+            horizontalAlignment: Label.AlignRight
+            level: 5
+        }
+        Slider {
+            id: sliderOpacityCardCustom
+            visible: !usePlasmaDesing.checked
+            width: parent.width/4
+            height: 24
+            from: 1
+            to: 100
+            value: opacityCardCustom
+            snapMode: Slider.SnapAlways
+        }
+        Kirigami.Heading {
+            visible: !usePlasmaDesing.checked
+            text: i18n("Radius of Cards and buttons:")
+            Layout.minimumWidth: root.width/2
+            horizontalAlignment: Label.AlignRight
+            level: 5
+        }
+        Slider {
+            visible: !usePlasmaDesing.checked
+            id: sliderRadiusCardCustom
+            width: parent.width/4
+            height: 32
+            from: 1
+            value: radiusCardCustom
+            to: Kirigami.Units.gridUnit * 2
+            snapMode: Slider.SnapAlways
+            onMoved: {
+            }
+        }
+        Kirigami.Heading {
+            visible: usePlasmaDesing.checked
             id: txtShadowOpacity
             text: i18n("Shadow Opacity:")
             Layout.minimumWidth: root.width/2
@@ -179,8 +236,9 @@ Item {
 
         Slider {
             id: sliderShadowOpacity
+            visible: usePlasmaDesing.checked
             width: parent.width/4
-            height: 24
+            height: 32
             //anchors.verticalCenter: parent.verticalCenter
             anchors.left: txtShadowOpacity.right
             //anchors.verticalCenter: iconBrightness.verticalCenter
@@ -193,6 +251,20 @@ Item {
                 console.log(value/10, cfg_shadowOpacity)
             }
         }
+        Label {
+        }Label {
+        }
+        Label {
+
+        }
+
+        CheckBox {
+            id: downloadMissingCovers
+            anchors.left: left.right
+            width: root.width/2
+            text: i18n("Download missing album covers")
+        }
+
         Label {
             id: left
             width: root.width/2
