@@ -40,7 +40,5 @@ PlasmoidItem {
     }
     fullRepresentation: FullRepresentation {
     }
-
-
 }
 
