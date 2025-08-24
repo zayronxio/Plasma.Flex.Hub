@@ -57,6 +57,13 @@ Item {
             id: vol
         }
 
+        Lib.HelperCard {
+            id: mask
+            isMask: true
+            anchors.fill: parent
+            visible: false
+            customRadius: Plasmoid.configuration.radiusCardCustom
+        }
         //property int value: vol.value/100 // Valor inicial (50%)
 
         Item {
@@ -130,7 +137,7 @@ Item {
             color: "transparent"
             layer.enabled: true
             layer.effect: OpacityMask {
-                maskSource: maskSvg2
+                maskSource: Plasmoid.configuration.usePlasmaDesing ? maskSvg2 : mask
             }
 
 
@@ -139,7 +146,7 @@ Item {
                 id: progress
                 width: parent.width
                 height: parent.height * control.valueSlider/100
-                color: Kirigami.Theme.textColor
+                color: Kirigami.Theme.highlightColor //Kirigami.Theme.textColor
                 anchors.bottom: parent.bottom
             }
 

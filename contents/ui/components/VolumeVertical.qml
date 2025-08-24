@@ -99,7 +99,7 @@ Item {
             color: "transparent"
             layer.enabled: true
             layer.effect: OpacityMask {
-                maskSource: mask
+                maskSource: Plasmoid.configuration.usePlasmaDesing ? maskSvg2 : mask
             }
 
 

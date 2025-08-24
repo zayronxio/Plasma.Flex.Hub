@@ -2,6 +2,7 @@ import QtQuick
 import "../js/funcs.js" as Funcs
 import "../lib" as Lib
 import org.kde.kirigami as Kirigami
+import org.kde.plasma.plasmoid
 import org.kde.plasma.private.battery
 import org.kde.ksvg 1.0 as KSvg
 import Qt5Compat.GraphicalEffects
@@ -57,6 +58,14 @@ Item {
     Lib.Card {
         width: parent.width
         height: parent.height
+
+        Lib.HelperCard {
+            id: mask
+            isMask: true
+            anchors.fill: parent
+            visible: false
+            customRadius: Plasmoid.configuration.radiusCardCustom
+        }
 
         Item {
             id: maskSvg2
@@ -129,7 +138,7 @@ Item {
             color: "transparent"
             layer.enabled: true
             layer.effect: OpacityMask {
-                maskSource: maskSvg2
+                maskSource: Plasmoid.configuration.usePlasmaDesing ? maskSvg2 : mask
             }
 
 
@@ -138,7 +147,7 @@ Item {
                 id: progress
                 width: parent.width
                 height: parent.height * percent/100
-                color: Kirigami.Theme.textColor
+                color: Kirigami.Theme.highlightColor //Kirigami.Theme.textColor
                 anchors.bottom: parent.bottom
             }
 
