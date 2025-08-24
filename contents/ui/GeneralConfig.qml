@@ -63,6 +63,7 @@ Item {
     property alias cfg_sizeGeneralIcons: sizeIcons.value
     property alias cfg_sizeMarginlIcons: sizeIcons.margin
     property alias cfg_labelsToggles: txtMiniButtons.checked
+     property alias cfg_usePlasmaColor: usePlasmaColor.checked
     ListModel {
         id: listModel
     }
@@ -184,16 +185,28 @@ Item {
             width: root.width/2
             text: i18n("Use Plasma Theme")
         }
+        Label {
+            visible: !usePlasmaDesing.checked
+        }
+        CheckBox {
+            id: usePlasmaColor
+            anchors.left: left.right
+            visible: !usePlasmaDesing.checked
+            width: root.width/2
+            text: i18n("Use color of Plasma Theme")
+        }
         Kirigami.Heading {
             visible: !usePlasmaDesing.checked
             text: i18n("Color of Cards and buttons:")
             Layout.minimumWidth: root.width/2
+            enabled: !usePlasmaColor.checked
             horizontalAlignment: Label.AlignRight
             level: 5
         }
         KQControls.ColorButton {
             id: customCardColor
             visible: !usePlasmaDesing.checked
+            enabled: !usePlasmaColor.checked
             Kirigami.FormData.label: i18n('Color:')
             showAlphaChannel: true
         }

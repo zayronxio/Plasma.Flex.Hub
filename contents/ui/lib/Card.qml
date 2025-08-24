@@ -5,6 +5,7 @@
 import QtQuick
 import Qt5Compat.GraphicalEffects
 import org.kde.plasma.plasmoid 2.0
+import org.kde.kirigami as Kirigami
 
 Item {
     id: root
@@ -19,7 +20,7 @@ Item {
     property real backgroundColorOpacity: 0.7
 
     property bool customCard: !Plasmoid.configuration.usePlasmaDesing
-    property color customColorCard: Plasmoid.configuration.customCardColor
+    property color customColorCard: Plasmoid.configuration.usePlasmaColor ? Kirigami.Theme.backgroundColor : Plasmoid.configuration.customCardColor
     property int customRadiusCard: Plasmoid.configuration.radiusCardCustom
     property int customOpacityCard: Plasmoid.configuration.opacityCardCustom
 

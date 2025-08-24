@@ -131,5 +131,8 @@
     <entry name="labelsToggles" type="bool">
       <default>true</default>
     </entry>
+    <entry name="usePlasmaColor" type="bool">
+      <default>true</default>
+    </entry>
   </group>
 </kcfg>}
