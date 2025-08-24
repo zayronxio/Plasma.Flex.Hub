@@ -1,165 +1,165 @@
-# Translation of plasma flex hub in Spanish
+# Translation of plasma flex hub into Chinese (Simplified)
 # Copyright (C) 2025
 # This file is distributed under the same license as the plasma flex hub package.
-# Adolfo <adolfo@librepixels.com>, 2025.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: plasma flex hub\n"
 "Report-Msgid-Bugs-To: https://github.com/zayronxio/Plasma.Flex.Hub/\n"
 "POT-Creation-Date: 2025-06-01 16:59-0300\n"
-"PO-Revision-Date: 2025-05-31 00:00+0000\n"
-"Last-Translator: Adolfo <adolfo@librepixels.com>\n"
-"Language-Team: Spanish <es@li.org>\n"
-"Language: es\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: Chinese <LL@li.org>\n"
+"Language: zh_CN\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
 #: ../contents/ui/TextConstants.qml
 msgid "Activate"
-msgstr "Activar"
+msgstr "激活"
 
 #: ../contents/ui/TextConstants.qml
 msgid "Save Theme"
-msgstr "Guardar tema"
+msgstr "保存主题"
 
 #: ../contents/ui/TextConstants.qml
 msgid "Network Usage"
-msgstr "Uso de la red"
+msgstr "网络使用情况"
 
 #: ../contents/ui/TextConstants.qml
 msgid "Ram Usage"
-msgstr "Uso de RAM"
+msgstr "内存使用情况"
 
 #: ../contents/ui/TextConstants.qml
 msgid "Network"
-msgstr "Red"
+msgstr "网络"
 
 #: ../contents/ui/TextConstants.qml
 msgid "Name: "
-msgstr "Nombre: "
+msgstr "名称："
 
 #: ../contents/ui/TextConstants.qml
 msgid "Force Quit"
-msgstr "Forzar salida"
+msgstr "强制退出"
 
 #: ../contents/ui/TextConstants.qml
 msgid "Quit"
-msgstr "Salir"
+msgstr "退出"
 
 #: ../contents/ui/TextConstants.qml
 msgid "Cancel"
-msgstr "Cancelar"
+msgstr "取消"
 
 #: ../contents/ui/TextConstants.qml
 msgid "Network Connections"
-msgstr "Conexiones de red"
+msgstr "网络连接"
 
 #: ../contents/ui/TextConstants.qml
 msgid "Pair Device…"
-msgstr "Emparejar dispositivo…"
+msgstr "配对设备…"
 
 #: ../contents/ui/TextConstants.qml
 msgid "Bluetooth"
-msgstr "Bluetooth"
+msgstr "蓝牙"
 
 #: ../contents/ui/TextConstants.qml
 msgid "Browse Files"
-msgstr "Explorar archivos"
+msgstr "浏览文件"
 
 #: ../contents/ui/TextConstants.qml
 msgid "Send File"
-msgstr "Enviar archivo"
+msgstr "发送文件"
 
 #: ../contents/ui/TextConstants.qml
 msgid "Copy"
-msgstr "Copiar"
+msgstr "复制"
 
 #: ../contents/ui/TextConstants.qml
 msgid "Grid width"
-msgstr "Ancho de la cuadrícula"
+msgstr "网格宽度"
 
 #: ../contents/ui/TextConstants.qml
 msgid "Grid Height"
-msgstr "Altura de la cuadrícula"
+msgstr "网格高度"
 
 #: ../contents/ui/TextConstants.qml
 msgid "Download missing album covers"
-msgstr "Descargar portadas de álbumes faltantes"
+msgstr "下载缺失的专辑封面"
 
 #: ../contents/ui/TextConstants.qml
 msgid "Shadow Opacity"
-msgstr "Opacidad de sombra"
+msgstr "阴影不透明度"
 
 #: ../contents/ui/TextConstants.qml
 msgid "controls Color"
-msgstr "Color de los controles"
+msgstr "控件颜色"
 
 #: ../contents/ui/TextConstants.qml
 msgid "It is not recommended to use Custom Color, in favor of the overall design."
-msgstr "No se recomienda usar un color personalizado, para mantener el diseño general."
+msgstr "不建议使用自定义颜色，以保持整体设计一致性。"
 
 #: ../contents/ui/TextConstants.qml
 msgid "Custom Color"
-msgstr "Color personalizado"
+msgstr "自定义颜色"
 
 #: ../contents/ui/TextConstants.qml
 msgid "Seleccted Global Theme's"
-msgstr "Tema global seleccionado"
+msgstr "选择的全局主题"
 
 #: ../contents/ui/TextConstants.qml
 msgid "Dark"
-msgstr "Oscuro"
+msgstr "深色"
 
 #: ../contents/ui/TextConstants.qml
 msgid "Light"
-msgstr "Claro"
+msgstr "浅色"
 
 #: ../contents/ui/TextConstants.qml
 msgid "My sensor isn't listed"
-msgstr "Mi sensor no está en la lista"
+msgstr "我的传感器未显示"
 
 #: ../contents/ui/TextConstants.qml
 msgid "System indicator"
-msgstr "Indicador del sistema"
+msgstr "系统指示器"
 
 #: ../contents/ui/TextConstants.qml
 msgid "Temperature"
-msgstr "Temperatura"
+msgstr "温度"
 
 #: ../contents/ui/TextConstants.qml
 msgid "Usage percentage"
-msgstr "Porcentaje de uso"
+msgstr "使用百分比"
 
 #: ../contents/ui/TextConstants.qml
 msgid "Save"
-msgstr "Guardar"
+msgstr "保存"
 
 #: ../contents/ui/TextConstants.qml
 msgid "Volume"
-msgstr "Volumen"
+msgstr "音量"
 
 #: ../contents/ui/TextConstants.qml
 msgid "Brightness"
-msgstr "Brillo"
+msgstr "亮度"
 
 #: ../contents/ui/TextConstants.qml
 msgid "DND"
-msgstr "DND"
+msgstr "勿扰"
 
 #: ../contents/ui/TextConstants.qml
 msgid "Do not disturb"
-msgstr "No molestar"
+msgstr "勿扰模式"
 
 #: ../contents/ui/TextConstants.qml
 msgid "Battery"
-msgstr "Batería"
+msgstr "电池"
 
 #: ../contents/ui/TextConstants.qml
 msgid "Screenshot"
-msgstr "Captura de pantalla"
+msgstr "截屏"
 
 #: ../contents/ui/TextConstants.qml
 msgid "Edit Controls"
-msgstr "Editar Controles"
+msgstr "编辑控件"

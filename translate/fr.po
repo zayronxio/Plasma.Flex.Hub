@@ -1,64 +1,64 @@
-# Translation of plasma flex hub in Spanish
+# Translation of plasma flex hub into French
 # Copyright (C) 2025
 # This file is distributed under the same license as the plasma flex hub package.
-# Adolfo <adolfo@librepixels.com>, 2025.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2025.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: plasma flex hub\n"
 "Report-Msgid-Bugs-To: https://github.com/zayronxio/Plasma.Flex.Hub/\n"
 "POT-Creation-Date: 2025-06-01 16:59-0300\n"
-"PO-Revision-Date: 2025-05-31 00:00+0000\n"
-"Last-Translator: Adolfo <adolfo@librepixels.com>\n"
-"Language-Team: Spanish <es@li.org>\n"
-"Language: es\n"
+"PO-Revision-Date: 2025-07-20 00:00+0200\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: French <fr@li.org>\n"
+"Language: fr\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
 #: ../contents/ui/TextConstants.qml
 msgid "Activate"
-msgstr "Activar"
+msgstr "Activer"
 
 #: ../contents/ui/TextConstants.qml
 msgid "Save Theme"
-msgstr "Guardar tema"
+msgstr "Enregistrer le thème"
 
 #: ../contents/ui/TextConstants.qml
 msgid "Network Usage"
-msgstr "Uso de la red"
+msgstr "Utilisation du réseau"
 
 #: ../contents/ui/TextConstants.qml
 msgid "Ram Usage"
-msgstr "Uso de RAM"
+msgstr "Utilisation de la RAM"
 
 #: ../contents/ui/TextConstants.qml
 msgid "Network"
-msgstr "Red"
+msgstr "Réseau"
 
 #: ../contents/ui/TextConstants.qml
 msgid "Name: "
-msgstr "Nombre: "
+msgstr "Nom : "
 
 #: ../contents/ui/TextConstants.qml
 msgid "Force Quit"
-msgstr "Forzar salida"
+msgstr "Forcer à quitter"
 
 #: ../contents/ui/TextConstants.qml
 msgid "Quit"
-msgstr "Salir"
+msgstr "Quitter"
 
 #: ../contents/ui/TextConstants.qml
 msgid "Cancel"
-msgstr "Cancelar"
+msgstr "Annuler"
 
 #: ../contents/ui/TextConstants.qml
 msgid "Network Connections"
-msgstr "Conexiones de red"
+msgstr "Connexions réseau"
 
 #: ../contents/ui/TextConstants.qml
 msgid "Pair Device…"
-msgstr "Emparejar dispositivo…"
+msgstr "Appairer un appareil…"
 
 #: ../contents/ui/TextConstants.qml
 msgid "Bluetooth"
@@ -66,100 +66,100 @@ msgstr "Bluetooth"
 
 #: ../contents/ui/TextConstants.qml
 msgid "Browse Files"
-msgstr "Explorar archivos"
+msgstr "Parcourir les fichiers"
 
 #: ../contents/ui/TextConstants.qml
 msgid "Send File"
-msgstr "Enviar archivo"
+msgstr "Envoyer un fichier"
 
 #: ../contents/ui/TextConstants.qml
 msgid "Copy"
-msgstr "Copiar"
+msgstr "Copier"
 
 #: ../contents/ui/TextConstants.qml
 msgid "Grid width"
-msgstr "Ancho de la cuadrícula"
+msgstr "Largeur de la grille"
 
 #: ../contents/ui/TextConstants.qml
 msgid "Grid Height"
-msgstr "Altura de la cuadrícula"
+msgstr "Hauteur de la grille"
 
 #: ../contents/ui/TextConstants.qml
 msgid "Download missing album covers"
-msgstr "Descargar portadas de álbumes faltantes"
+msgstr "Télécharger les pochettes d’album manquantes"
 
 #: ../contents/ui/TextConstants.qml
 msgid "Shadow Opacity"
-msgstr "Opacidad de sombra"
+msgstr "Opacité de l’ombre"
 
 #: ../contents/ui/TextConstants.qml
 msgid "controls Color"
-msgstr "Color de los controles"
+msgstr "Couleur des contrôles"
 
 #: ../contents/ui/TextConstants.qml
 msgid "It is not recommended to use Custom Color, in favor of the overall design."
-msgstr "No se recomienda usar un color personalizado, para mantener el diseño general."
+msgstr "Il n’est pas recommandé d’utiliser une couleur personnalisée, afin de préserver le design global."
 
 #: ../contents/ui/TextConstants.qml
 msgid "Custom Color"
-msgstr "Color personalizado"
+msgstr "Couleur personnalisée"
 
 #: ../contents/ui/TextConstants.qml
 msgid "Seleccted Global Theme's"
-msgstr "Tema global seleccionado"
+msgstr "Thèmes globaux sélectionnés"
 
 #: ../contents/ui/TextConstants.qml
 msgid "Dark"
-msgstr "Oscuro"
+msgstr "Sombre"
 
 #: ../contents/ui/TextConstants.qml
 msgid "Light"
-msgstr "Claro"
+msgstr "Clair"
 
 #: ../contents/ui/TextConstants.qml
 msgid "My sensor isn't listed"
-msgstr "Mi sensor no está en la lista"
+msgstr "Mon capteur ne figure pas dans la liste"
 
 #: ../contents/ui/TextConstants.qml
 msgid "System indicator"
-msgstr "Indicador del sistema"
+msgstr "Indicateur système"
 
 #: ../contents/ui/TextConstants.qml
 msgid "Temperature"
-msgstr "Temperatura"
+msgstr "Température"
 
 #: ../contents/ui/TextConstants.qml
 msgid "Usage percentage"
-msgstr "Porcentaje de uso"
+msgstr "Pourcentage d’utilisation"
 
 #: ../contents/ui/TextConstants.qml
 msgid "Save"
-msgstr "Guardar"
+msgstr "Enregistrer"
 
 #: ../contents/ui/TextConstants.qml
 msgid "Volume"
-msgstr "Volumen"
+msgstr "Volume"
 
 #: ../contents/ui/TextConstants.qml
 msgid "Brightness"
-msgstr "Brillo"
+msgstr "Luminosité"
 
 #: ../contents/ui/TextConstants.qml
 msgid "DND"
-msgstr "DND"
+msgstr "NPD"
 
 #: ../contents/ui/TextConstants.qml
 msgid "Do not disturb"
-msgstr "No molestar"
+msgstr "Ne pas déranger"
 
 #: ../contents/ui/TextConstants.qml
 msgid "Battery"
-msgstr "Batería"
+msgstr "Batterie"
 
 #: ../contents/ui/TextConstants.qml
 msgid "Screenshot"
-msgstr "Captura de pantalla"
+msgstr "Capture d’écran"
 
 #: ../contents/ui/TextConstants.qml
 msgid "Edit Controls"
-msgstr "Editar Controles"
+msgstr "Modifier les contrôles"

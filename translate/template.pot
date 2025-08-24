@@ -150,10 +150,18 @@ msgid "DND"
 msgstr ""
 
 #: ../contents/ui/TextConstants.qml
+msgid "Do not disturb"
+msgstr ""
+
+#: ../contents/ui/TextConstants.qml
 msgid "Battery"
 msgstr ""
 
 #: ../contents/ui/TextConstants.qml
 msgid "Screenshot"
+msgstr ""
+
+#: ../contents/ui/TextConstants.qml
+msgid "Edit Controls"
 msgstr ""
 

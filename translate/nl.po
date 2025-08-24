@@ -148,6 +148,10 @@ msgstr "Helderheid"
 
 #: ../contents/ui/TextConstants.qml
 msgid "DND"
+msgstr "NS"
+
+#: ../contents/ui/TextConstants.qml
+msgid "Do not disturb"
 msgstr "Niet storen"
 
 #: ../contents/ui/TextConstants.qml
@@ -157,3 +161,7 @@ msgstr "Accu"
 #: ../contents/ui/TextConstants.qml
 msgid "Screenshot"
 msgstr "Schermfoto"
+
+#: ../contents/ui/TextConstants.qml
+msgid "Edit Controls"
+msgstr "Bewerken"
