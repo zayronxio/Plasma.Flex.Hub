@@ -103,6 +103,9 @@ Item {
         activeSub: true
         smallMode: false
         isMaskIcon: true
+        anchorsDinamic: "center"
+        customMarginTop: 0
+        customMarginBottom: 0
         title: i18n("CPU Usage")
         sub: value
         itemIcon: Qt.resolvedUrl("../icons/CPU.svg")

@@ -44,8 +44,11 @@ Item {
         activeSub: true
         smallMode: false
         isMaskIcon: true
+        anchorsDinamic: "top"
+        customMarginTop: (heightFactor - sizeIcon - marginIcons)/2
         title: i18n("Ram Usage")
         sub: Math.round(valueUsage*100) + "%"
         itemIcon: Qt.resolvedUrl("../icons/ram")
     }
+
 }

@@ -435,7 +435,6 @@ Item {
                     x: parseInt(sideBar.desingModel.get(sideBar.desingModel.count-1).x),
                     y: parseInt(sideBar.desingModel.get(sideBar.desingModel.count-1).y)
                 });
-                console.log("otros de las pruebas", sideBar.desingModel.get(sideBar.desingModel.count-1).isCustomControl)
                 // logic to add the new elements to the plasmoid configuration, used for the first load
                 if (varCustomControl) {
                     listCustomControls.push(sideBar.desingModel.get(sideBar.desingModel.count-1).elementId)

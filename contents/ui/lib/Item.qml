@@ -16,9 +16,13 @@ Item {
     property string title: ""
     property string itemIcon: ""
     property var onIconClicked // Propiedad para definir la función desde el exterior
-    property string anchorsDinamic: "center"
+    property string anchorsDinamic: "center" // center or top
     property int sizeIcon: Plasmoid.configuration.sizeGeneralIcons
     property int marginIcons: Plasmoid.configuration.sizeMarginlIcons
+    // property temp, It is used to set the standard width of an element and to be able to set the margins more correctly.
+    property int customMarginTop: 5
+    property int customMarginBottom: 5
+    property int bubbleDiameter: circle.width
 
     signal click
 
@@ -31,19 +35,20 @@ Item {
     }
 
     Column {
-        width: parent.width - (parent.height - (sizeIcon + marginIcons))
+        width: parent.width - (heightFactor - (sizeIcon + marginIcons))
         height: parent.height
-        spacing: 8
-        anchors.centerIn: parent
+        spacing: 0
+        anchors.horizontalCenter: parent.horizontalCenter
+
 
         Row {
             width: parent.width
-            height: activeTitle && smallMode ? parent.height : parent.height/2
+            height: bubbleDiameter //activeTitle && smallMode ? parent.height : parent.height/2
             spacing: 5
             anchors.verticalCenter: anchorsDinamic === "center" ? parent.verticalCenter : undefined
-            anchors.top: anchorsDinamic === "top" ? parent.top : undefined
-            anchors.topMargin: 5
-            anchors.bottomMargin: 5
+            anchors.top: parent.top //anchorsDinamic === "top" ? parent.top : undefined
+            anchors.topMargin: anchorsDinamic === "top" ? customMarginTop : undefined
+            anchors.bottomMargin: anchorsDinamic === "bottom" ? customMarginBottom : undefined
             anchors.bottom: anchorsDinamic === "bottom" ? parent.bottom : undefined
 
 

@@ -10,6 +10,8 @@ Item {
         activeSub: true
         smallMode: false
         isMaskIcon: true
+        anchorsDinamic: "bottom"
+        customMarginBottom: ((heightFactor - sizeIcon - marginIcons)/2) + spacing/2
         title: i18n("Settings")
         sub: i18n("System Settings")
         itemIcon: "configure"

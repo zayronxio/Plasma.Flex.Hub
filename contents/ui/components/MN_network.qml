@@ -68,6 +68,8 @@ Item {
         height: parent.height
         activeSub: true
         smallMode: false
+        anchorsDinamic: "bottom"
+        customMarginBottom: ((heightFactor - sizeIcon - marginIcons)/2) + spacing/2
         title: textConstants.usageNetwork
         isMaskIcon: true
         sub: {
