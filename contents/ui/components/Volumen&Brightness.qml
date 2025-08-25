@@ -54,7 +54,7 @@ Item {
         }
 
         Column {
-            width:  parent.width - 20
+            width:  parent.width - generalMargin - (miniIconsSize/2)
             height: parent.height - 20
             anchors.centerIn: parent
             spacing: 10
@@ -64,7 +64,7 @@ Item {
 
                 Kirigami.Icon {
                     id: iconBrightness
-                    width: 22//Kirigami.Units.iconSizes.mediumSmall
+                    width: miniIconsSize//Kirigami.Units.iconSizes.mediumSmall
                     height: width
                     source: "brightness-high-symbolic"
                 }

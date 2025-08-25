@@ -77,6 +77,9 @@ Item {
     property int exedent: sideBarEnabled ? 2 : 0
     property int heightF: (rows + exedent) * factorY + footer_height
 
+    property int generalMargin: heightFactor/2
+    property int miniIconsSize: 22
+
     property var namesCustomControls: Plasmoid.configuration.customControlNames
 
     property string nameTh: Plasmoid.configuration.selected_theme

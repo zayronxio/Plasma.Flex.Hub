@@ -51,7 +51,7 @@ Item {
 
 
         Column {
-            width:  parent.width - 20
+            width:  parent.width - generalMargin - (miniIconsSize/2)
             height: parent.height - 20
             anchors.centerIn: parent
             spacing: 10
