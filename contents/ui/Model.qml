@@ -29,5 +29,6 @@ ListModel {
     ListElement { elementId: "item26"; name: "Caffeine1x1"; w: 1; h: 1; source: "components/Caffeine.qml"; isCustomControl: false }
     ListElement { elementId: "item27"; name: "Bluetooth1x1"; w: 1; h: 1; source: "components/Bluetooth1x1.qml"; isCustomControl: false }
     ListElement { elementId: "item28"; name: "ForzeQuick-alt"; w: 1; h: 1; source: "components/ForzeQuick-alt.qml"; isCustomControl: false }
+    ListElement { elementId: "item28"; name: "ForzeQuick-alt"; w: 2; h: 1; source: "components/Battery1x2.qml"; isCustomControl: false }
 }
 
