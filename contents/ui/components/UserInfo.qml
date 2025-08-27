@@ -15,10 +15,9 @@ QtObject {
         return string.charAt(0).toUpperCase() + string.slice(1);
     }
 
-
+    property string distroName: KCoreAddons.KOSRelease.prettyName
+    property string fullName: kuser.fullName
     property string name: i18n("Hi") + " " + capitalizeFirstLetter(kuser.fullName)
     property string urlAvatar: kuser.faceIconUrl
-
-
 
 }

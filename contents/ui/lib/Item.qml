@@ -1,5 +1,6 @@
 import QtQuick
 import org.kde.plasma.plasmoid 2.0
+import Qt5Compat.GraphicalEffects
 import org.kde.kirigami as Kirigami
 
 Item {
@@ -13,6 +14,7 @@ Item {
     property color backgroundColor: Kirigami.Theme.highlightColor
     property color iconColor: isColorLight(backgroundColor) ? "white" : "black"
     property bool isMaskIcon: false
+    property bool circleMask: false
     property string title: ""
     property string itemIcon: ""
     property var onIconClicked // Propiedad para definir la función desde el exterior
@@ -62,6 +64,13 @@ Item {
                 anchors.horizontalCenter: smallMode ? parent.horizontalCenter : undefined
                 anchors.verticalCenter: parent.verticalCenter
 
+                Rectangle {
+                    id: mask
+                    visible: false
+                    width: sizeIcon
+                    height: sizeIcon
+                    radius: height/2
+                }
 
                 Kirigami.Icon {
                     id: icon
@@ -72,6 +81,10 @@ Item {
                     color: isMaskIcon ? iconColor : undefined
                     source: itemIcon
                     anchors.centerIn: parent
+                    layer.enabled: circleMask
+                    layer.effect: OpacityMask {
+                        maskSource: mask
+                    }
                 }
                 Kirigami.Heading {
                     text: textValue
