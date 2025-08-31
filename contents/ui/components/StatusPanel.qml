@@ -25,8 +25,7 @@ Item {
             height: Plasmoid.configuration.sizeGeneralIcons + Plasmoid.configuration.sizeMarginlIcons
             width: height
             radius: height/2
-            color: Kirigami.Theme.highlightColor
-            visible: !us.urlAvatar
+            visible: false
         }
         Image {
             id: avatar
@@ -40,16 +39,30 @@ Item {
             layer.effect: OpacityMask {
                 maskSource: maskavatar
             }
-            Text {
-                visible: !us.urlAvatar
-                font.pixelSize: parent.height/2
-                text: us.fullName
-                color: Kirigami.Theme.highlightTextColor
-                horizontalAlignment: Text.AlignHCenter
-                verticalAlignment: Text.AlignVCenter
-                font.capitalization: Font.Capitalize
 
-            }
+        }
+        Rectangle {
+            id: background
+            width: (Plasmoid.configuration.sizeGeneralIcons + Plasmoid.configuration.sizeMarginlIcons)
+            height: width
+            color: Kirigami.Theme.highlightColor
+            radius: height/2
+            anchors.verticalCenter: parent.verticalCenter
+            anchors.left: parent.left
+            anchors.leftMargin: 10
+        }
+        Text {
+            visible: !us.urlAvatar
+            width: (Plasmoid.configuration.sizeGeneralIcons + Plasmoid.configuration.sizeMarginlIcons)
+            height: width
+            font.pixelSize: (Plasmoid.configuration.sizeGeneralIcons + Plasmoid.configuration.sizeMarginlIcons)/2
+            text: us.fullName[0]
+            anchors.centerIn: background
+            color: Kirigami.Theme.highlightTextColor
+            horizontalAlignment: Text.AlignHCenter
+            verticalAlignment: Text.AlignVCenter
+            font.capitalization: Font.Capitalize
+
         }
 
         Kirigami.Heading {
