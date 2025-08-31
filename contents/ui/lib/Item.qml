@@ -72,7 +72,7 @@ Item {
                     height: sizeIcon
                     text: textDisplayAs
                     font.pixelSize: sizeIcon/2
-                    color: Kirigami.Theme.highlightTextColor
+                    color: Kirigami.Theme.highlightedTextColor
                     horizontalAlignment: Text.AlignHCenter
                     verticalAlignment: Text.AlignVCenter
                     font.capitalization: Font.Capitalize

@@ -59,7 +59,7 @@ Item {
             font.pixelSize: (Plasmoid.configuration.sizeGeneralIcons + Plasmoid.configuration.sizeMarginlIcons)/2
             text: us.fullName[0]
             anchors.centerIn: background
-            color: Kirigami.Theme.highlightTextColor
+            color: Kirigami.Theme.highlightedTextColor
             horizontalAlignment: Text.AlignHCenter
             verticalAlignment: Text.AlignVCenter
             font.capitalization: Font.Capitalize

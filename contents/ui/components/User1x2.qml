@@ -24,7 +24,7 @@ Item {
             sizeIcon: 48
             marginIcons: 0
             circleMask: true
-            displayAs: !userInfo.hasAvatarImage
+            displayAs: !userInfo.urlAvatar
             textDisplayAs: userInfo.fullName[0]
             title: userInfo.fullName
             sub: userInfo.distroName
