@@ -43,6 +43,7 @@ Item {
         }
         Rectangle {
             id: background
+            visible: !us.urlAvatar
             width: (Plasmoid.configuration.sizeGeneralIcons + Plasmoid.configuration.sizeMarginlIcons)
             height: width
             color: Kirigami.Theme.highlightColor
