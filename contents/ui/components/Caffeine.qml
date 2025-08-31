@@ -42,7 +42,7 @@ Item {
         onDataChanged: {
             const value = data(index(0, 0), Sensors.SensorDataModel.Value);
             if (value !== undefined && value !== null) {
-                if (value.indexOf("6.3") >= 0) {
+                if (value.indexOf("6.3") >= 0 || value.indexOf("6.4") >= 0) {
                     code = inhibitionControlQml
                 } else {
                     code = powerManagementControlQml
