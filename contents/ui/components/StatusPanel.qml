@@ -1,6 +1,7 @@
 import QtQuick
 import "../lib" as Lib
 import Qt5Compat.GraphicalEffects
+import org.kde.plasma.plasmoid 2.0
 import org.kde.kirigami as Kirigami
 import org.kde.plasma.private.sessions as Sessions
 
@@ -21,15 +22,16 @@ Item {
 
         Rectangle {
             id: maskavatar
-            height: parent.height*.75
+            height: Plasmoid.configuration.sizeGeneralIcons + Plasmoid.configuration.sizeMarginlIcons
             width: height
             radius: height/2
-            visible: false
+            color: Kirigami.Theme.highlightColor
+            visible: !us.urlAvatar
         }
         Image {
             id: avatar
             source: us.urlAvatar
-            height: 48
+            height: Plasmoid.configuration.sizeGeneralIcons + Plasmoid.configuration.sizeMarginlIcons
             width: height
             anchors.verticalCenter: parent.verticalCenter
             anchors.left: parent.left
@@ -37,6 +39,16 @@ Item {
             layer.enabled: true
             layer.effect: OpacityMask {
                 maskSource: maskavatar
+            }
+            Text {
+                visible: !us.urlAvatar
+                font.pixelSize: parent.height/2
+                text: us.fullName
+                color: Kirigami.Theme.highlightTextColor
+                horizontalAlignment: Text.AlignHCenter
+                verticalAlignment: Text.AlignVCenter
+                font.capitalization: Font.Capitalize
+
             }
         }
 
@@ -59,14 +71,14 @@ Item {
             anchors.left: avatar.right
             anchors.verticalCenter: name.verticalCenter
             anchors.leftMargin: name.implicitWidth + 10
-                MouseArea {
-                    height: parent.height
-                    width: parent.width
-                    anchors.centerIn: parent
-                    onClicked: {
-                        sm.requestLogoutPrompt()
-                    }
+            MouseArea {
+                height: parent.height
+                width: parent.width
+                anchors.centerIn: parent
+                onClicked: {
+                    sm.requestLogoutPrompt()
                 }
+            }
         }
 
         Battery {
