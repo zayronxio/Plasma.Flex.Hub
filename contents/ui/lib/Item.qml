@@ -16,6 +16,8 @@ Item {
     property bool isMaskIcon: false
     property bool circleMask: false
     property string title: ""
+    property bool displayAs: false
+    property string textDisplayAs
     property string itemIcon: ""
     property var onIconClicked // Propiedad para definir la función desde el exterior
     property string anchorsDinamic: "center" // center or top
@@ -60,9 +62,21 @@ Item {
                 width: sizeIcon + marginIcons
                 height: sizeIcon + marginIcons
                 radius: height/2
-                color: bubble ? backgroundColor : "transparent"
+                color: bubble || displayAs ? backgroundColor : "transparent"
                 anchors.horizontalCenter: smallMode ? parent.horizontalCenter : undefined
                 anchors.verticalCenter: parent.verticalCenter
+
+                Text {
+                    visible: displayAs
+                    width: sizeIcon
+                    height: sizeIcon
+                    text: textDisplayAs
+                    font.pixelSize: sizeIcon/2
+                    color: Kirigami.Theme.highlightTextColor
+                    horizontalAlignment: Text.AlignHCenter
+                    verticalAlignment: Text.AlignVCenter
+                    font.capitalization: Font.Capitalize
+                }
 
                 Rectangle {
                     id: mask
