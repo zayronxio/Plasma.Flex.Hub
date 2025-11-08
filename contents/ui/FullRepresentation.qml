@@ -1,6 +1,6 @@
 /*
 SPDX-FileCopyrightText: zayronxio
-SPDX-License-Identifier: GPL-3.0-or-later
+SPDX-License-Identifier: 2025 GPL-3.0-or-later
 */
 import QtQuick
 import QtQuick.Layouts
@@ -323,7 +323,7 @@ Item {
 
         // Contenedor para la animación de opacidad
         opacity: 0 // Comienza invisible
-        Behavior on opacity { NumberAnimation { duration: 600 } } // Animación de opacidad (500 ms)
+        Behavior on opacity { NumberAnimation { duration: 600 } }
 
         onLoaded: {
             if (page !== "") {

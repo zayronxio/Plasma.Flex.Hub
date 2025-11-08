@@ -143,7 +143,7 @@ Item {
 
             ListView {
                 id: listView
-                height: 100
+                height: parent.height
                 width: parent.width
                 model: BluezQt.Manager.adapters.length > 0 && !BluezQt.Manager.bluetoothBlocked ? devicesModel : null
                 clip: true

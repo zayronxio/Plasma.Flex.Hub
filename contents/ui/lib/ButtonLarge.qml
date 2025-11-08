@@ -19,6 +19,7 @@ Item {
     property string anchorsDinamic: "center"
     property bool bashExe: false
     property string cmd
+    property int marginIcons: Plasmoid.configuration.sizeMarginlIcons
     property int sizeIcon: Plasmoid.configuration.sizeGeneralIcons
 
     signal click
@@ -37,10 +38,10 @@ Item {
     }
 
     Column {
-        width: parent.width - 10
+        width: parent.width -  (parent.height - (sizeIcon + marginIcons))
         height: parent.height
         spacing: 8
-        anchors.centerIn: parent
+        anchors.horizontalCenter: parent.horizontalCenter
 
         Row {
             width: parent.width
@@ -56,8 +57,8 @@ Item {
             //anchors.horizontalCenter: !smallMode ? parent.horizontalCenter : undefined
             Rectangle {
                 id: circle
-                width: 32
-                height: 32
+                width: marginIcons + sizeIcon
+                height: width
                 radius: height/2
                 color: bubble ? backgroundColor : "transparent"
                 anchors.horizontalCenter: smallMode ? parent.horizontalCenter : undefined

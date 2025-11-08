@@ -24,12 +24,14 @@ ListModel {
     ListElement { elementId: "item21"; name: "BrightnessVertical"; w: 1; h: 2; source: "components/BrightnessVertical.qml"; isCustomControl: false }
     ListElement { elementId: "item22"; name: "Battery"; w: 1; h: 1; source: "components/Battery1x1.qml"; isCustomControl: false }
     ListElement { elementId: "item23"; name: "Battery"; w: 2; h: 2; source: "components/Battery2x2.qml"; isCustomControl: false }
-    ListElement { elementId: "item24"; name: "ForceQuit"; w: 1; h: 1; source: "components/ToggleForceQuit.qml"; isCustomControl: false }
+    //ListElement { elementId: "item24"; name: "ForceQuit"; w: 1; h: 1; source: "components/ToggleForceQuit.qml"; isCustomControl: false }
     ListElement { elementId: "item25"; name: "Multimedia1x3"; w: 3; h: 1; source: "components/Multimedia1x3.qml"; isCustomControl: false }
     ListElement { elementId: "item26"; name: "Caffeine1x1"; w: 1; h: 1; source: "components/Caffeine.qml"; isCustomControl: false }
     ListElement { elementId: "item27"; name: "Bluetooth1x1"; w: 1; h: 1; source: "components/Bluetooth1x1.qml"; isCustomControl: false }
-    ListElement { elementId: "item28"; name: "ForzeQuick-alt"; w: 1; h: 1; source: "components/ForzeQuick-alt.qml"; isCustomControl: false }
-    ListElement { elementId: "item28"; name: "ForzeQuick-alt"; w: 2; h: 1; source: "components/Battery1x2.qml"; isCustomControl: false }
-    ListElement { elementId: "item28"; name: "ForzeQuick-alt"; w: 2; h: 1; source: "components/User1x2.qml"; isCustomControl: false }
+    //ListElement { elementId: "item28"; name: "ForzeQuick-alt"; w: 1; h: 1; source: "components/ForzeQuick-alt.qml"; isCustomControl: false }
+    ListElement { elementId: "item28"; name: "Battery1x2"; w: 2; h: 1; source: "components/Battery1x2.qml"; isCustomControl: false }
+    ListElement { elementId: "item28"; name: "User1x2"; w: 2; h: 1; source: "components/User1x2.qml"; isCustomControl: false }
+    //ListElement { elementId: "item28"; name: "ForzeQuick-alt"; w: 4; h: 2; source: "components/weather2X4.qml"; isCustomControl: false }
+    //ListElement { elementId: "item28"; name: "ForzeQuick-alt"; w: 2; h: 1; source: "components/weather1x2.qml"; isCustomControl: false }
 }
 

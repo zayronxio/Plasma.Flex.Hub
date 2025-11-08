@@ -69,11 +69,13 @@ Item {
         Kirigami.Heading {
             id: name
             //height: parent.height
+            width: panrent.width - avatar.width - 30
             anchors.left: avatar.right
             anchors.leftMargin: 10
             anchors.top: avatar.top
             verticalAlignment: Text.AlignVCenter
             font.weight: Font.DemiBold
+            elide: Text.ElideRight
             text: us.name
             level: 5
         }

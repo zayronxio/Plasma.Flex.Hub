@@ -346,6 +346,7 @@ Item {
         CheckBox {
             id: enabledCustomColor
             width: root.width/2
+            enabled: usePlasmaDesing.checked
             anchors.left: left.right
             text: i18n('Colorizer The Controls')
             Layout.columnSpan: 2

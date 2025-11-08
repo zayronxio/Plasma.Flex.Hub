@@ -16,7 +16,7 @@ QtObject {
     }
 
     property string distroName: KCoreAddons.KOSRelease.prettyName
-    property string fullName: kuser.fullName
+    property string fullName: capitalizeFirstLetter(kuser.fullName)
     property string name: i18n("Hi") + " " + capitalizeFirstLetter(kuser.fullName)
     property string urlAvatar: kuser.faceIconUrl
 

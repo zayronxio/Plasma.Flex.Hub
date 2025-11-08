@@ -2,7 +2,7 @@
 Name=Plasma Flex Hub
 
 Type=Service
-Icon=configure
+Icon=weather
 X-KDE-ServiceTypes=Plasma/Applet
 
 X-Plasma-API=declarativeappletscript
