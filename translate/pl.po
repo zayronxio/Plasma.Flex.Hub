@@ -464,7 +464,7 @@ msgstr "Niestandardowy kolor"
 
 #: ../contents/ui/TextConstants.qml
 msgid "My sensor isn't listed"
-msgstr "Mój sensor nie znajduje się na liście"
+msgstr "Mój czujnik nie znajduje się na liście"
 
 #: ../contents/ui/TextConstants.qml
 msgid "Volume"
