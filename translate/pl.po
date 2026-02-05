@@ -1,0 +1,483 @@
+# Translation of plasma flex hub in LANGUAGE
+# Copyright (C) 2025
+# This file is distributed under the same license as the plasma flex hub package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: plasma flex hub\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-02-05 14:51+0100\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: Daria Szatan <bla_ke@tuta.io>\n"
+"Language-Team: Polski <pl@li.org>\n"
+"Language: pl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: ../metadata.desktop
+msgid "Plasma Flex Hub"
+msgstr "Plasma Flex Hub"
+
+#: ../contents/config/config.qml
+msgid "General"
+msgstr "Ogólne"
+
+#: ../contents/config/config.qml
+msgid "Layout"
+msgstr "Układ"
+
+#: ../contents/config/config.qml
+msgid "Control Builder"
+msgstr "Tworzenie kontrolek"
+
+#: ../contents/ui/BuilderConfig.qml
+msgid "Size:"
+msgstr "Wielkość:"
+
+#: ../contents/ui/BuilderConfig.qml
+msgid "General:"
+msgstr "Ogólne:"
+
+#: ../contents/ui/BuilderConfig.qml
+msgid "Title"
+msgstr "Tytuł"
+
+#: ../contents/ui/BuilderConfig.qml
+msgid "e.g. Subtitle"
+msgstr "np. podtytuł"
+
+#: ../contents/ui/BuilderConfig.qml ../contents/ui/TextConstants.qml
+msgid "System indicator"
+msgstr "Wskaźnik systemu"
+
+#: ../contents/ui/BuilderConfig.qml ../contents/ui/TextConstants.qml
+msgid "Temperature"
+msgstr "Temperatura"
+
+#: ../contents/ui/BuilderConfig.qml ../contents/ui/TextConstants.qml
+msgid "Usage percentage"
+msgstr "Procent użycia"
+
+#: ../contents/ui/BuilderConfig.qml
+msgid "Icon:"
+msgstr "Ikona:"
+
+#: ../contents/ui/BuilderConfig.qml
+msgid "Command. optional"
+msgstr "Komenda. opcjonalne"
+
+#: ../contents/ui/BuilderConfig.qml
+msgid "e.g. lsb_release -d"
+msgstr "np. lsb_release -d"
+
+#: ../contents/ui/BuilderConfig.qml ../contents/ui/TextConstants.qml
+msgid "Save"
+msgstr "Zapisz"
+
+#: ../contents/ui/BuilderConfig.qml ../contents/ui/pages/ForceQuit.qml ../contents/ui/TextConstants.qml
+msgid "Cancel"
+msgstr "Anuluj"
+
+#: ../contents/ui/components/Bluetooth1x1.qml ../contents/ui/components/ItemBluetooth.qml ../contents/ui/js/funcs.js
+msgid "Disabled"
+msgstr "Wyłączone"
+
+#: ../contents/ui/components/Bluetooth1x1.qml ../contents/ui/components/ItemBluetooth.qml ../contents/ui/js/funcs.js
+msgid "Unavailable"
+msgstr "Niedostępne"
+
+#: ../contents/ui/components/Bluetooth1x1.qml ../contents/ui/components/ItemBluetooth.qml ../contents/ui/js/funcs.js
+msgid "Not Connected"
+msgstr "Niepołączone"
+
+#: ../contents/ui/components/Bluetooth1x1.qml ../contents/ui/components/ItemBluetooth.qml ../contents/ui/js/funcs.js
+msgid "Offline"
+msgstr "Offline"
+
+#: ../contents/ui/components/BrightnessDinamic.qml ../contents/ui/TextConstants.qml
+msgid "Brightness"
+msgstr "Jasność"
+
+#: ../contents/ui/components/Caffeine.qml
+msgid "The battery applet has enabled suppressing sleep and screen locking"
+msgstr "Aplet baterii został włączony, powstrzymując przed uśpieniem i zablokowaniem ekranu"
+
+#: ../contents/ui/components/Caffeine.qml
+msgid "On"
+msgstr "Włączone"
+
+#: ../contents/ui/components/Caffeine.qml
+msgid "Off"
+msgstr "Wyłączone"
+
+#: ../contents/ui/components/ConnectionItem.qml ../contents/ui/pages/components/bluetooth/DeviceItem.qml
+msgid "Connected"
+msgstr "Połączony"
+
+#: ../contents/ui/components/Dnd1x1.qml ../contents/ui/TextConstants.qml
+msgid "DND"
+msgstr "DND"
+
+#: ../contents/ui/components/ItemOpenConfigs.qml
+msgid "Settings"
+msgstr "Ustawienia"
+
+#: ../contents/ui/components/ItemOpenConfigs.qml
+msgid "System Settings"
+msgstr "Ustawienia systemu"
+
+#: ../contents/ui/components/MN_cpu.qml
+msgid "CPU Usage"
+msgstr "Użycie CPU"
+
+#: ../contents/ui/components/MN_ram.qml ../contents/ui/TextConstants.qml
+msgid "Ram Usage"
+msgstr "Użycie RAM"
+
+#: ../contents/ui/components/Screenshot-button.qml ../contents/ui/TextConstants.qml
+msgid "Screenshot"
+msgstr "Zrzut ekranu"
+
+#: ../contents/ui/components/SourceNetwork.qml ../contents/ui/pages/components/bluetooth/DeviceItem.qml
+msgid "Connect"
+msgstr "Połącz"
+
+#: ../contents/ui/components/SourceNetwork.qml ../contents/ui/pages/components/bluetooth/DeviceItem.qml
+msgid "Disconnect"
+msgstr "Rozłącz"
+
+#: ../contents/ui/components/ToggleForceQuit.qml ../contents/ui/pages/ForceQuit.qml ../contents/ui/TextConstants.qml
+msgid "Force Quit"
+msgstr "Wymuś wyjście"
+
+#: ../contents/ui/components/ToggleTheme.qml ../contents/ui/TextConstants.qml
+msgid "Dark"
+msgstr "Ciemny"
+
+#: ../contents/ui/components/ToggleTheme.qml ../contents/ui/TextConstants.qml
+msgid "Light"
+msgstr "Jasny"
+
+#: ../contents/ui/components/UserInfo.qml
+msgid "Hi"
+msgstr "Witaj,"
+
+#: ../contents/ui/GeneralConfig.qml
+msgid "Grid width:"
+msgstr "Szerokość siatki:"
+
+#: ../contents/ui/GeneralConfig.qml
+msgid "Grid Height:"
+msgstr "Wysokość siatki:"
+
+#: ../contents/ui/GeneralConfig.qml
+msgid "Use Plasma Theme"
+msgstr "Użyj Wyglądu Plasmy"
+
+#: ../contents/ui/GeneralConfig.qml
+msgid "Use color of Plasma Theme"
+msgstr "Użyj koloru Wyglądu Plasmy"
+
+#: ../contents/ui/GeneralConfig.qml
+msgid "Color of Cards and buttons:"
+msgstr "Kolor kart i przycisków:"
+
+#: ../contents/ui/GeneralConfig.qml
+msgid "Opacity of Cards and buttons:"
+msgstr "Przezroczystość kart i przycisków"
+
+#: ../contents/ui/GeneralConfig.qml
+msgid "Radius of Cards and buttons:"
+msgstr "Zaokrąglenie kart i przycisków"
+
+#: ../contents/ui/GeneralConfig.qml
+msgid "Mini button/toggle labels"
+msgstr "Pokazuj etykiety małych przycisków/przełączników"
+
+#: ../contents/ui/GeneralConfig.qml
+msgid "Icons Size:"
+msgstr "Wielkość ikon:"
+
+#: ../contents/ui/GeneralConfig.qml
+msgid "22"
+msgstr ""
+
+#: ../contents/ui/GeneralConfig.qml
+msgid "24"
+msgstr ""
+
+#: ../contents/ui/GeneralConfig.qml
+msgid "32"
+msgstr ""
+
+#: ../contents/ui/GeneralConfig.qml
+msgid "42"
+msgstr ""
+
+#: ../contents/ui/GeneralConfig.qml
+msgid "48"
+msgstr ""
+
+#: ../contents/ui/GeneralConfig.qml
+msgid "64"
+msgstr ""
+
+#: ../contents/ui/GeneralConfig.qml
+msgid "Icon background margin:"
+msgstr "Margines tła ikon:"
+
+#: ../contents/ui/GeneralConfig.qml
+msgid "4"
+msgstr ""
+
+#: ../contents/ui/GeneralConfig.qml
+msgid "8"
+msgstr ""
+
+#: ../contents/ui/GeneralConfig.qml
+msgid "16"
+msgstr ""
+
+#: ../contents/ui/GeneralConfig.qml
+msgid "20"
+msgstr ""
+
+#: ../contents/ui/GeneralConfig.qml
+msgid "Shadow Opacity:"
+msgstr "Przezroczystość cienia:"
+
+#: ../contents/ui/GeneralConfig.qml ../contents/ui/TextConstants.qml
+msgid "Download missing album covers"
+msgstr "Pobieraj brakujące okładki albumów"
+
+#: ../contents/ui/GeneralConfig.qml
+msgid "controls Color:"
+msgstr "kolor kontrolek:"
+
+#: ../contents/ui/GeneralConfig.qml
+msgid "It is not recommended to use Custom Color, in favor of the overall design."
+msgstr "Nie jest rekomendowane użycie niestandardowego koloru kosztem całego wyglądu."
+
+#: ../contents/ui/GeneralConfig.qml
+msgid "Custom Color:"
+msgstr "Niestandardowy kolor:"
+
+#: ../contents/ui/GeneralConfig.qml ../contents/ui/TextConstants.qml
+msgid "Seleccted Global Theme's"
+msgstr "Wybrany Wygląd globalny"
+
+#: ../contents/ui/LayoutConfig.qml
+msgid "Custom"
+msgstr "Niestandardowy"
+
+#: ../contents/ui/LayoutConfig.qml ../contents/ui/TextConstants.qml
+msgid "Activate"
+msgstr "Aktywuj"
+
+#: ../contents/ui/LayoutConfig.qml ../contents/ui/TextConstants.qml
+msgid "Save Theme"
+msgstr "Zapisz styl"
+
+#: ../contents/ui/LayoutConfig.qml
+msgid "Save Your Theme"
+msgstr "Zapisz swój styl"
+
+#: ../contents/ui/LayoutConfig.qml ../contents/ui/TextConstants.qml
+msgid "Name: "
+msgstr "Nazwa: "
+
+#: ../contents/ui/pages/bluetooth.qml ../contents/ui/TextConstants.qml
+msgid "Pair Device…"
+msgstr "Sparuj urządzenie…"
+
+#: ../contents/ui/pages/bluetooth.qml ../contents/ui/TextConstants.qml
+msgid "Bluetooth"
+msgstr "Bluetooth"
+
+#: ../contents/ui/pages/bluetooth.qml
+msgid "No Bluetooth adapters available"
+msgstr "Brak dostępnych adapterów Bluetooth"
+
+#: ../contents/ui/pages/bluetooth.qml
+msgid "Bluetooth is disabled"
+msgstr "Bluetooth jest wyłączony"
+
+#: ../contents/ui/pages/bluetooth.qml
+msgid "No devices paired"
+msgstr "Brak sparowanych urządzeń"
+
+#: ../contents/ui/pages/components/bluetooth/DeviceItem.qml ../contents/ui/TextConstants.qml
+msgid "Browse Files"
+msgstr "Przeglądaj pliki"
+
+#: ../contents/ui/pages/components/bluetooth/DeviceItem.qml ../contents/ui/TextConstants.qml
+msgid "Send File"
+msgstr "Wyślij plik"
+
+#: ../contents/ui/pages/components/bluetooth/DeviceItem.qml ../contents/ui/TextConstants.qml
+msgid "Copy"
+msgstr "Kopiuj"
+
+#: ../contents/ui/pages/components/bluetooth/DeviceItem.qml
+msgid "Yes"
+msgstr "Tak"
+
+#: ../contents/ui/pages/components/bluetooth/DeviceItem.qml
+msgid "No"
+msgstr "Nie"
+
+#: ../contents/ui/pages/components/bluetooth/DeviceItem.qml
+msgctxt "@label %1 is human-readable adapter name, %2 is HCI"
+msgid "%1 (%2)"
+msgstr "@label %1 jest nazwą adaptera możliwą do odczytania, natomiast %2 jest HCI"
+
+#: ../contents/ui/pages/components/bluetooth/DeviceItem.qml
+msgid "Remote Name"
+msgstr "Nazwa urządzenia zdalnego sterowania"
+
+#: ../contents/ui/pages/components/bluetooth/DeviceItem.qml
+msgid "Address"
+msgstr "Adres"
+
+#: ../contents/ui/pages/components/bluetooth/DeviceItem.qml
+msgid "Paired"
+msgstr "Połączone"
+
+#: ../contents/ui/pages/components/bluetooth/DeviceItem.qml
+msgid "Trusted"
+msgstr "Zaufane"
+
+#: ../contents/ui/pages/components/bluetooth/DeviceItem.qml
+msgid "Adapter"
+msgstr "Adapter"
+
+#: ../contents/ui/pages/components/bluetooth/DeviceItem.qml
+msgid "Disconnecting"
+msgstr "Rozłączanie"
+
+#: ../contents/ui/pages/components/bluetooth/DeviceItem.qml
+msgid "Connecting"
+msgstr "Łączenie"
+
+#: ../contents/ui/pages/components/bluetooth/DeviceItem.qml
+msgid "Connection failed"
+msgstr "Połączenie nieudane"
+
+#: ../contents/ui/pages/components/bluetooth/DeviceItem.qml
+msgid "Audio device"
+msgstr "Urządzenie audio"
+
+#: ../contents/ui/pages/components/bluetooth/DeviceItem.qml
+msgid "Input device"
+msgstr "Urządzenie wejścia"
+
+#: ../contents/ui/pages/components/bluetooth/DeviceItem.qml
+msgid "Phone"
+msgstr "Telefon"
+
+#: ../contents/ui/pages/components/bluetooth/DeviceItem.qml
+msgid "File transfer"
+msgstr "Transfer plików"
+
+#: ../contents/ui/pages/components/bluetooth/DeviceItem.qml
+msgid "Send file"
+msgstr "Wyślij plik"
+
+#: ../contents/ui/pages/components/bluetooth/DeviceItem.qml
+msgid "Input"
+msgstr "Wejście"
+
+#: ../contents/ui/pages/components/bluetooth/DeviceItem.qml
+msgid "Audio"
+msgstr "Audio"
+
+#: ../contents/ui/pages/components/bluetooth/DeviceItem.qml ../contents/ui/TextConstants.qml
+msgid "Network"
+msgstr "Sieć"
+
+#: ../contents/ui/pages/components/bluetooth/DeviceItem.qml
+msgid "Other device"
+msgstr "Inne urządzenia"
+
+#: ../contents/ui/pages/components/bluetooth/DeviceItem.qml
+msgid "%1% Battery"
+msgstr "%1% baterii"
+
+#: ../contents/ui/pages/ForceQuit.qml
+msgid "Force Quit "
+msgstr "Wymuś wyjście"
+
+#: ../contents/ui/pages/ForceQuit.qml ../contents/ui/TextConstants.qml
+msgid "Quit"
+msgstr "Wyjdź"
+
+#: ../contents/ui/pages/Network.qml
+msgid "Network Connections"
+msgstr "Połączenia sieciowe"
+
+#: ../contents/ui/pages/Network.qml
+msgid "Disable Wi-Fi"
+msgstr "Wyłącz Wi-Fi"
+
+#: ../contents/ui/pages/Network.qml
+msgid "Enable Wi-Fi"
+msgstr "Włącz Wi-Fi"
+
+#: ../contents/ui/pages/Network.qml
+msgid "Disable airplane mode"
+msgstr "Wyłącz tryb samolotowy"
+
+#: ../contents/ui/pages/Network.qml
+msgid "Enable airplane mode"
+msgstr "Włącz tryb samolotowy"
+
+#: ../contents/ui/TextConstants.qml
+msgid "Network Usage"
+msgstr "Użycie sieci"
+
+#: ../contents/ui/TextConstants.qml
+msgid "Grid width"
+msgstr "Szerokość siatki"
+
+#: ../contents/ui/TextConstants.qml
+msgid "Grid Height"
+msgstr "Wysokość siatki"
+
+#: ../contents/ui/TextConstants.qml
+msgid "Shadow Opacity"
+msgstr "Przezroczystość cienia"
+
+#: ../contents/ui/TextConstants.qml
+msgid "controls Color"
+msgstr "kolor kontrolek"
+
+#: ../contents/ui/TextConstants.qml
+msgid "It is not recommended to use Custom Color, in favor of the overall design"
+msgstr "Nie jest rekomendowane użycie niestandardowego koloru kosztem całego wyglądu"
+
+#: ../contents/ui/TextConstants.qml
+msgid "Custom Color"
+msgstr "Niestandardowy kolor"
+
+#: ../contents/ui/TextConstants.qml
+msgid "My sensor isn't listed"
+msgstr "Mój sensor nie znajduje się na liście"
+
+#: ../contents/ui/TextConstants.qml
+msgid "Volume"
+msgstr "Głośność"
+
+#: ../contents/ui/TextConstants.qml
+msgid "Do not disturb"
+msgstr "Nie przeszkadzać"
+
+#: ../contents/ui/TextConstants.qml
+msgid "Battery"
+msgstr "Bateria"
+
+#: ../contents/ui/TextConstants.qml
+msgid "Edit Controls"
+msgstr "Edytuj kontrolki"
