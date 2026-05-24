@@ -1,0 +1,238 @@
+# Translation of plasma flex hub in LANGUAGE
+# Copyright (C) 2025
+# This file is distributed under the same license as the plasma flex hub package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: plasma flex hub\n"
+"Report-Msgid-Bugs-To: https://github.com/zayronxio/Plasma.Flex.Hub/\n"
+"POT-Creation-Date: 2025-06-01 16:59-0300\n"
+"PO-Revision-Date: 2026-05-24 09:21+0200\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.9\n"
+
+#: ../contents/ui/TextConstants.qml
+msgid "Activate"
+msgstr "Aktivieren"
+
+#: ../contents/ui/TextConstants.qml
+msgid "Save Theme"
+msgstr "Theme Speichern"
+
+#: ../contents/ui/TextConstants.qml
+msgid "Network Usage"
+msgstr "Netzwerk-Auslastung"
+
+#: ../contents/ui/TextConstants.qml
+msgid "Ram Usage"
+msgstr "RAM-Auslastung"
+
+msgid "CPU Usage"
+msgstr "CPU-Auslastung"
+
+#: ../contents/ui/TextConstants.qml
+msgid "Network"
+msgstr "Netzwerk"
+
+#: ../contents/ui/TextConstants.qml
+msgid "Name: "
+msgstr "Name: "
+
+#: ../contents/ui/TextConstants.qml
+msgid "Force Quit"
+msgstr "Beenden erzwingen"
+
+#: ../contents/ui/TextConstants.qml
+msgid "Quit"
+msgstr "Beenden"
+
+#: ../contents/ui/TextConstants.qml
+msgid "Cancel"
+msgstr "Abbrechen"
+
+#: ../contents/ui/TextConstants.qml
+msgid "Network Connections"
+msgstr "Netzwerkverbindungen"
+
+#: ../contents/ui/TextConstants.qml
+msgid "Pair Device…"
+msgstr "Verbinde Geräte..."
+
+#: ../contents/ui/TextConstants.qml
+msgid "Bluetooth"
+msgstr "Bluetooth"
+
+#: ../contents/ui/TextConstants.qml
+msgid "Browse Files"
+msgstr "Dateien durchsuchen"
+
+#: ../contents/ui/TextConstants.qml
+msgid "Send File"
+msgstr "Datei senden"
+
+#: ../contents/ui/TextConstants.qml
+msgid "Copy"
+msgstr "Kopieren"
+
+#: ../contents/ui/TextConstants.qml
+msgid "Grid width"
+msgstr "Gitter-Weite"
+
+#: ../contents/ui/TextConstants.qml
+msgid "Grid Height"
+msgstr "Gitter-Höhe"
+
+#: ../contents/ui/TextConstants.qml
+msgid "Download missing album covers"
+msgstr "Fehlende Album-Covers herunterladen"
+
+#: ../contents/ui/TextConstants.qml
+msgid "Shadow Opacity"
+msgstr "Schattendichte"
+
+#: ../contents/ui/TextConstants.qml
+msgid "controls Color"
+msgstr "Bedienelementenfarbe"
+
+#: ../contents/ui/TextConstants.qml
+msgid "It is not recommended to use Custom Color, in favor of the overall design."
+msgstr "Die Verwendung von benutzerdefinierten Farben wird zugunsten des Gesamtdesigns nicht empfohlen."
+
+#: ../contents/ui/TextConstants.qml
+msgid "Custom Color"
+msgstr "Benutzerdefinierte Farbe"
+
+#: ../contents/ui/TextConstants.qml
+msgid "Seleccted Global Theme's"
+msgstr "Ausgewählte globale Themen"
+
+#: ../contents/ui/TextConstants.qml
+msgid "Dark"
+msgstr "Dunkel"
+
+#: ../contents/ui/TextConstants.qml
+msgid "Light"
+msgstr "Hell"
+
+#: ../contents/ui/TextConstants.qml
+msgid "My sensor isn't listed"
+msgstr "Mein Sensor ist nicht aufgelistet"
+
+#: ../contents/ui/TextConstants.qml
+msgid "System indicator"
+msgstr "Systemindikator"
+
+#: ../contents/ui/TextConstants.qml
+msgid "Temperature"
+msgstr "Temperatur"
+
+#: ../contents/ui/TextConstants.qml
+msgid "Usage percentage"
+msgstr "Nutzungsprozentsatz"
+
+#: ../contents/ui/TextConstants.qml
+msgid "Save"
+msgstr "Speichern"
+
+#: ../contents/ui/TextConstants.qml
+msgid "Volume"
+msgstr "Lautstärke"
+
+#: ../contents/ui/TextConstants.qml
+msgid "Brightness"
+msgstr "Helligkeit"
+
+#: ../contents/ui/TextConstants.qml
+msgid "DND"
+msgstr "DND"
+
+#: ../contents/ui/TextConstants.qml
+msgid "Do not disturb"
+msgstr "Nicht stören"
+
+#: ../contents/ui/TextConstants.qml
+msgid "Battery"
+msgstr "Batterie"
+
+#: ../contents/ui/TextConstants.qml
+msgid "Screenshot"
+msgstr "Screenshot"
+
+#: ../contents/ui/TextConstants.qml
+msgid "Edit Controls"
+msgstr "Steuerelemente bearbeiten"
+
+#: ../contents/ui/WeatherConfig.qml
+msgid "Wind Unit:"
+msgstr "Windeinheit: "
+
+#: ../contents/ui/WeatherConfig.qml
+msgid "Temperature Unit:"
+msgstr "Temperatureinheit: "
+
+#: ../contents/ui/WeatherConfig.qml
+msgid "Weather Metrics"
+msgstr "Wetterdaten"
+
+#: ../contents/ui/WeatherConfig.qml
+msgid "Wind Speed"
+msgstr "Windgeschwindigkeit"
+
+#: ../contents/ui/WeatherConfig.qml
+msgid "Feels Like"
+msgstr "Gefühlt"
+
+#: ../contents/ui/WeatherConfig.qml
+msgid "UV Level"
+msgstr "UV Level"
+
+#: ../contents/ui/WeatherConfig.qml
+msgid "Humidity"
+msgstr "Feuchtigkeit"
+
+#: ../contents/ui/WeatherConfig.qml
+msgid "Rain"
+msgstr "Regen"
+
+#: ../contents/ui/WeatherConfig.qml
+msgid "Max/Min"
+msgstr "Max/Min"
+
+#: ../contents/ui/WeatherConfig.qml
+msgid "Sunrise / Sunset"
+msgstr "Sonnenaufgang / Sonnenuntergang"
+
+#: ../contents/ui/WeatherConfig.qml
+msgid "Cloud Cover"
+msgstr "Bewölkung"
+
+#: ../contents/ui/WeatherConfig.qml
+msgid "Search Coordinates"
+msgstr "Koordinaten suchen"
+
+#: ../contents/ui/WeatherConfig.qml
+msgid "Use Location of your ip"
+msgstr "Standort Ihrer IP-Adresse verwenden"
+
+#: ../contents/ui/WeatherConfig.qml
+msgid "Latitude"
+msgstr "Breitengrad"
+
+#: ../contents/ui/WeatherConfig.qml
+msgid "Longitude"
+msgstr "Längengrad"
+
+#: ../contents/ui/components/weather2x4.qml
+msgid "City"
+msgstr "Stadt"
+
+#: ../contents/ui/components/weather2x4.qml
+msgid "UNK"
+msgstr "UNK"
